@@ -1,0 +1,5 @@
+*~
+*.model
+*.theory
+src/*.egg-info/
+experiments/*/data/
