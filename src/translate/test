@@ -1,0 +1,1102 @@
+type__htn_id(htn_id0).
+type__object(htn_id0).
+type__htn_id(htn_id1).
+type__object(htn_id1).
+type__htn_id(htn_id2).
+type__object(htn_id2).
+type__htn_id(htn_id3).
+type__object(htn_id3).
+type__htn_id(htn_id4).
+type__object(htn_id4).
+type__htn_id(htn_id5).
+type__object(htn_id5).
+type__pobj(natural).
+type__object(natural).
+type__pobj(red).
+type__object(red).
+type__pobj(black).
+type__object(black).
+type__pobj(pine).
+type__object(pine).
+type__pobj(teak).
+type__object(teak).
+type__pobj(rough).
+type__object(rough).
+type__pobj(smooth).
+type__object(smooth).
+type__pobj(verysmooth).
+type__object(verysmooth).
+type__pobj(colourfragments).
+type__object(colourfragments).
+type__pobj(untreated).
+type__object(untreated).
+type__pobj(glazed).
+type__object(glazed).
+type__pobj(varnished).
+type__object(varnished).
+type__pobj(s0).
+type__object(s0).
+type__pobj(s1).
+type__object(s1).
+type__pobj(s2).
+type__object(s2).
+type__pobj(s3).
+type__object(s3).
+type__pobj(large).
+type__object(large).
+type__pobj(medium).
+type__object(medium).
+type__pobj(small).
+type__object(small).
+type__pobj(highspeed_saw0).
+type__object(highspeed_saw0).
+type__pobj(glazer0).
+type__object(glazer0).
+type__pobj(grinder0).
+type__object(grinder0).
+type__pobj(planer0).
+type__object(planer0).
+type__pobj(spray_varnisher0).
+type__object(spray_varnisher0).
+type__pobj(b0).
+type__object(b0).
+type__pobj(p0).
+type__object(p0).
+type__pobj(p2).
+type__object(p2).
+type__pobj(p1).
+type__object(p1).
+available(p2).
+planer(planer0).
+wood(p0, pine).
+htn_less_than(htn_id2, htn_id5).
+htn_next_id(htn_id0, htn_id2).
+grinder(grinder0).
+boardsize(b0, s3).
+apartsize(small).
+htn_less_than(htn_id1, htn_id3).
+surface_condition(b0, rough).
+aboardsize(s3).
+htn_less_than(htn_id0, htn_id1).
+awood(teak).
+grind_treatment_change(untreated, untreated).
+glazer(glazer0).
+colour(p2, natural).
+machine(planer0).
+htn_permits(htn_id1, htn_id2).
+treatment(p2, varnished).
+surface(rough).
+htn_less_than(htn_id4, htn_id5).
+aboardsize(s2).
+surface_condition(p2, verysmooth).
+woodobj(p0).
+machine_present(planer0).
+htn_next_id(htn_id2, htn_id3).
+htn_less_than(htn_id1, htn_id5).
+htn_permits(htn_id4, htn_id2).
+apartsize(large).
+boardsize_successor(s1, s2).
+htn_permits(htn_id2, htn_id2).
+htn_less_than(htn_id2, htn_id3).
+part(p2).
+htn_less_than(htn_id2, htn_id4).
+aboardsize(s0).
+machine(grinder0).
+aboardsize(s1).
+goalsize(p1, medium).
+empty(highspeed_saw0).
+treatmentstatus(untreated).
+machine(spray_varnisher0).
+woodobj(p2).
+awood(pine).
+htn_less_than(htn_id0, htn_id5).
+htn_permits(htn_id1, htn_id4).
+part(p0).
+htn_permits(htn_id4, htn_id4).
+grind_treatment_change(glazed, untreated).
+acolour(red).
+grind_treatment_change(varnished, untreated).
+htn_less_than(htn_id0, htn_id4).
+htn_permits(htn_id3, htn_id4).
+colour(p0, red).
+htn_permits(htn_id1, htn_id1).
+htn_less_than(htn_id3, htn_id4).
+part(p1).
+surface(verysmooth).
+has_colour(glazer0, red).
+htn_less_than(htn_id0, htn_id2).
+htn_permits(htn_id3, htn_id1).
+htn_less_than(htn_id1, htn_id4).
+available(b0).
+apartsize(medium).
+htn_next_id(htn_id4, htn_id5).
+htn_permits(htn_id4, htn_id3).
+htn_next_id(htn_id3, htn_id4).
+htn_permits(htn_id3, htn_id3).
+htn_permits(htn_id2, htn_id3).
+treatmentstatus(varnished).
+htn_permits(htn_id2, htn_id4).
+wood(p2, teak).
+woodobj(p1).
+goalsize(p2, large).
+goalsize(p0, small).
+htn_less_than(htn_id0, htn_id3).
+surface_condition(p0, smooth).
+htn_permits(htn_id2, htn_id1).
+available(p0).
+board(b0).
+treatment(p0, varnished).
+htn_task_htn_initial_task_0(htn_id1).
+highspeed_saw(highspeed_saw0).
+is_smooth(smooth).
+acolour(black).
+spray_varnisher(spray_varnisher0).
+unused(p1).
+grind_treatment_change(colourfragments, untreated).
+htn_less_than(htn_id3, htn_id5).
+has_colour(glazer0, natural).
+htn_less_than(htn_id1, htn_id2).
+machine(glazer0).
+surface(smooth).
+grind_treatment_change(varnished, colourfragments).
+wood(b0, pine).
+boardsize_successor(s2, s3).
+acolour(natural).
+machine(highspeed_saw0).
+has_colour(spray_varnisher0, red).
+treatmentstatus(colourfragments).
+machine_present(grinder0).
+is_smooth(verysmooth).
+htn_permits(htn_id4, htn_id1).
+htn_permits(htn_id1, htn_id3).
+boardsize_successor(s0, s1).
+treatmentstatus(glazed).
+woodobj(b0).
+htn_permits(htn_id3, htn_id2).
+=(htn_id0, htn_id0).
+=(htn_id1, htn_id1).
+=(htn_id2, htn_id2).
+=(htn_id3, htn_id3).
+=(htn_id4, htn_id4).
+=(htn_id5, htn_id5).
+=(natural, natural).
+=(red, red).
+=(black, black).
+=(pine, pine).
+=(teak, teak).
+=(rough, rough).
+=(smooth, smooth).
+=(verysmooth, verysmooth).
+=(colourfragments, colourfragments).
+=(untreated, untreated).
+=(glazed, glazed).
+=(varnished, varnished).
+=(s0, s0).
+=(s1, s1).
+=(s2, s2).
+=(s3, s3).
+=(large, large).
+=(medium, medium).
+=(small, small).
+=(highspeed_saw0, highspeed_saw0).
+=(glazer0, glazer0).
+=(grinder0, grinder0).
+=(planer0, planer0).
+=(spray_varnisher0, spray_varnisher0).
+=(b0, b0).
+=(p0, p0).
+=(p2, p2).
+=(p1, p1).
+p__7(XXXhtn_id2) :- htn_next_id(htn_id0, XXXhtn_id2).
+p__8(XXXhtn_id2) :- type__htn_id(XXXhtn_id2), p__7(XXXhtn_id2).
+p__9(XXXhtn_id2, XXXhtn_id3) :- type__htn_id(XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__10(XXXhtn_id3, XXXhtn_id4) :- type__htn_id(XXXhtn_id4), htn_next_id(XXXhtn_id3, XXXhtn_id4).
+p__11(XXXhtn_id2, XXXhtn_id3) :- p__9(XXXhtn_id2, XXXhtn_id3), p__8(XXXhtn_id2).
+p__0(XXXhtn_id2, XXXhtn_id3, XXXhtn_id4) :- p__11(XXXhtn_id2, XXXhtn_id3), p__10(XXXhtn_id3, XXXhtn_id4).
+p__13(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__14(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__15(XXXhtn_id1) :- p__13(XXXhtn_id1), p__14(XXXhtn_id1).
+p__16(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__17(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__18(XXXhtn_id1) :- p__16(XXXhtn_id1), p__17(XXXhtn_id1).
+p__19(XXXhtn_id1) :- type__htn_id(XXXhtn_id1), htn_task_htn_initial_task_0(XXXhtn_id1).
+p__20(XXXhtn_id1) :- p__18(XXXhtn_id1), p__15(XXXhtn_id1).
+p__1(XXXhtn_id1) :- p__20(XXXhtn_id1), p__19(XXXhtn_id1).
+p__2(XXXprocess_p0_process_newsurfacevar) :- type__pobj(XXXprocess_p0_process_newsurfacevar), surface(XXXprocess_p0_process_newsurfacevar).
+p__3(XXXprocess_p0_process_oldsurfacevar) :- type__pobj(XXXprocess_p0_process_oldsurfacevar), surface(XXXprocess_p0_process_oldsurfacevar).
+p__4(XXXprocess_p1_process_oldsurfacevar) :- type__pobj(XXXprocess_p1_process_oldsurfacevar), surface(XXXprocess_p1_process_oldsurfacevar).
+p__5(XXXprocess_p2_process_newsurfacevar) :- type__pobj(XXXprocess_p2_process_newsurfacevar), surface(XXXprocess_p2_process_newsurfacevar).
+p__6(XXXprocess_p2_process_oldsurfacevar) :- type__pobj(XXXprocess_p2_process_oldsurfacevar), surface(XXXprocess_p2_process_oldsurfacevar).
+product <Action 'htn_assert_initial_tasks' at 0x7fd1062cb860>(XXXprocess_p0_process_newsurfacevar, XXXprocess_p0_process_oldsurfacevar, XXXprocess_p1_process_oldsurfacevar, XXXprocess_p2_process_newsurfacevar, XXXprocess_p2_process_oldsurfacevar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4) :- p__0(XXXhtn_id2, XXXhtn_id3, XXXhtn_id4), p__1(XXXhtn_id1), p__2(XXXprocess_p0_process_newsurfacevar), p__3(XXXprocess_p0_process_oldsurfacevar), p__4(XXXprocess_p1_process_oldsurfacevar), p__5(XXXprocess_p2_process_newsurfacevar), p__6(XXXprocess_p2_process_oldsurfacevar).
+htn_task_process_0(p0, red, XXXprocess_p0_process_oldsurfacevar, XXXprocess_p0_process_newsurfacevar, XXXhtn_id1) :- <Action 'htn_assert_initial_tasks' at 0x7fd1062cb860>(XXXprocess_p0_process_newsurfacevar, XXXprocess_p0_process_oldsurfacevar, XXXprocess_p1_process_oldsurfacevar, XXXprocess_p2_process_newsurfacevar, XXXprocess_p2_process_oldsurfacevar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_task_process_0(p2, red, XXXprocess_p2_process_oldsurfacevar, XXXprocess_p2_process_newsurfacevar, XXXhtn_id2) :- <Action 'htn_assert_initial_tasks' at 0x7fd1062cb860>(XXXprocess_p0_process_newsurfacevar, XXXprocess_p0_process_oldsurfacevar, XXXprocess_p1_process_oldsurfacevar, XXXprocess_p2_process_newsurfacevar, XXXprocess_p2_process_oldsurfacevar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_task_process_0(p1, red, XXXprocess_p1_process_oldsurfacevar, smooth, XXXhtn_id3) :- <Action 'htn_assert_initial_tasks' at 0x7fd1062cb860>(XXXprocess_p0_process_newsurfacevar, XXXprocess_p0_process_oldsurfacevar, XXXprocess_p1_process_oldsurfacevar, XXXprocess_p2_process_newsurfacevar, XXXprocess_p2_process_oldsurfacevar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_next_id(htn_id0, XXXhtn_id4) :- <Action 'htn_assert_initial_tasks' at 0x7fd1062cb860>(XXXprocess_p0_process_newsurfacevar, XXXprocess_p0_process_oldsurfacevar, XXXprocess_p1_process_oldsurfacevar, XXXprocess_p2_process_newsurfacevar, XXXprocess_p2_process_oldsurfacevar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+p__37(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__38(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__39(XXXhtn_id1) :- p__37(XXXhtn_id1), p__38(XXXhtn_id1).
+p__40(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__41(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__42(XXXhtn_id1) :- p__40(XXXhtn_id1), p__41(XXXhtn_id1).
+p__43(XXXprocess_colourvar) :- type__pobj(XXXprocess_colourvar), acolour(XXXprocess_colourvar).
+p__44(XXXprocess_newsurfacevar) :- type__pobj(XXXprocess_newsurfacevar), surface(XXXprocess_newsurfacevar).
+p__45(XXXprocess_oldsurfacevar) :- type__pobj(XXXprocess_oldsurfacevar), surface(XXXprocess_oldsurfacevar).
+p__46(XXXreusepartprocessthorough_variable10) :- type__pobj(XXXreusepartprocessthorough_variable10), part(XXXreusepartprocessthorough_variable10).
+p__47(XXXhtn_id1) :- p__39(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__48(XXXhtn_id1) :- p__47(XXXhtn_id1), p__42(XXXhtn_id1).
+p__49(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10) :- p__43(XXXprocess_colourvar), htn_task_process_0(XXXreusepartprocessthorough_variable10, XXXprocess_colourvar, XXXprocess_oldsurfacevar, XXXprocess_newsurfacevar, XXXhtn_id1).
+p__50(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10) :- p__49(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10), p__44(XXXprocess_newsurfacevar).
+p__51(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10) :- p__50(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10), p__45(XXXprocess_oldsurfacevar).
+p__52(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10) :- p__51(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10), p__46(XXXreusepartprocessthorough_variable10).
+p__27(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10) :- p__52(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10), p__48(XXXhtn_id1).
+p__28(XXXreusepartprocessthorough_variable19) :- type__pobj(XXXreusepartprocessthorough_variable19), acolour(XXXreusepartprocessthorough_variable19).
+p__29(XXXreusepartprocessthorough_variable22) :- type__pobj(XXXreusepartprocessthorough_variable22), acolour(XXXreusepartprocessthorough_variable22).
+p__30(XXXreusepartprocessthorough_variable11) :- type__pobj(XXXreusepartprocessthorough_variable11), grinder(XXXreusepartprocessthorough_variable11).
+p__57(XXXhtn_id2) :- htn_next_id(htn_id0, XXXhtn_id2).
+p__58(XXXhtn_id2) :- type__htn_id(XXXhtn_id2), p__57(XXXhtn_id2).
+p__59(XXXhtn_id2, XXXhtn_id3) :- type__htn_id(XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__60(XXXhtn_id3, XXXhtn_id4) :- type__htn_id(XXXhtn_id4), htn_next_id(XXXhtn_id3, XXXhtn_id4).
+p__61(XXXhtn_id2, XXXhtn_id3) :- p__59(XXXhtn_id2, XXXhtn_id3), p__58(XXXhtn_id2).
+p__31(XXXhtn_id2, XXXhtn_id3, XXXhtn_id4) :- p__61(XXXhtn_id2, XXXhtn_id3), p__60(XXXhtn_id3, XXXhtn_id4).
+p__32(XXXreusepartprocessthorough_variable16) :- type__pobj(XXXreusepartprocessthorough_variable16), machine(XXXreusepartprocessthorough_variable16).
+p__33(XXXreusepartprocessthorough_variable14) :- type__pobj(XXXreusepartprocessthorough_variable14), part(XXXreusepartprocessthorough_variable14).
+p__34(XXXreusepartprocessthorough_variable12) :- type__pobj(XXXreusepartprocessthorough_variable12), surface(XXXreusepartprocessthorough_variable12).
+p__35(XXXreusepartprocessthorough_variable21) :- type__pobj(XXXreusepartprocessthorough_variable21), surface(XXXreusepartprocessthorough_variable21).
+p__36(XXXreusepartprocessthorough_variable20) :- type__pobj(XXXreusepartprocessthorough_variable20), treatmentstatus(XXXreusepartprocessthorough_variable20).
+product <Action 'htn_reusepartprocessthorough' at 0x7fd1062cbf28>(XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10, XXXreusepartprocessthorough_variable11, XXXreusepartprocessthorough_variable12, XXXreusepartprocessthorough_variable14, XXXreusepartprocessthorough_variable16, XXXreusepartprocessthorough_variable19, XXXreusepartprocessthorough_variable20, XXXreusepartprocessthorough_variable21, XXXreusepartprocessthorough_variable22, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4) :- p__27(XXXhtn_id1, XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10), p__28(XXXreusepartprocessthorough_variable19), p__29(XXXreusepartprocessthorough_variable22), p__30(XXXreusepartprocessthorough_variable11), p__31(XXXhtn_id2, XXXhtn_id3, XXXhtn_id4), p__32(XXXreusepartprocessthorough_variable16), p__33(XXXreusepartprocessthorough_variable14), p__34(XXXreusepartprocessthorough_variable12), p__35(XXXreusepartprocessthorough_variable21), p__36(XXXreusepartprocessthorough_variable20).
+htn_task_do_colour_0(XXXreusepartprocessthorough_variable14, XXXprocess_colourvar, XXXreusepartprocessthorough_variable16, XXXhtn_id1) :- <Action 'htn_reusepartprocessthorough' at 0x7fd1062cbf28>(XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10, XXXreusepartprocessthorough_variable11, XXXreusepartprocessthorough_variable12, XXXreusepartprocessthorough_variable14, XXXreusepartprocessthorough_variable16, XXXreusepartprocessthorough_variable19, XXXreusepartprocessthorough_variable20, XXXreusepartprocessthorough_variable21, XXXreusepartprocessthorough_variable22, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_task_grindnplane_0(XXXreusepartprocessthorough_variable10, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable19, XXXreusepartprocessthorough_variable20, XXXreusepartprocessthorough_variable21, XXXreusepartprocessthorough_variable22, untreated, XXXhtn_id2) :- <Action 'htn_reusepartprocessthorough' at 0x7fd1062cbf28>(XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10, XXXreusepartprocessthorough_variable11, XXXreusepartprocessthorough_variable12, XXXreusepartprocessthorough_variable14, XXXreusepartprocessthorough_variable16, XXXreusepartprocessthorough_variable19, XXXreusepartprocessthorough_variable20, XXXreusepartprocessthorough_variable21, XXXreusepartprocessthorough_variable22, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_task_do_grind_untreated_0(XXXreusepartprocessthorough_variable10, XXXreusepartprocessthorough_variable11, XXXreusepartprocessthorough_variable12, natural, XXXhtn_id3) :- <Action 'htn_reusepartprocessthorough' at 0x7fd1062cbf28>(XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10, XXXreusepartprocessthorough_variable11, XXXreusepartprocessthorough_variable12, XXXreusepartprocessthorough_variable14, XXXreusepartprocessthorough_variable16, XXXreusepartprocessthorough_variable19, XXXreusepartprocessthorough_variable20, XXXreusepartprocessthorough_variable21, XXXreusepartprocessthorough_variable22, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_next_id(htn_id0, XXXhtn_id4) :- <Action 'htn_reusepartprocessthorough' at 0x7fd1062cbf28>(XXXprocess_colourvar, XXXprocess_newsurfacevar, XXXprocess_oldsurfacevar, XXXreusepartprocessthorough_variable10, XXXreusepartprocessthorough_variable11, XXXreusepartprocessthorough_variable12, XXXreusepartprocessthorough_variable14, XXXreusepartprocessthorough_variable16, XXXreusepartprocessthorough_variable19, XXXreusepartprocessthorough_variable20, XXXreusepartprocessthorough_variable21, XXXreusepartprocessthorough_variable22, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+p__68(XXXfullprocess_variable10) :- type__pobj(XXXfullprocess_variable10), acolour(XXXfullprocess_variable10).
+p__69(XXXfullprocess_variable7) :- type__pobj(XXXfullprocess_variable7), acolour(XXXfullprocess_variable7).
+p__78(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__79(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__80(XXXhtn_id1) :- p__78(XXXhtn_id1), p__79(XXXhtn_id1).
+p__81(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__82(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__83(XXXhtn_id1) :- p__81(XXXhtn_id1), p__82(XXXhtn_id1).
+p__84(XXXfullprocess_variable6) :- type__pobj(XXXfullprocess_variable6), surface(XXXfullprocess_variable6).
+p__85(XXXfullprocess_variable9) :- type__pobj(XXXfullprocess_variable9), surface(XXXfullprocess_variable9).
+p__86(XXXprocess_colourvar) :- type__pobj(XXXprocess_colourvar), acolour(XXXprocess_colourvar).
+p__87(XXXprocess_partvar) :- type__pobj(XXXprocess_partvar), part(XXXprocess_partvar).
+p__88(XXXhtn_id1) :- p__80(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__89(XXXhtn_id1) :- p__88(XXXhtn_id1), p__83(XXXhtn_id1).
+p__90(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar) :- p__84(XXXfullprocess_variable6), htn_task_process_0(XXXprocess_partvar, XXXprocess_colourvar, XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1).
+p__91(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar) :- p__90(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar), p__85(XXXfullprocess_variable9).
+p__92(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar) :- p__91(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar), p__86(XXXprocess_colourvar).
+p__93(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar) :- p__92(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar), p__87(XXXprocess_partvar).
+p__70(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar) :- p__93(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar), p__89(XXXhtn_id1).
+p__71(XXXfullprocess_variable3) :- type__pobj(XXXfullprocess_variable3), awood(XXXfullprocess_variable3).
+p__72(XXXfullprocess_variable1) :- type__pobj(XXXfullprocess_variable1), board(XXXfullprocess_variable1).
+p__97(XXXhtn_id2) :- htn_next_id(htn_id0, XXXhtn_id2).
+p__98(XXXhtn_id2) :- type__htn_id(XXXhtn_id2), p__97(XXXhtn_id2).
+p__99(XXXhtn_id2, XXXhtn_id3) :- type__htn_id(XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__100(XXXhtn_id3, XXXhtn_id4) :- type__htn_id(XXXhtn_id4), htn_next_id(XXXhtn_id3, XXXhtn_id4).
+p__101(XXXhtn_id2, XXXhtn_id3) :- p__99(XXXhtn_id2, XXXhtn_id3), p__98(XXXhtn_id2).
+p__73(XXXhtn_id2, XXXhtn_id3, XXXhtn_id4) :- p__101(XXXhtn_id2, XXXhtn_id3), p__100(XXXhtn_id3, XXXhtn_id4).
+p__74(XXXfullprocess_variable14) :- type__pobj(XXXfullprocess_variable14), machine(XXXfullprocess_variable14).
+p__75(XXXfullprocess_variable8) :- type__pobj(XXXfullprocess_variable8), treatmentstatus(XXXfullprocess_variable8).
+product <Action 'htn_fullprocess' at 0x7fd1062d4d30>(XXXfullprocess_variable1, XXXfullprocess_variable10, XXXfullprocess_variable14, XXXfullprocess_variable3, XXXfullprocess_variable6, XXXfullprocess_variable7, XXXfullprocess_variable8, XXXfullprocess_variable9, XXXprocess_colourvar, XXXprocess_partvar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4) :- p__68(XXXfullprocess_variable10), p__69(XXXfullprocess_variable7), p__70(XXXfullprocess_variable6, XXXfullprocess_variable9, XXXhtn_id1, XXXprocess_colourvar, XXXprocess_partvar), p__71(XXXfullprocess_variable3), p__72(XXXfullprocess_variable1), p__73(XXXhtn_id2, XXXhtn_id3, XXXhtn_id4), p__74(XXXfullprocess_variable14), p__75(XXXfullprocess_variable8).
+htn_task_do_colour_0(XXXprocess_partvar, XXXprocess_colourvar, XXXfullprocess_variable14, XXXhtn_id1) :- <Action 'htn_fullprocess' at 0x7fd1062d4d30>(XXXfullprocess_variable1, XXXfullprocess_variable10, XXXfullprocess_variable14, XXXfullprocess_variable3, XXXfullprocess_variable6, XXXfullprocess_variable7, XXXfullprocess_variable8, XXXfullprocess_variable9, XXXprocess_colourvar, XXXprocess_partvar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_task_grindnplane_0(XXXprocess_partvar, XXXfullprocess_variable6, XXXfullprocess_variable7, XXXfullprocess_variable8, XXXfullprocess_variable9, XXXfullprocess_variable10, untreated, XXXhtn_id2) :- <Action 'htn_fullprocess' at 0x7fd1062d4d30>(XXXfullprocess_variable1, XXXfullprocess_variable10, XXXfullprocess_variable14, XXXfullprocess_variable3, XXXfullprocess_variable6, XXXfullprocess_variable7, XXXfullprocess_variable8, XXXfullprocess_variable9, XXXprocess_colourvar, XXXprocess_partvar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_task_cut_and_saw_0(XXXfullprocess_variable1, XXXprocess_partvar, XXXfullprocess_variable3, XXXfullprocess_variable6, XXXhtn_id3) :- <Action 'htn_fullprocess' at 0x7fd1062d4d30>(XXXfullprocess_variable1, XXXfullprocess_variable10, XXXfullprocess_variable14, XXXfullprocess_variable3, XXXfullprocess_variable6, XXXfullprocess_variable7, XXXfullprocess_variable8, XXXfullprocess_variable9, XXXprocess_colourvar, XXXprocess_partvar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_next_id(htn_id0, XXXhtn_id4) :- <Action 'htn_fullprocess' at 0x7fd1062d4d30>(XXXfullprocess_variable1, XXXfullprocess_variable10, XXXfullprocess_variable14, XXXfullprocess_variable3, XXXfullprocess_variable6, XXXfullprocess_variable7, XXXfullprocess_variable8, XXXfullprocess_variable9, XXXprocess_colourvar, XXXprocess_partvar, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+p__105(XXXreusepartprocess_variable10) :- type__pobj(XXXreusepartprocess_variable10), acolour(XXXreusepartprocess_variable10).
+p__106(XXXreusepartprocess_variable13) :- type__pobj(XXXreusepartprocess_variable13), acolour(XXXreusepartprocess_variable13).
+p__113(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__114(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__115(XXXhtn_id1) :- p__113(XXXhtn_id1), p__114(XXXhtn_id1).
+p__116(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__117(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__118(XXXhtn_id1) :- p__116(XXXhtn_id1), p__117(XXXhtn_id1).
+p__119(XXXreusepartprocess_variable12) :- type__pobj(XXXreusepartprocess_variable12), surface(XXXreusepartprocess_variable12).
+p__120(XXXreusepartprocess_variable16) :- type__pobj(XXXreusepartprocess_variable16), acolour(XXXreusepartprocess_variable16).
+p__121(XXXreusepartprocess_variable8) :- type__pobj(XXXreusepartprocess_variable8), part(XXXreusepartprocess_variable8).
+p__122(XXXreusepartprocess_variable9) :- type__pobj(XXXreusepartprocess_variable9), surface(XXXreusepartprocess_variable9).
+p__123(XXXhtn_id1) :- p__115(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__124(XXXhtn_id1) :- p__123(XXXhtn_id1), p__118(XXXhtn_id1).
+p__125(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9) :- p__119(XXXreusepartprocess_variable12), htn_task_process_0(XXXreusepartprocess_variable8, XXXreusepartprocess_variable16, XXXreusepartprocess_variable9, XXXreusepartprocess_variable12, XXXhtn_id1).
+p__126(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9) :- p__125(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9), p__120(XXXreusepartprocess_variable16).
+p__127(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9) :- p__126(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9), p__121(XXXreusepartprocess_variable8).
+p__128(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9) :- p__127(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9), p__122(XXXreusepartprocess_variable9).
+p__107(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9) :- p__128(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9), p__124(XXXhtn_id1).
+p__130(XXXhtn_id2) :- htn_next_id(htn_id0, XXXhtn_id2).
+p__131(XXXhtn_id2) :- type__htn_id(XXXhtn_id2), p__130(XXXhtn_id2).
+p__132(XXXhtn_id2, XXXhtn_id3) :- type__htn_id(XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__108(XXXhtn_id2, XXXhtn_id3) :- p__132(XXXhtn_id2, XXXhtn_id3), p__131(XXXhtn_id2).
+p__109(XXXreusepartprocess_variable17) :- type__pobj(XXXreusepartprocess_variable17), machine(XXXreusepartprocess_variable17).
+p__110(XXXreusepartprocess_variable11) :- type__pobj(XXXreusepartprocess_variable11), treatmentstatus(XXXreusepartprocess_variable11).
+product <Action 'htn_reusepartprocess' at 0x7fd1062d8cc0>(XXXreusepartprocess_variable10, XXXreusepartprocess_variable11, XXXreusepartprocess_variable12, XXXreusepartprocess_variable13, XXXreusepartprocess_variable16, XXXreusepartprocess_variable17, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__105(XXXreusepartprocess_variable10), p__106(XXXreusepartprocess_variable13), p__107(XXXhtn_id1, XXXreusepartprocess_variable12, XXXreusepartprocess_variable16, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9), p__108(XXXhtn_id2, XXXhtn_id3), p__109(XXXreusepartprocess_variable17), p__110(XXXreusepartprocess_variable11).
+htn_task_do_colour_0(XXXreusepartprocess_variable8, XXXreusepartprocess_variable16, XXXreusepartprocess_variable17, XXXhtn_id1) :- <Action 'htn_reusepartprocess' at 0x7fd1062d8cc0>(XXXreusepartprocess_variable10, XXXreusepartprocess_variable11, XXXreusepartprocess_variable12, XXXreusepartprocess_variable13, XXXreusepartprocess_variable16, XXXreusepartprocess_variable17, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_task_grindnplane_0(XXXreusepartprocess_variable8, XXXreusepartprocess_variable9, XXXreusepartprocess_variable10, XXXreusepartprocess_variable11, XXXreusepartprocess_variable12, XXXreusepartprocess_variable13, untreated, XXXhtn_id2) :- <Action 'htn_reusepartprocess' at 0x7fd1062d8cc0>(XXXreusepartprocess_variable10, XXXreusepartprocess_variable11, XXXreusepartprocess_variable12, XXXreusepartprocess_variable13, XXXreusepartprocess_variable16, XXXreusepartprocess_variable17, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(htn_id0, XXXhtn_id3) :- <Action 'htn_reusepartprocess' at 0x7fd1062d8cc0>(XXXreusepartprocess_variable10, XXXreusepartprocess_variable11, XXXreusepartprocess_variable12, XXXreusepartprocess_variable13, XXXreusepartprocess_variable16, XXXreusepartprocess_variable17, XXXreusepartprocess_variable8, XXXreusepartprocess_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__141(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__142(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__143(XXXhtn_id1) :- p__141(XXXhtn_id1), p__142(XXXhtn_id1).
+p__144(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__145(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__146(XXXhtn_id1) :- p__144(XXXhtn_id1), p__145(XXXhtn_id1).
+p__147(XXXprocess_oldsurfacevar) :- type__pobj(XXXprocess_oldsurfacevar), surface(XXXprocess_oldsurfacevar).
+p__148(XXXrawprocess_variable10) :- type__pobj(XXXrawprocess_variable10), acolour(XXXrawprocess_variable10).
+p__149(XXXrawprocess_variable9) :- type__pobj(XXXrawprocess_variable9), part(XXXrawprocess_variable9).
+p__150(XXXhtn_id1) :- p__143(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__151(XXXhtn_id1) :- p__150(XXXhtn_id1), p__146(XXXhtn_id1).
+p__152(XXXprocess_oldsurfacevar, XXXprocess_oldsurfacevar__0) :- p__147(XXXprocess_oldsurfacevar), =(XXXprocess_oldsurfacevar, XXXprocess_oldsurfacevar__0).
+p__153(XXXhtn_id1, XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable9) :- p__152(XXXprocess_oldsurfacevar, XXXprocess_oldsurfacevar__0), htn_task_process_0(XXXrawprocess_variable9, XXXrawprocess_variable10, XXXprocess_oldsurfacevar, XXXprocess_oldsurfacevar__0, XXXhtn_id1).
+p__154(XXXhtn_id1, XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable9) :- p__153(XXXhtn_id1, XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable9), p__148(XXXrawprocess_variable10).
+p__155(XXXhtn_id1, XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable9) :- p__154(XXXhtn_id1, XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable9), p__149(XXXrawprocess_variable9).
+p__136(XXXhtn_id1, XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable9) :- p__155(XXXhtn_id1, XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable9), p__151(XXXhtn_id1).
+p__137(XXXrawprocess_variable7) :- type__pobj(XXXrawprocess_variable7), awood(XXXrawprocess_variable7).
+p__138(XXXrawprocess_variable5) :- type__pobj(XXXrawprocess_variable5), board(XXXrawprocess_variable5).
+p__159(XXXhtn_id2) :- htn_next_id(htn_id0, XXXhtn_id2).
+p__160(XXXhtn_id2) :- type__htn_id(XXXhtn_id2), p__159(XXXhtn_id2).
+p__161(XXXhtn_id2, XXXhtn_id3) :- type__htn_id(XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__139(XXXhtn_id2, XXXhtn_id3) :- p__161(XXXhtn_id2, XXXhtn_id3), p__160(XXXhtn_id2).
+p__140(XXXrawprocess_variable11) :- type__pobj(XXXrawprocess_variable11), machine(XXXrawprocess_variable11).
+product <Action 'htn_rawprocess' at 0x7fd1062d8b70>(XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable11, XXXrawprocess_variable5, XXXrawprocess_variable7, XXXrawprocess_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__136(XXXhtn_id1, XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable9), p__137(XXXrawprocess_variable7), p__138(XXXrawprocess_variable5), p__139(XXXhtn_id2, XXXhtn_id3), p__140(XXXrawprocess_variable11).
+htn_task_do_colour_0(XXXrawprocess_variable9, XXXrawprocess_variable10, XXXrawprocess_variable11, XXXhtn_id1) :- <Action 'htn_rawprocess' at 0x7fd1062d8b70>(XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable11, XXXrawprocess_variable5, XXXrawprocess_variable7, XXXrawprocess_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_task_cut_and_saw_0(XXXrawprocess_variable5, XXXrawprocess_variable9, XXXrawprocess_variable7, XXXprocess_oldsurfacevar, XXXhtn_id2) :- <Action 'htn_rawprocess' at 0x7fd1062d8b70>(XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable11, XXXrawprocess_variable5, XXXrawprocess_variable7, XXXrawprocess_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(htn_id0, XXXhtn_id3) :- <Action 'htn_rawprocess' at 0x7fd1062d8b70>(XXXprocess_oldsurfacevar, XXXrawprocess_variable10, XXXrawprocess_variable11, XXXrawprocess_variable5, XXXrawprocess_variable7, XXXrawprocess_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__166(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__167(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__168(XXXhtn_id1) :- p__166(XXXhtn_id1), p__167(XXXhtn_id1).
+p__169(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__170(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__171(XXXhtn_id1) :- p__169(XXXhtn_id1), p__170(XXXhtn_id1).
+p__172(XXXdo_colour_variable2) :- machine(XXXdo_colour_variable2), glazer(XXXdo_colour_variable2).
+p__173(XXXdo_colour_variable1) :- type__pobj(XXXdo_colour_variable1), acolour(XXXdo_colour_variable1).
+p__174(XXXnewobj_variable1) :- type__pobj(XXXnewobj_variable1), part(XXXnewobj_variable1).
+p__175(XXXhtn_id1) :- p__168(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__176(XXXdo_colour_variable2) :- p__172(XXXdo_colour_variable2), type__pobj(XXXdo_colour_variable2).
+p__177(XXXhtn_id1) :- p__175(XXXhtn_id1), p__171(XXXhtn_id1).
+p__178(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1) :- p__173(XXXdo_colour_variable1), htn_task_do_colour_0(XXXnewobj_variable1, XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1).
+p__179(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1) :- p__178(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1), p__174(XXXnewobj_variable1).
+p__180(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1) :- p__179(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1), p__176(XXXdo_colour_variable2).
+p__164(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1) :- p__180(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1), p__177(XXXhtn_id1).
+p__165(XXXglaze_variable2) :- type__pobj(XXXglaze_variable2), glazer(XXXglaze_variable2).
+product <Action 'htn_glaze' at 0x7fd10625db70>(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXglaze_variable2, XXXnewobj_variable1, XXXhtn_id1) :- p__164(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1), p__165(XXXglaze_variable2).
+htn_task_do_glaze_0(XXXnewobj_variable1, XXXglaze_variable2, XXXdo_colour_variable1, XXXhtn_id1) :- <Action 'htn_glaze' at 0x7fd10625db70>(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXglaze_variable2, XXXnewobj_variable1, XXXhtn_id1).
+p__186(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__187(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__188(XXXhtn_id1) :- p__186(XXXhtn_id1), p__187(XXXhtn_id1).
+p__189(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__190(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__191(XXXhtn_id1) :- p__189(XXXhtn_id1), p__190(XXXhtn_id1).
+p__192(XXXdo_colour_variable2) :- spray_varnisher(XXXdo_colour_variable2), machine(XXXdo_colour_variable2).
+p__193(XXXdo_colour_variable1) :- type__pobj(XXXdo_colour_variable1), acolour(XXXdo_colour_variable1).
+p__194(XXXnewobj_variable1) :- type__pobj(XXXnewobj_variable1), part(XXXnewobj_variable1).
+p__195(XXXhtn_id1) :- p__188(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__196(XXXdo_colour_variable2) :- p__192(XXXdo_colour_variable2), type__pobj(XXXdo_colour_variable2).
+p__197(XXXhtn_id1) :- p__195(XXXhtn_id1), p__191(XXXhtn_id1).
+p__198(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1) :- p__193(XXXdo_colour_variable1), htn_task_do_colour_0(XXXnewobj_variable1, XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1).
+p__199(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1) :- p__198(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1), p__194(XXXnewobj_variable1).
+p__200(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1) :- p__199(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1), p__196(XXXdo_colour_variable2).
+p__183(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1) :- p__200(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1), p__197(XXXhtn_id1).
+p__184(XXXsprayvarnish_variable2) :- type__pobj(XXXsprayvarnish_variable2), spray_varnisher(XXXsprayvarnish_variable2).
+p__185(XXXsprayvarnish_variable4) :- type__pobj(XXXsprayvarnish_variable4), surface(XXXsprayvarnish_variable4).
+product <Action 'htn_sprayvarnish' at 0x7fd10625de80>(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXnewobj_variable1, XXXsprayvarnish_variable2, XXXsprayvarnish_variable4, XXXhtn_id1) :- p__183(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXhtn_id1, XXXnewobj_variable1), p__184(XXXsprayvarnish_variable2), p__185(XXXsprayvarnish_variable4).
+htn_task_do_spray_varnish_0(XXXnewobj_variable1, XXXsprayvarnish_variable2, XXXdo_colour_variable1, XXXsprayvarnish_variable4, XXXhtn_id1) :- <Action 'htn_sprayvarnish' at 0x7fd10625de80>(XXXdo_colour_variable1, XXXdo_colour_variable2, XXXnewobj_variable1, XXXsprayvarnish_variable2, XXXsprayvarnish_variable4, XXXhtn_id1).
+p__204(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__205(XXXhtn_id1) :- p__204(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__206(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__207(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__208(XXXhtn_id1) :- p__206(XXXhtn_id1), p__207(XXXhtn_id1).
+p__209(XXXdo_spray_varnish_x) :- part(XXXdo_spray_varnish_x), type__pobj(XXXdo_spray_varnish_x).
+p__210(XXXdo_spray_varnish_m) :- spray_varnisher(XXXdo_spray_varnish_m), type__pobj(XXXdo_spray_varnish_m).
+p__211(XXXdo_spray_varnish_newcolour) :- acolour(XXXdo_spray_varnish_newcolour), type__pobj(XXXdo_spray_varnish_newcolour).
+p__212(XXXdo_spray_varnish_surface) :- surface(XXXdo_spray_varnish_surface), type__pobj(XXXdo_spray_varnish_surface).
+p__213(XXXdo_spray_varnish_x) :- treatment(XXXdo_spray_varnish_x, untreated).
+p__214(XXXdo_spray_varnish_x) :- p__213(XXXdo_spray_varnish_x), available(XXXdo_spray_varnish_x).
+p__215(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__216(XXXhtn_id1) :- p__205(XXXhtn_id1), p__215(XXXhtn_id1).
+p__217(XXXdo_spray_varnish_surface) :- p__212(XXXdo_spray_varnish_surface), is_smooth(XXXdo_spray_varnish_surface).
+p__218(XXXdo_spray_varnish_x) :- p__214(XXXdo_spray_varnish_x), p__209(XXXdo_spray_varnish_x).
+p__219(XXXhtn_id1) :- p__216(XXXhtn_id1), p__208(XXXhtn_id1).
+p__220(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__221(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__222(XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour) :- p__210(XXXdo_spray_varnish_m), has_colour(XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour).
+p__223(XXXdo_spray_varnish_surface, XXXdo_spray_varnish_x) :- p__217(XXXdo_spray_varnish_surface), surface_condition(XXXdo_spray_varnish_x, XXXdo_spray_varnish_surface).
+p__224(XXXhtn_id1, XXXhtn_id2) :- p__220(XXXhtn_id1, XXXhtn_id2), p__219(XXXhtn_id1).
+p__225(XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour) :- p__222(XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour), p__211(XXXdo_spray_varnish_newcolour).
+p__226(XXXdo_spray_varnish_surface, XXXdo_spray_varnish_x) :- p__223(XXXdo_spray_varnish_surface, XXXdo_spray_varnish_x), p__218(XXXdo_spray_varnish_x).
+p__227(XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXdo_spray_varnish_x, XXXhtn_id1) :- p__225(XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour), htn_task_do_spray_varnish_0(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1).
+p__228(XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXdo_spray_varnish_x, XXXhtn_id1) :- p__227(XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXdo_spray_varnish_x, XXXhtn_id1), p__226(XXXdo_spray_varnish_surface, XXXdo_spray_varnish_x).
+p__229(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__221(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__230(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__229(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__224(XXXhtn_id1, XXXhtn_id2).
+<Action 'do_spray_varnish' at 0x7fd106263940>(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__230(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__228(XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXdo_spray_varnish_x, XXXhtn_id1).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'do_spray_varnish' at 0x7fd106263940>(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'do_spray_varnish' at 0x7fd106263940>(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'do_spray_varnish' at 0x7fd106263940>(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'do_spray_varnish' at 0x7fd106263940>(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'do_spray_varnish' at 0x7fd106263940>(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'do_spray_varnish' at 0x7fd106263940>(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXdo_spray_varnish_x, varnished) :- <Action 'do_spray_varnish' at 0x7fd106263940>(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXdo_spray_varnish_x, XXXdo_spray_varnish_newcolour) :- <Action 'do_spray_varnish' at 0x7fd106263940>(XXXdo_spray_varnish_x, XXXdo_spray_varnish_m, XXXdo_spray_varnish_newcolour, XXXdo_spray_varnish_surface, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__232(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__233(XXXhtn_id1) :- p__232(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__234(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__235(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__236(XXXhtn_id1) :- p__234(XXXhtn_id1), p__235(XXXhtn_id1).
+p__237(XXXdo_glaze_x) :- part(XXXdo_glaze_x), type__pobj(XXXdo_glaze_x).
+p__238(XXXdo_glaze_m) :- glazer(XXXdo_glaze_m), type__pobj(XXXdo_glaze_m).
+p__239(XXXdo_glaze_newcolour) :- acolour(XXXdo_glaze_newcolour), type__pobj(XXXdo_glaze_newcolour).
+p__240(XXXdo_glaze_x) :- treatment(XXXdo_glaze_x, untreated).
+p__241(XXXdo_glaze_x) :- p__240(XXXdo_glaze_x), available(XXXdo_glaze_x).
+p__242(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__243(XXXhtn_id1) :- p__233(XXXhtn_id1), p__242(XXXhtn_id1).
+p__244(XXXdo_glaze_x) :- p__241(XXXdo_glaze_x), p__237(XXXdo_glaze_x).
+p__245(XXXhtn_id1) :- p__243(XXXhtn_id1), p__236(XXXhtn_id1).
+p__246(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__247(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__248(XXXdo_glaze_m, XXXdo_glaze_newcolour) :- p__238(XXXdo_glaze_m), has_colour(XXXdo_glaze_m, XXXdo_glaze_newcolour).
+p__249(XXXhtn_id1, XXXhtn_id2) :- p__246(XXXhtn_id1, XXXhtn_id2), p__245(XXXhtn_id1).
+p__250(XXXdo_glaze_m, XXXdo_glaze_newcolour) :- p__248(XXXdo_glaze_m, XXXdo_glaze_newcolour), p__239(XXXdo_glaze_newcolour).
+p__251(XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXdo_glaze_x, XXXhtn_id1) :- p__250(XXXdo_glaze_m, XXXdo_glaze_newcolour), htn_task_do_glaze_0(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1).
+p__252(XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXdo_glaze_x, XXXhtn_id1) :- p__251(XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXdo_glaze_x, XXXhtn_id1), p__244(XXXdo_glaze_x).
+p__253(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__247(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__254(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__253(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__249(XXXhtn_id1, XXXhtn_id2).
+<Action 'do_glaze' at 0x7fd106263908>(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__254(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__252(XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXdo_glaze_x, XXXhtn_id1).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'do_glaze' at 0x7fd106263908>(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'do_glaze' at 0x7fd106263908>(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'do_glaze' at 0x7fd106263908>(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'do_glaze' at 0x7fd106263908>(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'do_glaze' at 0x7fd106263908>(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'do_glaze' at 0x7fd106263908>(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXdo_glaze_x, glazed) :- <Action 'do_glaze' at 0x7fd106263908>(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXdo_glaze_x, XXXdo_glaze_newcolour) :- <Action 'do_glaze' at 0x7fd106263908>(XXXdo_glaze_x, XXXdo_glaze_m, XXXdo_glaze_newcolour, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__256(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__257(XXXhtn_id1) :- p__256(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__258(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__259(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__260(XXXhtn_id1) :- p__258(XXXhtn_id1), p__259(XXXhtn_id1).
+p__261(XXXdothesawway_variable1) :- board(XXXdothesawway_variable1), type__pobj(XXXdothesawway_variable1).
+p__262(XXXdothesawway_variable2) :- part(XXXdothesawway_variable2), type__pobj(XXXdothesawway_variable2).
+p__263(XXXdothesawway_variable3) :- awood(XXXdothesawway_variable3), type__pobj(XXXdothesawway_variable3).
+p__264(XXXdothesawway_variable4) :- surface(XXXdothesawway_variable4), type__pobj(XXXdothesawway_variable4).
+p__265(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__266(XXXhtn_id1) :- p__257(XXXhtn_id1), p__265(XXXhtn_id1).
+p__267(XXXhtn_id1) :- p__266(XXXhtn_id1), p__260(XXXhtn_id1).
+p__268(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1) :- p__261(XXXdothesawway_variable1), htn_task_cut_and_saw_0(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1).
+p__269(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1) :- p__268(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1), p__262(XXXdothesawway_variable2).
+p__270(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1) :- p__269(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1), p__263(XXXdothesawway_variable3).
+p__271(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1) :- p__270(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1), p__264(XXXdothesawway_variable4).
+<Action 'htn_dothesawway' at 0x7fd1062cb6a0>(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1) :- p__271(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1), p__267(XXXhtn_id1).
+htn_task_do_saw_0(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1) :- <Action 'htn_dothesawway' at 0x7fd1062cb6a0>(XXXdothesawway_variable1, XXXdothesawway_variable2, XXXdothesawway_variable3, XXXdothesawway_variable4, XXXhtn_id1).
+p__276(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__277(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__278(XXXhtn_id1) :- p__276(XXXhtn_id1), p__277(XXXhtn_id1).
+p__279(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__280(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__281(XXXhtn_id1) :- p__279(XXXhtn_id1), p__280(XXXhtn_id1).
+p__282(XXXdothecutway_variable1) :- type__pobj(XXXdothecutway_variable1), board(XXXdothecutway_variable1).
+p__283(XXXdothecutway_variable2) :- type__pobj(XXXdothecutway_variable2), part(XXXdothecutway_variable2).
+p__284(XXXdothecutway_variable4) :- type__pobj(XXXdothecutway_variable4), awood(XXXdothecutway_variable4).
+p__285(XXXdothecutway_variable5) :- type__pobj(XXXdothecutway_variable5), surface(XXXdothecutway_variable5).
+p__286(XXXhtn_id1) :- p__278(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__287(XXXhtn_id1) :- p__286(XXXhtn_id1), p__281(XXXhtn_id1).
+p__288(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1) :- p__282(XXXdothecutway_variable1), htn_task_cut_and_saw_0(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1).
+p__289(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1) :- p__288(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1), p__283(XXXdothecutway_variable2).
+p__290(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1) :- p__289(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1), p__284(XXXdothecutway_variable4).
+p__291(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1) :- p__290(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1), p__285(XXXdothecutway_variable5).
+p__273(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1) :- p__291(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1), p__287(XXXhtn_id1).
+p__274(XXXdothecutway_variable9) :- type__pobj(XXXdothecutway_variable9), highspeed_saw(XXXdothecutway_variable9).
+p__294(XXXhtn_id2) :- htn_next_id(htn_id0, XXXhtn_id2).
+p__295(XXXhtn_id2) :- type__htn_id(XXXhtn_id2), p__294(XXXhtn_id2).
+p__296(XXXhtn_id2, XXXhtn_id3) :- type__htn_id(XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__297(XXXhtn_id3, XXXhtn_id4) :- type__htn_id(XXXhtn_id4), htn_next_id(XXXhtn_id3, XXXhtn_id4).
+p__298(XXXhtn_id2, XXXhtn_id3) :- p__296(XXXhtn_id2, XXXhtn_id3), p__295(XXXhtn_id2).
+p__275(XXXhtn_id2, XXXhtn_id3, XXXhtn_id4) :- p__298(XXXhtn_id2, XXXhtn_id3), p__297(XXXhtn_id3, XXXhtn_id4).
+product <Action 'htn_dothecutway' at 0x7fd106268cc0>(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXdothecutway_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4) :- p__273(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id1), p__274(XXXdothecutway_variable9), p__275(XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_task_unload_highspeed_saw_0(XXXdothecutway_variable1, XXXdothecutway_variable9, XXXhtn_id1) :- <Action 'htn_dothecutway' at 0x7fd106268cc0>(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXdothecutway_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_task_load_highspeed_saw_0(XXXdothecutway_variable1, XXXdothecutway_variable9, XXXhtn_id2) :- <Action 'htn_dothecutway' at 0x7fd106268cc0>(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXdothecutway_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_task_cut_board_0(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable9, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXhtn_id3) :- <Action 'htn_dothecutway' at 0x7fd106268cc0>(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXdothecutway_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+htn_next_id(htn_id0, XXXhtn_id4) :- <Action 'htn_dothecutway' at 0x7fd106268cc0>(XXXdothecutway_variable1, XXXdothecutway_variable2, XXXdothecutway_variable4, XXXdothecutway_variable5, XXXdothecutway_variable9, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXhtn_id4).
+p__300(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__301(XXXhtn_id1) :- p__300(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__302(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__303(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__304(XXXhtn_id1) :- p__302(XXXhtn_id1), p__303(XXXhtn_id1).
+p__305(XXXunload_highspeed_saw_b) :- board(XXXunload_highspeed_saw_b), type__pobj(XXXunload_highspeed_saw_b).
+p__306(XXXunload_highspeed_saw_m) :- highspeed_saw(XXXunload_highspeed_saw_m), type__pobj(XXXunload_highspeed_saw_m).
+p__307(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__308(XXXhtn_id1) :- p__301(XXXhtn_id1), p__307(XXXhtn_id1).
+p__309(XXXhtn_id1) :- p__308(XXXhtn_id1), p__304(XXXhtn_id1).
+p__310(XXXhtn_id1, XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m) :- in_highspeed_saw(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m), htn_task_unload_highspeed_saw_0(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1).
+p__311(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__312(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__313(XXXhtn_id1, XXXhtn_id2) :- p__311(XXXhtn_id1, XXXhtn_id2), p__309(XXXhtn_id1).
+p__314(XXXhtn_id1, XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m) :- p__310(XXXhtn_id1, XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m), p__305(XXXunload_highspeed_saw_b).
+p__315(XXXhtn_id1, XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m) :- p__314(XXXhtn_id1, XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m), p__306(XXXunload_highspeed_saw_m).
+p__316(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__312(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__317(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__316(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__313(XXXhtn_id1, XXXhtn_id2).
+<Action 'unload_highspeed_saw' at 0x7fd106268e80>(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__317(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__315(XXXhtn_id1, XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'unload_highspeed_saw' at 0x7fd106268e80>(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'unload_highspeed_saw' at 0x7fd106268e80>(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'unload_highspeed_saw' at 0x7fd106268e80>(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'unload_highspeed_saw' at 0x7fd106268e80>(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'unload_highspeed_saw' at 0x7fd106268e80>(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'unload_highspeed_saw' at 0x7fd106268e80>(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+available(XXXunload_highspeed_saw_b) :- <Action 'unload_highspeed_saw' at 0x7fd106268e80>(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+empty(XXXunload_highspeed_saw_m) :- <Action 'unload_highspeed_saw' at 0x7fd106268e80>(XXXunload_highspeed_saw_b, XXXunload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__319(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__320(XXXhtn_id1) :- p__319(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__321(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__322(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__323(XXXhtn_id1) :- p__321(XXXhtn_id1), p__322(XXXhtn_id1).
+p__324(XXXload_highspeed_saw_b) :- board(XXXload_highspeed_saw_b), type__pobj(XXXload_highspeed_saw_b).
+p__325(XXXload_highspeed_saw_m) :- highspeed_saw(XXXload_highspeed_saw_m), type__pobj(XXXload_highspeed_saw_m).
+p__326(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__327(XXXhtn_id1) :- p__320(XXXhtn_id1), p__326(XXXhtn_id1).
+p__328(XXXload_highspeed_saw_b) :- p__324(XXXload_highspeed_saw_b), available(XXXload_highspeed_saw_b).
+p__329(XXXload_highspeed_saw_m) :- p__325(XXXload_highspeed_saw_m), empty(XXXload_highspeed_saw_m).
+p__330(XXXhtn_id1) :- p__327(XXXhtn_id1), p__323(XXXhtn_id1).
+p__331(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__332(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__333(XXXhtn_id1, XXXhtn_id2) :- p__331(XXXhtn_id1, XXXhtn_id2), p__330(XXXhtn_id1).
+p__334(XXXhtn_id1, XXXload_highspeed_saw_b, XXXload_highspeed_saw_m) :- p__328(XXXload_highspeed_saw_b), htn_task_load_highspeed_saw_0(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m, XXXhtn_id1).
+p__335(XXXhtn_id1, XXXload_highspeed_saw_b, XXXload_highspeed_saw_m) :- p__334(XXXhtn_id1, XXXload_highspeed_saw_b, XXXload_highspeed_saw_m), p__329(XXXload_highspeed_saw_m).
+p__336(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__332(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__337(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__336(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__333(XXXhtn_id1, XXXhtn_id2).
+<Action 'load_highspeed_saw' at 0x7fd10626ef60>(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__337(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__335(XXXhtn_id1, XXXload_highspeed_saw_b, XXXload_highspeed_saw_m).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'load_highspeed_saw' at 0x7fd10626ef60>(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'load_highspeed_saw' at 0x7fd10626ef60>(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'load_highspeed_saw' at 0x7fd10626ef60>(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'load_highspeed_saw' at 0x7fd10626ef60>(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'load_highspeed_saw' at 0x7fd10626ef60>(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'load_highspeed_saw' at 0x7fd10626ef60>(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+in_highspeed_saw(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m) :- <Action 'load_highspeed_saw' at 0x7fd10626ef60>(XXXload_highspeed_saw_b, XXXload_highspeed_saw_m, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__339(XXXcutboardsmall_variable11) :- type__pobj(XXXcutboardsmall_variable11), aboardsize(XXXcutboardsmall_variable11).
+p__340(XXXcutboardsmall_variable12) :- type__pobj(XXXcutboardsmall_variable12), aboardsize(XXXcutboardsmall_variable12).
+p__344(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__345(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__346(XXXhtn_id1) :- p__344(XXXhtn_id1), p__345(XXXhtn_id1).
+p__347(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__348(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__349(XXXhtn_id1) :- p__347(XXXhtn_id1), p__348(XXXhtn_id1).
+p__350(XXXcutboardsmall_variable10) :- type__pobj(XXXcutboardsmall_variable10), surface(XXXcutboardsmall_variable10).
+p__351(XXXcutboardsmall_variable6) :- type__pobj(XXXcutboardsmall_variable6), board(XXXcutboardsmall_variable6).
+p__352(XXXcutboardsmall_variable7) :- type__pobj(XXXcutboardsmall_variable7), part(XXXcutboardsmall_variable7).
+p__353(XXXcutboardsmall_variable8) :- type__pobj(XXXcutboardsmall_variable8), highspeed_saw(XXXcutboardsmall_variable8).
+p__354(XXXcutboardsmall_variable9) :- type__pobj(XXXcutboardsmall_variable9), awood(XXXcutboardsmall_variable9).
+p__355(XXXhtn_id1) :- p__346(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__356(XXXhtn_id1) :- p__355(XXXhtn_id1), p__349(XXXhtn_id1).
+p__357(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1) :- p__350(XXXcutboardsmall_variable10), htn_task_cut_board_0(XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXcutboardsmall_variable10, XXXhtn_id1).
+p__358(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1) :- p__357(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1), p__351(XXXcutboardsmall_variable6).
+p__359(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1) :- p__358(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1), p__352(XXXcutboardsmall_variable7).
+p__360(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1) :- p__359(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1), p__353(XXXcutboardsmall_variable8).
+p__361(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1) :- p__360(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1), p__354(XXXcutboardsmall_variable9).
+p__341(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1) :- p__361(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1), p__356(XXXhtn_id1).
+product <Action 'htn_cutboardsmall' at 0x7fd106263fd0>(XXXcutboardsmall_variable10, XXXcutboardsmall_variable11, XXXcutboardsmall_variable12, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1) :- p__339(XXXcutboardsmall_variable11), p__340(XXXcutboardsmall_variable12), p__341(XXXcutboardsmall_variable10, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1).
+htn_task_cut_board_small_0(XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXcutboardsmall_variable10, XXXcutboardsmall_variable11, XXXcutboardsmall_variable12, XXXhtn_id1) :- <Action 'htn_cutboardsmall' at 0x7fd106263fd0>(XXXcutboardsmall_variable10, XXXcutboardsmall_variable11, XXXcutboardsmall_variable12, XXXcutboardsmall_variable6, XXXcutboardsmall_variable7, XXXcutboardsmall_variable8, XXXcutboardsmall_variable9, XXXhtn_id1).
+p__363(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__364(XXXhtn_id1) :- p__363(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__365(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__366(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__367(XXXhtn_id1) :- p__365(XXXhtn_id1), p__366(XXXhtn_id1).
+p__368(XXXcut_board_small_b) :- board(XXXcut_board_small_b), type__pobj(XXXcut_board_small_b).
+p__369(XXXcut_board_small_p) :- part(XXXcut_board_small_p), type__pobj(XXXcut_board_small_p).
+p__370(XXXcut_board_small_m) :- highspeed_saw(XXXcut_board_small_m), type__pobj(XXXcut_board_small_m).
+p__371(XXXcut_board_small_w) :- awood(XXXcut_board_small_w), type__pobj(XXXcut_board_small_w).
+p__372(XXXcut_board_small_surface) :- surface(XXXcut_board_small_surface), type__pobj(XXXcut_board_small_surface).
+p__373(XXXcut_board_small_size_before) :- aboardsize(XXXcut_board_small_size_before), type__pobj(XXXcut_board_small_size_before).
+p__374(XXXcut_board_small_size_after) :- aboardsize(XXXcut_board_small_size_after), type__pobj(XXXcut_board_small_size_after).
+p__375(XXXcut_board_small_p) :- goalsize(XXXcut_board_small_p, small).
+p__376(XXXcut_board_small_p) :- p__375(XXXcut_board_small_p), unused(XXXcut_board_small_p).
+p__377(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__378(XXXhtn_id1) :- p__364(XXXhtn_id1), p__377(XXXhtn_id1).
+p__379(XXXcut_board_small_p) :- p__376(XXXcut_board_small_p), p__369(XXXcut_board_small_p).
+p__380(XXXhtn_id1) :- p__378(XXXhtn_id1), p__367(XXXhtn_id1).
+p__381(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__382(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__383(XXXcut_board_small_b, XXXcut_board_small_m) :- p__368(XXXcut_board_small_b), in_highspeed_saw(XXXcut_board_small_b, XXXcut_board_small_m).
+p__384(XXXcut_board_small_b, XXXcut_board_small_w) :- p__371(XXXcut_board_small_w), wood(XXXcut_board_small_b, XXXcut_board_small_w).
+p__385(XXXcut_board_small_b, XXXcut_board_small_surface) :- p__372(XXXcut_board_small_surface), surface_condition(XXXcut_board_small_b, XXXcut_board_small_surface).
+p__386(XXXcut_board_small_b, XXXcut_board_small_size_before) :- p__373(XXXcut_board_small_size_before), boardsize(XXXcut_board_small_b, XXXcut_board_small_size_before).
+p__387(XXXcut_board_small_size_after, XXXcut_board_small_size_before) :- p__374(XXXcut_board_small_size_after), boardsize_successor(XXXcut_board_small_size_after, XXXcut_board_small_size_before).
+p__388(XXXhtn_id1, XXXhtn_id2) :- p__381(XXXhtn_id1, XXXhtn_id2), p__380(XXXhtn_id1).
+p__389(XXXcut_board_small_b, XXXcut_board_small_m) :- p__383(XXXcut_board_small_b, XXXcut_board_small_m), p__370(XXXcut_board_small_m).
+p__390(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1) :- p__384(XXXcut_board_small_b, XXXcut_board_small_w), htn_task_cut_board_small_0(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1).
+p__391(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1) :- p__390(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1), p__385(XXXcut_board_small_b, XXXcut_board_small_surface).
+p__392(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1) :- p__391(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1), p__386(XXXcut_board_small_b, XXXcut_board_small_size_before).
+p__393(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1) :- p__392(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1), p__387(XXXcut_board_small_size_after, XXXcut_board_small_size_before).
+p__394(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1) :- p__393(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1), p__389(XXXcut_board_small_b, XXXcut_board_small_m).
+p__395(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1) :- p__394(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1), p__379(XXXcut_board_small_p).
+p__396(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__382(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__397(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__396(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__388(XXXhtn_id1, XXXhtn_id2).
+<Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__397(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__395(XXXcut_board_small_b, XXXcut_board_small_m, XXXcut_board_small_p, XXXcut_board_small_size_after, XXXcut_board_small_size_before, XXXcut_board_small_surface, XXXcut_board_small_w, XXXhtn_id1).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+available(XXXcut_board_small_p) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+wood(XXXcut_board_small_p, XXXcut_board_small_w) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+surface_condition(XXXcut_board_small_p, XXXcut_board_small_surface) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXcut_board_small_p, natural) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXcut_board_small_p, untreated) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+boardsize(XXXcut_board_small_b, XXXcut_board_small_size_after) :- <Action 'cut_board_small' at 0x7fd1062729b0>(XXXcut_board_small_b, XXXcut_board_small_p, XXXcut_board_small_m, XXXcut_board_small_w, XXXcut_board_small_surface, XXXcut_board_small_size_before, XXXcut_board_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__399(XXXsawlarge_variable10) :- type__pobj(XXXsawlarge_variable10), aboardsize(XXXsawlarge_variable10).
+p__400(XXXsawlarge_variable11) :- type__pobj(XXXsawlarge_variable11), aboardsize(XXXsawlarge_variable11).
+p__401(XXXsawlarge_variable12) :- type__pobj(XXXsawlarge_variable12), aboardsize(XXXsawlarge_variable12).
+p__402(XXXsawlarge_variable9) :- type__pobj(XXXsawlarge_variable9), aboardsize(XXXsawlarge_variable9).
+p__408(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__409(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__410(XXXhtn_id1) :- p__408(XXXhtn_id1), p__409(XXXhtn_id1).
+p__411(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__412(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__413(XXXhtn_id1) :- p__411(XXXhtn_id1), p__412(XXXhtn_id1).
+p__414(XXXsawlarge_variable5) :- type__pobj(XXXsawlarge_variable5), board(XXXsawlarge_variable5).
+p__415(XXXsawlarge_variable6) :- type__pobj(XXXsawlarge_variable6), part(XXXsawlarge_variable6).
+p__416(XXXsawlarge_variable7) :- type__pobj(XXXsawlarge_variable7), awood(XXXsawlarge_variable7).
+p__417(XXXsawlarge_variable8) :- type__pobj(XXXsawlarge_variable8), surface(XXXsawlarge_variable8).
+p__418(XXXhtn_id1) :- p__410(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__419(XXXhtn_id1) :- p__418(XXXhtn_id1), p__413(XXXhtn_id1).
+p__420(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8) :- p__414(XXXsawlarge_variable5), htn_task_do_saw_0(XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8, XXXhtn_id1).
+p__421(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8) :- p__420(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8), p__415(XXXsawlarge_variable6).
+p__422(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8) :- p__421(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8), p__416(XXXsawlarge_variable7).
+p__423(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8) :- p__422(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8), p__417(XXXsawlarge_variable8).
+p__403(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8) :- p__423(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8), p__419(XXXhtn_id1).
+product <Action 'htn_sawlarge' at 0x7fd106278e80>(XXXsawlarge_variable10, XXXsawlarge_variable11, XXXsawlarge_variable12, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8, XXXsawlarge_variable9, XXXhtn_id1) :- p__399(XXXsawlarge_variable10), p__400(XXXsawlarge_variable11), p__401(XXXsawlarge_variable12), p__402(XXXsawlarge_variable9), p__403(XXXhtn_id1, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8).
+htn_task_do_saw_large_0(XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8, XXXsawlarge_variable9, XXXsawlarge_variable10, XXXsawlarge_variable11, XXXsawlarge_variable12, XXXhtn_id1) :- <Action 'htn_sawlarge' at 0x7fd106278e80>(XXXsawlarge_variable10, XXXsawlarge_variable11, XXXsawlarge_variable12, XXXsawlarge_variable5, XXXsawlarge_variable6, XXXsawlarge_variable7, XXXsawlarge_variable8, XXXsawlarge_variable9, XXXhtn_id1).
+p__425(XXXsawmedium_variable5) :- type__pobj(XXXsawmedium_variable5), aboardsize(XXXsawmedium_variable5).
+p__426(XXXsawmedium_variable6) :- type__pobj(XXXsawmedium_variable6), aboardsize(XXXsawmedium_variable6).
+p__427(XXXsawmedium_variable7) :- type__pobj(XXXsawmedium_variable7), aboardsize(XXXsawmedium_variable7).
+p__432(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__433(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__434(XXXhtn_id1) :- p__432(XXXhtn_id1), p__433(XXXhtn_id1).
+p__435(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__436(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__437(XXXhtn_id1) :- p__435(XXXhtn_id1), p__436(XXXhtn_id1).
+p__438(XXXsawmedium_variable1) :- type__pobj(XXXsawmedium_variable1), board(XXXsawmedium_variable1).
+p__439(XXXsawmedium_variable2) :- type__pobj(XXXsawmedium_variable2), part(XXXsawmedium_variable2).
+p__440(XXXsawmedium_variable3) :- type__pobj(XXXsawmedium_variable3), awood(XXXsawmedium_variable3).
+p__441(XXXsawmedium_variable4) :- type__pobj(XXXsawmedium_variable4), surface(XXXsawmedium_variable4).
+p__442(XXXhtn_id1) :- p__434(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__443(XXXhtn_id1) :- p__442(XXXhtn_id1), p__437(XXXhtn_id1).
+p__444(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4) :- p__438(XXXsawmedium_variable1), htn_task_do_saw_0(XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4, XXXhtn_id1).
+p__445(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4) :- p__444(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4), p__439(XXXsawmedium_variable2).
+p__446(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4) :- p__445(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4), p__440(XXXsawmedium_variable3).
+p__447(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4) :- p__446(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4), p__441(XXXsawmedium_variable4).
+p__428(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4) :- p__447(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4), p__443(XXXhtn_id1).
+product <Action 'htn_sawmedium' at 0x7fd10626eef0>(XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4, XXXsawmedium_variable5, XXXsawmedium_variable6, XXXsawmedium_variable7, XXXhtn_id1) :- p__425(XXXsawmedium_variable5), p__426(XXXsawmedium_variable6), p__427(XXXsawmedium_variable7), p__428(XXXhtn_id1, XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4).
+htn_task_do_saw_medium_0(XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4, XXXsawmedium_variable5, XXXsawmedium_variable6, XXXsawmedium_variable7, XXXhtn_id1) :- <Action 'htn_sawmedium' at 0x7fd10626eef0>(XXXsawmedium_variable1, XXXsawmedium_variable2, XXXsawmedium_variable3, XXXsawmedium_variable4, XXXsawmedium_variable5, XXXsawmedium_variable6, XXXsawmedium_variable7, XXXhtn_id1).
+p__449(XXXsawsmall_variable10) :- type__pobj(XXXsawsmall_variable10), aboardsize(XXXsawsmall_variable10).
+p__450(XXXsawsmall_variable9) :- type__pobj(XXXsawsmall_variable9), aboardsize(XXXsawsmall_variable9).
+p__454(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__455(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__456(XXXhtn_id1) :- p__454(XXXhtn_id1), p__455(XXXhtn_id1).
+p__457(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__458(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__459(XXXhtn_id1) :- p__457(XXXhtn_id1), p__458(XXXhtn_id1).
+p__460(XXXsawsmall_variable5) :- type__pobj(XXXsawsmall_variable5), board(XXXsawsmall_variable5).
+p__461(XXXsawsmall_variable6) :- type__pobj(XXXsawsmall_variable6), part(XXXsawsmall_variable6).
+p__462(XXXsawsmall_variable7) :- type__pobj(XXXsawsmall_variable7), awood(XXXsawsmall_variable7).
+p__463(XXXsawsmall_variable8) :- type__pobj(XXXsawsmall_variable8), surface(XXXsawsmall_variable8).
+p__464(XXXhtn_id1) :- p__456(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__465(XXXhtn_id1) :- p__464(XXXhtn_id1), p__459(XXXhtn_id1).
+p__466(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8) :- p__460(XXXsawsmall_variable5), htn_task_do_saw_0(XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8, XXXhtn_id1).
+p__467(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8) :- p__466(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8), p__461(XXXsawsmall_variable6).
+p__468(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8) :- p__467(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8), p__462(XXXsawsmall_variable7).
+p__469(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8) :- p__468(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8), p__463(XXXsawsmall_variable8).
+p__451(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8) :- p__469(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8), p__465(XXXhtn_id1).
+product <Action 'htn_sawsmall' at 0x7fd10627dac8>(XXXsawsmall_variable10, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8, XXXsawsmall_variable9, XXXhtn_id1) :- p__449(XXXsawsmall_variable10), p__450(XXXsawsmall_variable9), p__451(XXXhtn_id1, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8).
+htn_task_do_saw_small_0(XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8, XXXsawsmall_variable9, XXXsawsmall_variable10, XXXhtn_id1) :- <Action 'htn_sawsmall' at 0x7fd10627dac8>(XXXsawsmall_variable10, XXXsawsmall_variable5, XXXsawsmall_variable6, XXXsawsmall_variable7, XXXsawsmall_variable8, XXXsawsmall_variable9, XXXhtn_id1).
+p__471(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__472(XXXhtn_id1) :- p__471(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__473(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__474(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__475(XXXhtn_id1) :- p__473(XXXhtn_id1), p__474(XXXhtn_id1).
+p__476(XXXdo_saw_small_b) :- board(XXXdo_saw_small_b), type__pobj(XXXdo_saw_small_b).
+p__477(XXXdo_saw_small_p) :- part(XXXdo_saw_small_p), type__pobj(XXXdo_saw_small_p).
+p__478(XXXdo_saw_small_w) :- awood(XXXdo_saw_small_w), type__pobj(XXXdo_saw_small_w).
+p__479(XXXdo_saw_small_surface) :- surface(XXXdo_saw_small_surface), type__pobj(XXXdo_saw_small_surface).
+p__480(XXXdo_saw_small_size_before) :- aboardsize(XXXdo_saw_small_size_before), type__pobj(XXXdo_saw_small_size_before).
+p__481(XXXdo_saw_small_size_after) :- aboardsize(XXXdo_saw_small_size_after), type__pobj(XXXdo_saw_small_size_after).
+p__482(XXXdo_saw_small_p) :- goalsize(XXXdo_saw_small_p, small).
+p__483(XXXdo_saw_small_p) :- p__482(XXXdo_saw_small_p), unused(XXXdo_saw_small_p).
+p__484(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__485(XXXhtn_id1) :- p__472(XXXhtn_id1), p__484(XXXhtn_id1).
+p__486(XXXdo_saw_small_b) :- p__476(XXXdo_saw_small_b), available(XXXdo_saw_small_b).
+p__487(XXXdo_saw_small_p) :- p__483(XXXdo_saw_small_p), p__477(XXXdo_saw_small_p).
+p__488(XXXhtn_id1) :- p__485(XXXhtn_id1), p__475(XXXhtn_id1).
+p__489(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__490(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__491(XXXdo_saw_small_b, XXXdo_saw_small_w) :- p__478(XXXdo_saw_small_w), wood(XXXdo_saw_small_b, XXXdo_saw_small_w).
+p__492(XXXdo_saw_small_b, XXXdo_saw_small_surface) :- p__479(XXXdo_saw_small_surface), surface_condition(XXXdo_saw_small_b, XXXdo_saw_small_surface).
+p__493(XXXdo_saw_small_b, XXXdo_saw_small_size_before) :- p__480(XXXdo_saw_small_size_before), boardsize(XXXdo_saw_small_b, XXXdo_saw_small_size_before).
+p__494(XXXdo_saw_small_size_after, XXXdo_saw_small_size_before) :- p__481(XXXdo_saw_small_size_after), boardsize_successor(XXXdo_saw_small_size_after, XXXdo_saw_small_size_before).
+p__495(XXXhtn_id1, XXXhtn_id2) :- p__489(XXXhtn_id1, XXXhtn_id2), p__488(XXXhtn_id1).
+p__496(XXXdo_saw_small_b, XXXdo_saw_small_w) :- p__491(XXXdo_saw_small_b, XXXdo_saw_small_w), p__486(XXXdo_saw_small_b).
+p__497(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1) :- p__492(XXXdo_saw_small_b, XXXdo_saw_small_surface), htn_task_do_saw_small_0(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1).
+p__498(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1) :- p__497(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1), p__493(XXXdo_saw_small_b, XXXdo_saw_small_size_before).
+p__499(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1) :- p__498(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1), p__494(XXXdo_saw_small_size_after, XXXdo_saw_small_size_before).
+p__500(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1) :- p__499(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1), p__496(XXXdo_saw_small_b, XXXdo_saw_small_w).
+p__501(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1) :- p__500(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1), p__487(XXXdo_saw_small_p).
+p__502(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__490(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__503(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__502(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__495(XXXhtn_id1, XXXhtn_id2).
+<Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__503(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__501(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_size_after, XXXdo_saw_small_size_before, XXXdo_saw_small_surface, XXXdo_saw_small_w, XXXhtn_id1).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+available(XXXdo_saw_small_p) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+wood(XXXdo_saw_small_p, XXXdo_saw_small_w) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+surface_condition(XXXdo_saw_small_p, XXXdo_saw_small_surface) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXdo_saw_small_p, natural) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXdo_saw_small_p, untreated) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+boardsize(XXXdo_saw_small_b, XXXdo_saw_small_size_after) :- <Action 'do_saw_small' at 0x7fd10627da90>(XXXdo_saw_small_b, XXXdo_saw_small_p, XXXdo_saw_small_w, XXXdo_saw_small_surface, XXXdo_saw_small_size_before, XXXdo_saw_small_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__505(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__506(XXXhtn_id1) :- p__505(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__507(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__508(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__509(XXXhtn_id1) :- p__507(XXXhtn_id1), p__508(XXXhtn_id1).
+p__510(XXXdo_saw_medium_b) :- board(XXXdo_saw_medium_b), type__pobj(XXXdo_saw_medium_b).
+p__511(XXXdo_saw_medium_p) :- part(XXXdo_saw_medium_p), type__pobj(XXXdo_saw_medium_p).
+p__512(XXXdo_saw_medium_w) :- awood(XXXdo_saw_medium_w), type__pobj(XXXdo_saw_medium_w).
+p__513(XXXdo_saw_medium_surface) :- surface(XXXdo_saw_medium_surface), type__pobj(XXXdo_saw_medium_surface).
+p__514(XXXdo_saw_medium_size_before) :- aboardsize(XXXdo_saw_medium_size_before), type__pobj(XXXdo_saw_medium_size_before).
+p__515(XXXdo_saw_medium_s1) :- aboardsize(XXXdo_saw_medium_s1), type__pobj(XXXdo_saw_medium_s1).
+p__516(XXXdo_saw_medium_size_after) :- aboardsize(XXXdo_saw_medium_size_after), type__pobj(XXXdo_saw_medium_size_after).
+p__517(XXXdo_saw_medium_p) :- goalsize(XXXdo_saw_medium_p, medium).
+p__518(XXXdo_saw_medium_p) :- p__517(XXXdo_saw_medium_p), unused(XXXdo_saw_medium_p).
+p__519(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__520(XXXhtn_id1) :- p__506(XXXhtn_id1), p__519(XXXhtn_id1).
+p__521(XXXdo_saw_medium_b) :- p__510(XXXdo_saw_medium_b), available(XXXdo_saw_medium_b).
+p__522(XXXdo_saw_medium_p) :- p__518(XXXdo_saw_medium_p), p__511(XXXdo_saw_medium_p).
+p__523(XXXhtn_id1) :- p__520(XXXhtn_id1), p__509(XXXhtn_id1).
+p__524(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__525(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__526(XXXdo_saw_medium_b, XXXdo_saw_medium_w) :- p__512(XXXdo_saw_medium_w), wood(XXXdo_saw_medium_b, XXXdo_saw_medium_w).
+p__527(XXXdo_saw_medium_b, XXXdo_saw_medium_surface) :- p__513(XXXdo_saw_medium_surface), surface_condition(XXXdo_saw_medium_b, XXXdo_saw_medium_surface).
+p__528(XXXdo_saw_medium_b, XXXdo_saw_medium_size_before) :- p__514(XXXdo_saw_medium_size_before), boardsize(XXXdo_saw_medium_b, XXXdo_saw_medium_size_before).
+p__529(XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after) :- p__515(XXXdo_saw_medium_s1), boardsize_successor(XXXdo_saw_medium_size_after, XXXdo_saw_medium_s1).
+p__530(XXXhtn_id1, XXXhtn_id2) :- p__524(XXXhtn_id1, XXXhtn_id2), p__523(XXXhtn_id1).
+p__531(XXXdo_saw_medium_b, XXXdo_saw_medium_w) :- p__526(XXXdo_saw_medium_b, XXXdo_saw_medium_w), p__521(XXXdo_saw_medium_b).
+p__532(XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after) :- p__529(XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after), p__516(XXXdo_saw_medium_size_after).
+p__533(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1) :- boardsize_successor(XXXdo_saw_medium_s1, XXXdo_saw_medium_size_before), htn_task_do_saw_medium_0(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1).
+p__534(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1) :- p__533(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1), p__527(XXXdo_saw_medium_b, XXXdo_saw_medium_surface).
+p__535(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1) :- p__534(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1), p__528(XXXdo_saw_medium_b, XXXdo_saw_medium_size_before).
+p__536(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1) :- p__535(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1), p__531(XXXdo_saw_medium_b, XXXdo_saw_medium_w).
+p__537(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1) :- p__536(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1), p__532(XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after).
+p__538(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1) :- p__537(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1), p__522(XXXdo_saw_medium_p).
+p__539(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__525(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__540(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__539(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__530(XXXhtn_id1, XXXhtn_id2).
+<Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__540(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__538(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXdo_saw_medium_size_before, XXXdo_saw_medium_surface, XXXdo_saw_medium_w, XXXhtn_id1).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+available(XXXdo_saw_medium_p) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+wood(XXXdo_saw_medium_p, XXXdo_saw_medium_w) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+surface_condition(XXXdo_saw_medium_p, XXXdo_saw_medium_surface) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXdo_saw_medium_p, natural) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXdo_saw_medium_p, untreated) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+boardsize(XXXdo_saw_medium_b, XXXdo_saw_medium_size_after) :- <Action 'do_saw_medium' at 0x7fd106281f98>(XXXdo_saw_medium_b, XXXdo_saw_medium_p, XXXdo_saw_medium_w, XXXdo_saw_medium_surface, XXXdo_saw_medium_size_before, XXXdo_saw_medium_s1, XXXdo_saw_medium_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__542(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__543(XXXhtn_id1) :- p__542(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__544(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__545(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__546(XXXhtn_id1) :- p__544(XXXhtn_id1), p__545(XXXhtn_id1).
+p__547(XXXdo_saw_large_b) :- board(XXXdo_saw_large_b), type__pobj(XXXdo_saw_large_b).
+p__548(XXXdo_saw_large_p) :- part(XXXdo_saw_large_p), type__pobj(XXXdo_saw_large_p).
+p__549(XXXdo_saw_large_w) :- awood(XXXdo_saw_large_w), type__pobj(XXXdo_saw_large_w).
+p__550(XXXdo_saw_large_surface) :- surface(XXXdo_saw_large_surface), type__pobj(XXXdo_saw_large_surface).
+p__551(XXXdo_saw_large_size_before) :- aboardsize(XXXdo_saw_large_size_before), type__pobj(XXXdo_saw_large_size_before).
+p__552(XXXdo_saw_large_s1) :- aboardsize(XXXdo_saw_large_s1), type__pobj(XXXdo_saw_large_s1).
+p__553(XXXdo_saw_large_s2) :- aboardsize(XXXdo_saw_large_s2), type__pobj(XXXdo_saw_large_s2).
+p__554(XXXdo_saw_large_size_after) :- aboardsize(XXXdo_saw_large_size_after), type__pobj(XXXdo_saw_large_size_after).
+p__555(XXXdo_saw_large_p) :- goalsize(XXXdo_saw_large_p, large).
+p__556(XXXdo_saw_large_p) :- p__555(XXXdo_saw_large_p), unused(XXXdo_saw_large_p).
+p__557(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__558(XXXhtn_id1) :- p__543(XXXhtn_id1), p__557(XXXhtn_id1).
+p__559(XXXdo_saw_large_b) :- p__547(XXXdo_saw_large_b), available(XXXdo_saw_large_b).
+p__560(XXXdo_saw_large_p) :- p__556(XXXdo_saw_large_p), p__548(XXXdo_saw_large_p).
+p__561(XXXhtn_id1) :- p__558(XXXhtn_id1), p__546(XXXhtn_id1).
+p__562(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__563(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__564(XXXdo_saw_large_b, XXXdo_saw_large_w) :- p__549(XXXdo_saw_large_w), wood(XXXdo_saw_large_b, XXXdo_saw_large_w).
+p__565(XXXdo_saw_large_b, XXXdo_saw_large_surface) :- p__550(XXXdo_saw_large_surface), surface_condition(XXXdo_saw_large_b, XXXdo_saw_large_surface).
+p__566(XXXdo_saw_large_b, XXXdo_saw_large_size_before) :- p__551(XXXdo_saw_large_size_before), boardsize(XXXdo_saw_large_b, XXXdo_saw_large_size_before).
+p__567(XXXdo_saw_large_s1, XXXdo_saw_large_size_after) :- p__552(XXXdo_saw_large_s1), boardsize_successor(XXXdo_saw_large_size_after, XXXdo_saw_large_s1).
+p__568(XXXdo_saw_large_s1, XXXdo_saw_large_s2) :- p__553(XXXdo_saw_large_s2), boardsize_successor(XXXdo_saw_large_s1, XXXdo_saw_large_s2).
+p__569(XXXhtn_id1, XXXhtn_id2) :- p__562(XXXhtn_id1, XXXhtn_id2), p__561(XXXhtn_id1).
+p__570(XXXdo_saw_large_b, XXXdo_saw_large_w) :- p__564(XXXdo_saw_large_b, XXXdo_saw_large_w), p__559(XXXdo_saw_large_b).
+p__571(XXXdo_saw_large_s1, XXXdo_saw_large_size_after) :- p__567(XXXdo_saw_large_s1, XXXdo_saw_large_size_after), p__554(XXXdo_saw_large_size_after).
+p__572(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1) :- boardsize_successor(XXXdo_saw_large_s2, XXXdo_saw_large_size_before), htn_task_do_saw_large_0(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1).
+p__573(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1) :- p__572(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1), p__565(XXXdo_saw_large_b, XXXdo_saw_large_surface).
+p__574(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1) :- p__573(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1), p__566(XXXdo_saw_large_b, XXXdo_saw_large_size_before).
+p__575(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1) :- p__574(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1), p__568(XXXdo_saw_large_s1, XXXdo_saw_large_s2).
+p__576(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1) :- p__575(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1), p__570(XXXdo_saw_large_b, XXXdo_saw_large_w).
+p__577(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1) :- p__576(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1), p__571(XXXdo_saw_large_s1, XXXdo_saw_large_size_after).
+p__578(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1) :- p__577(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1), p__560(XXXdo_saw_large_p).
+p__579(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__563(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__580(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__579(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__569(XXXhtn_id1, XXXhtn_id2).
+<Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__580(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__578(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXdo_saw_large_size_before, XXXdo_saw_large_surface, XXXdo_saw_large_w, XXXhtn_id1).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+available(XXXdo_saw_large_p) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+wood(XXXdo_saw_large_p, XXXdo_saw_large_w) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+surface_condition(XXXdo_saw_large_p, XXXdo_saw_large_surface) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXdo_saw_large_p, natural) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXdo_saw_large_p, untreated) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+boardsize(XXXdo_saw_large_b, XXXdo_saw_large_size_after) :- <Action 'do_saw_large' at 0x7fd106286e80>(XXXdo_saw_large_b, XXXdo_saw_large_p, XXXdo_saw_large_w, XXXdo_saw_large_surface, XXXdo_saw_large_size_before, XXXdo_saw_large_s1, XXXdo_saw_large_s2, XXXdo_saw_large_size_after, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__584(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__585(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__586(XXXhtn_id1) :- p__584(XXXhtn_id1), p__585(XXXhtn_id1).
+p__587(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__588(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__589(XXXhtn_id1) :- p__587(XXXhtn_id1), p__588(XXXhtn_id1).
+p__590(XXXgrindnplane_variable1) :- type__pobj(XXXgrindnplane_variable1), surface(XXXgrindnplane_variable1).
+p__591(XXXgrindnplane_variable2) :- type__pobj(XXXgrindnplane_variable2), acolour(XXXgrindnplane_variable2).
+p__592(XXXgrindnplane_variable3) :- type__pobj(XXXgrindnplane_variable3), treatmentstatus(XXXgrindnplane_variable3).
+p__593(XXXgrindnplane_variable4) :- type__pobj(XXXgrindnplane_variable4), surface(XXXgrindnplane_variable4).
+p__594(XXXgrindnplane_variable5) :- type__pobj(XXXgrindnplane_variable5), acolour(XXXgrindnplane_variable5).
+p__595(XXXgrindnplane_variable6) :- type__pobj(XXXgrindnplane_variable6), treatmentstatus(XXXgrindnplane_variable6).
+p__596(XXXnewobj_variable10) :- type__pobj(XXXnewobj_variable10), part(XXXnewobj_variable10).
+p__597(XXXhtn_id1) :- p__586(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__598(XXXhtn_id1) :- p__597(XXXhtn_id1), p__589(XXXhtn_id1).
+p__599(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__590(XXXgrindnplane_variable1), htn_task_grindnplane_0(XXXnewobj_variable10, XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1).
+p__600(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__599(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__591(XXXgrindnplane_variable2).
+p__601(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__600(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__592(XXXgrindnplane_variable3).
+p__602(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__601(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__593(XXXgrindnplane_variable4).
+p__603(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__602(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__594(XXXgrindnplane_variable5).
+p__604(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__603(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__595(XXXgrindnplane_variable6).
+p__605(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__604(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__596(XXXnewobj_variable10).
+p__582(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__605(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__598(XXXhtn_id1).
+p__583(XXXplaneituntreated_variable6) :- type__pobj(XXXplaneituntreated_variable6), planer(XXXplaneituntreated_variable6).
+product <Action 'htn_planeituntreated' at 0x7fd106281f28>(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXnewobj_variable10, XXXplaneituntreated_variable6, XXXhtn_id1) :- p__582(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__583(XXXplaneituntreated_variable6).
+htn_task_do_plane_untreated_0(XXXnewobj_variable10, XXXplaneituntreated_variable6, XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXhtn_id1) :- <Action 'htn_planeituntreated' at 0x7fd106281f28>(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXnewobj_variable10, XXXplaneituntreated_variable6, XXXhtn_id1).
+p__610(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__611(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__612(XXXhtn_id1) :- p__610(XXXhtn_id1), p__611(XXXhtn_id1).
+p__613(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__614(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__615(XXXhtn_id1) :- p__613(XXXhtn_id1), p__614(XXXhtn_id1).
+p__616(XXXgrindnplane_variable1) :- type__pobj(XXXgrindnplane_variable1), surface(XXXgrindnplane_variable1).
+p__617(XXXgrindnplane_variable2) :- type__pobj(XXXgrindnplane_variable2), acolour(XXXgrindnplane_variable2).
+p__618(XXXgrindnplane_variable3) :- type__pobj(XXXgrindnplane_variable3), treatmentstatus(XXXgrindnplane_variable3).
+p__619(XXXgrindnplane_variable4) :- type__pobj(XXXgrindnplane_variable4), surface(XXXgrindnplane_variable4).
+p__620(XXXgrindnplane_variable5) :- type__pobj(XXXgrindnplane_variable5), acolour(XXXgrindnplane_variable5).
+p__621(XXXgrindnplane_variable6) :- type__pobj(XXXgrindnplane_variable6), treatmentstatus(XXXgrindnplane_variable6).
+p__622(XXXnewobj_variable10) :- type__pobj(XXXnewobj_variable10), part(XXXnewobj_variable10).
+p__623(XXXhtn_id1) :- p__612(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__624(XXXhtn_id1) :- p__623(XXXhtn_id1), p__615(XXXhtn_id1).
+p__625(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__616(XXXgrindnplane_variable1), htn_task_grindnplane_0(XXXnewobj_variable10, XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1).
+p__626(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__625(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__617(XXXgrindnplane_variable2).
+p__627(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__626(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__618(XXXgrindnplane_variable3).
+p__628(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__627(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__619(XXXgrindnplane_variable4).
+p__629(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__628(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__620(XXXgrindnplane_variable5).
+p__630(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__629(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__621(XXXgrindnplane_variable6).
+p__631(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__630(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__622(XXXnewobj_variable10).
+p__608(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__631(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__624(XXXhtn_id1).
+p__609(XXXgrindituntreated_variable7) :- type__pobj(XXXgrindituntreated_variable7), grinder(XXXgrindituntreated_variable7).
+product <Action 'htn_grindituntreated' at 0x7fd10628cc50>(XXXgrindituntreated_variable7, XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXnewobj_variable10, XXXhtn_id1) :- p__608(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__609(XXXgrindituntreated_variable7).
+htn_task_do_grind_untreated_0(XXXnewobj_variable10, XXXgrindituntreated_variable7, XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXhtn_id1) :- <Action 'htn_grindituntreated' at 0x7fd10628cc50>(XXXgrindituntreated_variable7, XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXnewobj_variable10, XXXhtn_id1).
+p__634(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__635(XXXhtn_id1) :- p__634(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__636(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__637(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__638(XXXhtn_id1) :- p__636(XXXhtn_id1), p__637(XXXhtn_id1).
+p__639(XXXgrindnplane_variable4) :- surface(XXXgrindnplane_variable4), type__pobj(XXXgrindnplane_variable4).
+p__640(XXXgrindnplane_variable5) :- acolour(XXXgrindnplane_variable5), type__pobj(XXXgrindnplane_variable5).
+p__641(XXXgrindnplane_variable6) :- treatmentstatus(XXXgrindnplane_variable6), type__pobj(XXXgrindnplane_variable6).
+p__642(XXXplanteit_variable1) :- part(XXXplanteit_variable1), type__pobj(XXXplanteit_variable1).
+p__643(XXXplanteit_variable2) :- surface(XXXplanteit_variable2), type__pobj(XXXplanteit_variable2).
+p__644(XXXplanteit_variable3) :- acolour(XXXplanteit_variable3), type__pobj(XXXplanteit_variable3).
+p__645(XXXplanteit_variable4) :- treatmentstatus(XXXplanteit_variable4), type__pobj(XXXplanteit_variable4).
+p__646(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__647(XXXhtn_id1) :- p__635(XXXhtn_id1), p__646(XXXhtn_id1).
+p__648(XXXhtn_id1) :- p__647(XXXhtn_id1), p__638(XXXhtn_id1).
+p__649(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4) :- p__639(XXXgrindnplane_variable4), htn_task_grindnplane_0(XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1).
+p__650(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4) :- p__649(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4), p__640(XXXgrindnplane_variable5).
+p__651(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4) :- p__650(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4), p__641(XXXgrindnplane_variable6).
+p__652(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4) :- p__651(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4), p__642(XXXplanteit_variable1).
+p__653(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4) :- p__652(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4), p__643(XXXplanteit_variable2).
+p__654(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4) :- p__653(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4), p__644(XXXplanteit_variable3).
+p__655(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4) :- p__654(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4), p__645(XXXplanteit_variable4).
+<Action 'htn_planteit' at 0x7fd1062909e8>(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4, XXXhtn_id1) :- p__655(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4), p__648(XXXhtn_id1).
+htn_task_do_plane_0(XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4, XXXhtn_id1) :- <Action 'htn_planteit' at 0x7fd1062909e8>(XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXplanteit_variable1, XXXplanteit_variable2, XXXplanteit_variable3, XXXplanteit_variable4, XXXhtn_id1).
+p__657(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__658(XXXhtn_id1) :- p__657(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__659(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__660(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__661(XXXhtn_id1) :- p__659(XXXhtn_id1), p__660(XXXhtn_id1).
+p__662(XXXgrindnplane_variable1) :- surface(XXXgrindnplane_variable1), type__pobj(XXXgrindnplane_variable1).
+p__663(XXXgrindnplane_variable2) :- acolour(XXXgrindnplane_variable2), type__pobj(XXXgrindnplane_variable2).
+p__664(XXXgrindnplane_variable3) :- treatmentstatus(XXXgrindnplane_variable3), type__pobj(XXXgrindnplane_variable3).
+p__665(XXXgrindnplane_variable4) :- surface(XXXgrindnplane_variable4), type__pobj(XXXgrindnplane_variable4).
+p__666(XXXgrindnplane_variable5) :- acolour(XXXgrindnplane_variable5), type__pobj(XXXgrindnplane_variable5).
+p__667(XXXgrindnplane_variable6) :- treatmentstatus(XXXgrindnplane_variable6), type__pobj(XXXgrindnplane_variable6).
+p__668(XXXnewobj_variable10) :- part(XXXnewobj_variable10), type__pobj(XXXnewobj_variable10).
+p__669(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__670(XXXhtn_id1) :- p__658(XXXhtn_id1), p__669(XXXhtn_id1).
+p__671(XXXhtn_id1) :- p__670(XXXhtn_id1), p__661(XXXhtn_id1).
+p__672(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__662(XXXgrindnplane_variable1), htn_task_grindnplane_0(XXXnewobj_variable10, XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1).
+p__673(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__672(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__663(XXXgrindnplane_variable2).
+p__674(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__673(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__664(XXXgrindnplane_variable3).
+p__675(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__674(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__665(XXXgrindnplane_variable4).
+p__676(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__675(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__666(XXXgrindnplane_variable5).
+p__677(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__676(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__667(XXXgrindnplane_variable6).
+p__678(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10) :- p__677(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__668(XXXnewobj_variable10).
+<Action 'htn_grindit' at 0x7fd106290da0>(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXnewobj_variable10, XXXhtn_id1) :- p__678(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXhtn_id1, XXXnewobj_variable10), p__671(XXXhtn_id1).
+htn_task_do_grind_0(XXXnewobj_variable10, XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable6, XXXhtn_id1) :- <Action 'htn_grindit' at 0x7fd106290da0>(XXXgrindnplane_variable1, XXXgrindnplane_variable2, XXXgrindnplane_variable3, XXXgrindnplane_variable4, XXXgrindnplane_variable5, XXXgrindnplane_variable6, XXXnewobj_variable10, XXXhtn_id1).
+p__680(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__681(XXXhtn_id1) :- p__680(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__682(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__683(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__684(XXXhtn_id1) :- p__682(XXXhtn_id1), p__683(XXXhtn_id1).
+p__685(XXXdo_grind_x) :- part(XXXdo_grind_x), type__pobj(XXXdo_grind_x).
+p__686(XXXdo_grind_oldsurface) :- surface(XXXdo_grind_oldsurface), type__pobj(XXXdo_grind_oldsurface).
+p__687(XXXdo_grind_oldcolour) :- acolour(XXXdo_grind_oldcolour), type__pobj(XXXdo_grind_oldcolour).
+p__688(XXXdo_grind_oldtreatment) :- treatmentstatus(XXXdo_grind_oldtreatment), type__pobj(XXXdo_grind_oldtreatment).
+p__689(XXXdo_grind_newtreatment) :- treatmentstatus(XXXdo_grind_newtreatment), type__pobj(XXXdo_grind_newtreatment).
+p__690(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__691(XXXhtn_id1) :- p__681(XXXhtn_id1), p__690(XXXhtn_id1).
+p__692(XXXdo_grind_x) :- p__685(XXXdo_grind_x), available(XXXdo_grind_x).
+p__693(XXXdo_grind_oldsurface) :- p__686(XXXdo_grind_oldsurface), is_smooth(XXXdo_grind_oldsurface).
+p__694(XXXhtn_id1) :- p__691(XXXhtn_id1), p__684(XXXhtn_id1).
+p__695(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__696(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__697(XXXdo_grind_oldcolour, XXXdo_grind_x) :- p__687(XXXdo_grind_oldcolour), colour(XXXdo_grind_x, XXXdo_grind_oldcolour).
+p__698(XXXdo_grind_oldtreatment, XXXdo_grind_x) :- p__688(XXXdo_grind_oldtreatment), treatment(XXXdo_grind_x, XXXdo_grind_oldtreatment).
+p__699(XXXdo_grind_newtreatment, XXXdo_grind_oldtreatment) :- p__689(XXXdo_grind_newtreatment), grind_treatment_change(XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment).
+p__700(XXXdo_grind_oldsurface, XXXdo_grind_x) :- p__692(XXXdo_grind_x), surface_condition(XXXdo_grind_x, XXXdo_grind_oldsurface).
+p__701(XXXhtn_id1, XXXhtn_id2) :- p__695(XXXhtn_id1, XXXhtn_id2), p__694(XXXhtn_id1).
+p__702(XXXdo_grind_oldsurface, XXXdo_grind_x) :- p__700(XXXdo_grind_oldsurface, XXXdo_grind_x), p__693(XXXdo_grind_oldsurface).
+p__703(XXXdo_grind_newtreatment, XXXdo_grind_oldcolour, XXXdo_grind_oldsurface, XXXdo_grind_oldtreatment, XXXdo_grind_x, XXXhtn_id1) :- p__697(XXXdo_grind_oldcolour, XXXdo_grind_x), htn_task_do_grind_0(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1).
+p__704(XXXdo_grind_newtreatment, XXXdo_grind_oldcolour, XXXdo_grind_oldsurface, XXXdo_grind_oldtreatment, XXXdo_grind_x, XXXhtn_id1) :- p__703(XXXdo_grind_newtreatment, XXXdo_grind_oldcolour, XXXdo_grind_oldsurface, XXXdo_grind_oldtreatment, XXXdo_grind_x, XXXhtn_id1), p__698(XXXdo_grind_oldtreatment, XXXdo_grind_x).
+p__705(XXXdo_grind_newtreatment, XXXdo_grind_oldcolour, XXXdo_grind_oldsurface, XXXdo_grind_oldtreatment, XXXdo_grind_x, XXXhtn_id1) :- p__704(XXXdo_grind_newtreatment, XXXdo_grind_oldcolour, XXXdo_grind_oldsurface, XXXdo_grind_oldtreatment, XXXdo_grind_x, XXXhtn_id1), p__699(XXXdo_grind_newtreatment, XXXdo_grind_oldtreatment).
+p__706(XXXdo_grind_newtreatment, XXXdo_grind_oldcolour, XXXdo_grind_oldsurface, XXXdo_grind_oldtreatment, XXXdo_grind_x, XXXhtn_id1) :- p__705(XXXdo_grind_newtreatment, XXXdo_grind_oldcolour, XXXdo_grind_oldsurface, XXXdo_grind_oldtreatment, XXXdo_grind_x, XXXhtn_id1), p__702(XXXdo_grind_oldsurface, XXXdo_grind_x).
+p__707(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__696(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__708(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__707(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__701(XXXhtn_id1, XXXhtn_id2).
+<Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__708(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__706(XXXdo_grind_newtreatment, XXXdo_grind_oldcolour, XXXdo_grind_oldsurface, XXXdo_grind_oldtreatment, XXXdo_grind_x, XXXhtn_id1).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+surface_condition(XXXdo_grind_x, verysmooth) :- <Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXdo_grind_x, XXXdo_grind_newtreatment) :- <Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXdo_grind_x, natural) :- <Action 'do_grind' at 0x7fd106286e10>(XXXdo_grind_x, XXXdo_grind_oldsurface, XXXdo_grind_oldcolour, XXXdo_grind_oldtreatment, XXXdo_grind_newtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__710(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__711(XXXhtn_id1) :- p__710(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__712(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__713(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__714(XXXhtn_id1) :- p__712(XXXhtn_id1), p__713(XXXhtn_id1).
+p__715(XXXdo_plane_x) :- part(XXXdo_plane_x), type__pobj(XXXdo_plane_x).
+p__716(XXXdo_plane_oldsurface) :- surface(XXXdo_plane_oldsurface), type__pobj(XXXdo_plane_oldsurface).
+p__717(XXXdo_plane_oldcolour) :- acolour(XXXdo_plane_oldcolour), type__pobj(XXXdo_plane_oldcolour).
+p__718(XXXdo_plane_oldtreatment) :- treatmentstatus(XXXdo_plane_oldtreatment), type__pobj(XXXdo_plane_oldtreatment).
+p__719(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__720(XXXhtn_id1) :- p__711(XXXhtn_id1), p__719(XXXhtn_id1).
+p__721(XXXdo_plane_x) :- p__715(XXXdo_plane_x), available(XXXdo_plane_x).
+p__722(XXXhtn_id1) :- p__720(XXXhtn_id1), p__714(XXXhtn_id1).
+p__723(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__724(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__725(XXXdo_plane_oldsurface, XXXdo_plane_x) :- p__716(XXXdo_plane_oldsurface), surface_condition(XXXdo_plane_x, XXXdo_plane_oldsurface).
+p__726(XXXdo_plane_oldcolour, XXXdo_plane_x) :- p__717(XXXdo_plane_oldcolour), colour(XXXdo_plane_x, XXXdo_plane_oldcolour).
+p__727(XXXdo_plane_oldtreatment, XXXdo_plane_x) :- p__718(XXXdo_plane_oldtreatment), treatment(XXXdo_plane_x, XXXdo_plane_oldtreatment).
+p__728(XXXhtn_id1, XXXhtn_id2) :- p__723(XXXhtn_id1, XXXhtn_id2), p__722(XXXhtn_id1).
+p__729(XXXdo_plane_oldsurface, XXXdo_plane_x) :- p__725(XXXdo_plane_oldsurface, XXXdo_plane_x), p__721(XXXdo_plane_x).
+p__730(XXXdo_plane_oldcolour, XXXdo_plane_oldsurface, XXXdo_plane_oldtreatment, XXXdo_plane_x, XXXhtn_id1) :- p__726(XXXdo_plane_oldcolour, XXXdo_plane_x), htn_task_do_plane_0(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1).
+p__731(XXXdo_plane_oldcolour, XXXdo_plane_oldsurface, XXXdo_plane_oldtreatment, XXXdo_plane_x, XXXhtn_id1) :- p__730(XXXdo_plane_oldcolour, XXXdo_plane_oldsurface, XXXdo_plane_oldtreatment, XXXdo_plane_x, XXXhtn_id1), p__727(XXXdo_plane_oldtreatment, XXXdo_plane_x).
+p__732(XXXdo_plane_oldcolour, XXXdo_plane_oldsurface, XXXdo_plane_oldtreatment, XXXdo_plane_x, XXXhtn_id1) :- p__731(XXXdo_plane_oldcolour, XXXdo_plane_oldsurface, XXXdo_plane_oldtreatment, XXXdo_plane_x, XXXhtn_id1), p__729(XXXdo_plane_oldsurface, XXXdo_plane_x).
+p__733(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__724(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__734(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__733(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__728(XXXhtn_id1, XXXhtn_id2).
+<Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__734(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__732(XXXdo_plane_oldcolour, XXXdo_plane_oldsurface, XXXdo_plane_oldtreatment, XXXdo_plane_x, XXXhtn_id1).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+surface_condition(XXXdo_plane_x, smooth) :- <Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXdo_plane_x, untreated) :- <Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXdo_plane_x, natural) :- <Action 'do_plane' at 0x7fd106294630>(XXXdo_plane_x, XXXdo_plane_oldsurface, XXXdo_plane_oldcolour, XXXdo_plane_oldtreatment, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__737(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__738(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__739(XXXhtn_id1) :- p__737(XXXhtn_id1), p__738(XXXhtn_id1).
+p__740(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__741(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__742(XXXhtn_id1) :- p__740(XXXhtn_id1), p__741(XXXhtn_id1).
+p__743(XXXnewobj_variable64) :- machine_present(XXXnewobj_variable64), grinder(XXXnewobj_variable64).
+p__744(XXXnewobj_variable57) :- part(XXXnewobj_variable57), available(XXXnewobj_variable57).
+p__745(XXXnewobj_variable57) :- treatment(XXXnewobj_variable57, untreated).
+p__746(XXXnewobj_variable57) :- type__pobj(XXXnewobj_variable57), p__745(XXXnewobj_variable57).
+p__747(XXXnewobj_variable65) :- type__pobj(XXXnewobj_variable65), surface(XXXnewobj_variable65).
+p__748(XXXnewobj_variable66) :- type__pobj(XXXnewobj_variable66), acolour(XXXnewobj_variable66).
+p__749(XXXhtn_id1) :- p__739(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__750(XXXnewobj_variable64) :- p__743(XXXnewobj_variable64), type__pobj(XXXnewobj_variable64).
+p__751(XXXnewobj_variable57) :- p__746(XXXnewobj_variable57), p__744(XXXnewobj_variable57).
+p__752(XXXhtn_id1) :- p__749(XXXhtn_id1), p__742(XXXhtn_id1).
+p__753(XXXhtn_id1, XXXhtn_id2) :- type__htn_id(XXXhtn_id2), htn_less_than(XXXhtn_id2, XXXhtn_id1).
+p__754(XXXhtn_id1, XXXhtn_id3) :- type__htn_id(XXXhtn_id3), htn_less_than(XXXhtn_id1, XXXhtn_id3).
+p__755(XXXnewobj_variable57, XXXnewobj_variable65) :- p__747(XXXnewobj_variable65), surface_condition(XXXnewobj_variable57, XXXnewobj_variable65).
+p__756(XXXnewobj_variable57, XXXnewobj_variable66) :- p__748(XXXnewobj_variable66), colour(XXXnewobj_variable57, XXXnewobj_variable66).
+p__757(XXXhtn_id1, XXXhtn_id2) :- p__753(XXXhtn_id1, XXXhtn_id2), p__752(XXXhtn_id1).
+p__758(XXXnewobj_variable57, XXXnewobj_variable65) :- p__755(XXXnewobj_variable57, XXXnewobj_variable65), p__751(XXXnewobj_variable57).
+p__759(XXXhtn_id1, XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66) :- p__756(XXXnewobj_variable57, XXXnewobj_variable66), htn_task_do_grind_untreated_0(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1).
+p__760(XXXhtn_id1, XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66) :- p__759(XXXhtn_id1, XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66), p__758(XXXnewobj_variable57, XXXnewobj_variable65).
+p__761(XXXhtn_id1, XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66) :- p__760(XXXhtn_id1, XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66), p__750(XXXnewobj_variable64).
+p__762(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__754(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__763(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__762(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__757(XXXhtn_id1, XXXhtn_id2).
+p__736(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66) :- p__763(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__761(XXXhtn_id1, XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66).
+product <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__736(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3, XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66), grind_treatment_change(untreated, untreated).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXnewobj_variable57, untreated) :- <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+surface_condition(XXXnewobj_variable57, verysmooth) :- <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXnewobj_variable57, natural) :- <Action 'do_grind_untreated' at 0x7fd106299d68>(XXXnewobj_variable57, XXXnewobj_variable64, XXXnewobj_variable65, XXXnewobj_variable66, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+p__765(XXXhtn_id1) :- htn_permits(htn_id1, XXXhtn_id1).
+p__766(XXXhtn_id1) :- p__765(XXXhtn_id1), type__htn_id(XXXhtn_id1).
+p__767(XXXhtn_id1) :- htn_permits(htn_id3, XXXhtn_id1).
+p__768(XXXhtn_id1) :- htn_permits(htn_id2, XXXhtn_id1).
+p__769(XXXhtn_id1) :- p__767(XXXhtn_id1), p__768(XXXhtn_id1).
+p__770(XXXnewobj_variable75) :- part(XXXnewobj_variable75), type__pobj(XXXnewobj_variable75).
+p__771(XXXnewobj_variable76) :- planer(XXXnewobj_variable76), type__pobj(XXXnewobj_variable76).
+p__772(XXXnewobj_variable77) :- surface(XXXnewobj_variable77), type__pobj(XXXnewobj_variable77).
+p__773(XXXnewobj_variable79) :- acolour(XXXnewobj_variable79), type__pobj(XXXnewobj_variable79).
+p__774(XXXnewobj_variable75) :- treatment(XXXnewobj_variable75, untreated).
+p__775(XXXnewobj_variable75) :- p__774(XXXnewobj_variable75), available(XXXnewobj_variable75).
+p__776(XXXhtn_id1) :- htn_permits(htn_id4, XXXhtn_id1).
+p__777(XXXhtn_id1) :- p__766(XXXhtn_id1), p__776(XXXhtn_id1).
+p__778(XXXnewobj_variable76) :- p__771(XXXnewobj_variable76), machine_present(XXXnewobj_variable76).
+p__779(XXXnewobj_variable75) :- p__775(XXXnewobj_variable75), p__770(XXXnewobj_variable75).
+p__780(XXXhtn_id1) :- p__777(XXXhtn_id1), p__769(XXXhtn_id1).
+p__781(XXXhtn_id1, XXXhtn_id2) :- htn_less_than(XXXhtn_id2, XXXhtn_id1), type__htn_id(XXXhtn_id2).
+p__782(XXXhtn_id1, XXXhtn_id3) :- htn_less_than(XXXhtn_id1, XXXhtn_id3), type__htn_id(XXXhtn_id3).
+p__783(XXXnewobj_variable75, XXXnewobj_variable77) :- p__772(XXXnewobj_variable77), surface_condition(XXXnewobj_variable75, XXXnewobj_variable77).
+p__784(XXXnewobj_variable75, XXXnewobj_variable79) :- p__773(XXXnewobj_variable79), colour(XXXnewobj_variable75, XXXnewobj_variable79).
+p__785(XXXhtn_id1, XXXhtn_id2) :- p__781(XXXhtn_id1, XXXhtn_id2), p__780(XXXhtn_id1).
+p__786(XXXnewobj_variable75, XXXnewobj_variable77) :- p__783(XXXnewobj_variable75, XXXnewobj_variable77), p__779(XXXnewobj_variable75).
+p__787(XXXhtn_id1, XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79) :- p__784(XXXnewobj_variable75, XXXnewobj_variable79), htn_task_do_plane_untreated_0(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1).
+p__788(XXXhtn_id1, XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79) :- p__787(XXXhtn_id1, XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79), p__786(XXXnewobj_variable75, XXXnewobj_variable77).
+p__789(XXXhtn_id1, XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79) :- p__788(XXXhtn_id1, XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79), p__778(XXXnewobj_variable76).
+p__790(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__782(XXXhtn_id1, XXXhtn_id3), htn_next_id(XXXhtn_id2, XXXhtn_id3).
+p__791(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__790(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__785(XXXhtn_id1, XXXhtn_id2).
+<Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3) :- p__791(XXXhtn_id1, XXXhtn_id2, XXXhtn_id3), p__789(XXXhtn_id1, XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79).
+htn_next_id(XXXhtn_id2, XXXhtn_id1) :- <Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_next_id(XXXhtn_id1, XXXhtn_id3) :- <Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id1) :- <Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id2) :- <Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id3) :- <Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+htn_permits(XXXhtn_id1, htn_id4) :- <Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+treatment(XXXnewobj_variable75, untreated) :- <Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+surface_condition(XXXnewobj_variable75, smooth) :- <Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+colour(XXXnewobj_variable75, natural) :- <Action 'do_plane_untreated' at 0x7fd106299cf8>(XXXnewobj_variable75, XXXnewobj_variable76, XXXnewobj_variable77, XXXnewobj_variable79, XXXhtn_id1, XXXhtn_id2, XXXhtn_id3).
+product __goal-reachable() :- htn_next_id(htn_id0, htn_id1), htn_next_id(htn_id1, htn_id2), htn_next_id(htn_id2, htn_id3), htn_next_id(htn_id3, htn_id4), htn_next_id(htn_id4, htn_id5), available(p0), colour(p0, red), wood(p0, pine), available(p1), wood(p1, pine), available(p2), colour(p2, red), wood(p2, teak), wood(p0, pine).
