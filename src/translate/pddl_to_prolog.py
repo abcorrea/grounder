@@ -158,16 +158,14 @@ def translate_facts(prog, task):
 
 def translate(task):
     # Note: The function requires that the task has been normalized.
-    with timers.timing("Generating Datalog program"):
-        prog = PrologProgram()
-        translate_facts(prog, task)
-        for conditions, effect in normalize.build_exploration_rules(task):
-            prog.add_rule(Rule(conditions, effect))
-    with timers.timing("Normalizing Datalog program", block=True):
-        # Using block=True because normalization can output some messages
-        # in rare cases.
-        prog.normalize()
-        prog.split_rules()
+    prog = PrologProgram()
+    translate_facts(prog, task)
+    for conditions, effect in normalize.build_exploration_rules(task):
+        prog.add_rule(Rule(conditions, effect))
+    # Using block=True because normalization can output some messages
+    # in rare cases.
+    prog.normalize()
+    prog.split_rules()
     return prog
 
 
