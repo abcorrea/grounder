@@ -35,7 +35,7 @@ def parse_arguments():
     parser.add_argument('--domain', default=None, help="(Optional) The path to the problem domain file. If none is "
                                                        "provided, the system will try to automatically deduce "
                                                        "it from the instance filename.")
-    parser.add_argument('-t', '--theory-output', default='output.theory', help="Theory output file.")
+    parser.add_argument('-t', '--lp-output', default=None, help="Logical program output file.")
 
     args = parser.parse_args()
     if args.domain is None:
@@ -58,4 +58,7 @@ if __name__ == '__main__':
         sys.stderr.write("Error: Instance file does not exist.\n")
         sys.exit()
 
-    subprocess.call([os.getcwd()+'/src/translate/pddl_to_prolog.py', domain_file, instance_file])
+    f = args.lp_output
+    if args.lp_output is not None:
+        f = open(args.lp_output, 'w')
+    subprocess.call([os.getcwd()+'/src/translate/pddl_to_prolog.py', domain_file, instance_file], stdout=f)
