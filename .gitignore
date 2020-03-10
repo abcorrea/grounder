@@ -1,5 +1,8 @@
 *~
 *.model
 *.theory
-src/*.egg-info/
+*.lp
 experiments/*/data/
+src/*.egg-info/
+src/grounder/CMakeLists.txt
+src/grounder/cmake-build-debug/
