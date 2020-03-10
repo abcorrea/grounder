@@ -20,7 +20,6 @@ class LogicProgram {
   // with A in the body and P is the position of this atom in the condition
   std::unordered_map<int, std::vector<std::pair<int,int>>> rule_matcher;
 
-  // TODO set up maps between indices and objects/f/rules
   void set_facts(const std::vector<Fact> &f);
   void set_objects(const std::vector<Object> &o);
   void set_rules(const std::vector<Rule> &r);
