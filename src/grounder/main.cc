@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
+  logic_program.create_rule_matcher();
 
   return 0;
 }

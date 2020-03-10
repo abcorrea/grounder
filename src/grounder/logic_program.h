@@ -16,9 +16,22 @@ class LogicProgram {
   std::vector<Object> objects;
   std::vector<Rule> rules;
 
-  // TODO set up maps between indices and objects/facts/rules
+  // Maps index of an atom A to list of pairs (R, P) where R is a rule
+  // with A in the body and P is the position of this atom in the condition
+  std::unordered_map<int, std::vector<std::pair<int,int>>> rule_matcher;
 
- private:
+  // TODO set up maps between indices and objects/f/rules
+  void set_facts(const std::vector<Fact> &f);
+  void set_objects(const std::vector<Object> &o);
+  void set_rules(const std::vector<Rule> &r);
+
+  /*
+   * Create data structure mapping each atom to the rules such that the atom
+   * appears on the body (i.e., condition) of the rule.
+   */
+  void create_rule_matcher();
+
+
 }; // class LogicProgram
 
 #endif //GROUNDER__LOGIC_PROGRAM_H_
