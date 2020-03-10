@@ -17,10 +17,10 @@
 class Fact : public Atom {
  public:
   Fact(std::vector<int> arguments,
-       std::string predicate) : Atom(std::move(arguments),
-                                     std::move(predicate)) {
-    index = next_index++;
-  }
+       std::string predicate,
+       int predicate_index) : Atom(std::move(arguments),
+                                   std::move(predicate),
+                                   predicate_index) {}
 
  private:
 

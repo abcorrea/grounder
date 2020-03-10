@@ -5,12 +5,21 @@
 #include <utility>
 #include <vector>
 
-
+/*
+ *
+ * The class Atom represents a any atom of the task. These can be completely
+ * lifted atoms, partially ground atoms or even completely ground atoms
+ * (although these are usually represented as facts).
+ *
+ */
 class Atom {
  public:
-  Atom(std::vector<int>  arguments,  std::string predicate) :
+  Atom(std::vector<int>  arguments,
+      std::string  predicate,
+      int predicate_index) :
       arguments (std::move(arguments)),
-      predicate(std::move(predicate)) {
+      predicate(std::move(predicate)),
+      predicate_index(predicate_index) {
     index = next_index++;
   }
 
@@ -18,6 +27,7 @@ class Atom {
 
   std::vector<int> arguments;
   std::string predicate;
+  int predicate_index;
   int index;
 
  private:

@@ -8,6 +8,7 @@
 
 using namespace std;
 
+int number_of_atoms = 0;
 int number_of_facts = 0;
 int number_of_rules = 0;
 int number_of_objects = 0;
@@ -16,6 +17,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
   cout << "Parsing file..." << endl;
 
   unordered_map<string, int> map_object_to_index;
+  unordered_map<string, int> map_atom_to_index;
 
   vector<Object> lp_objects;
   vector<Fact> lp_facts;
@@ -46,21 +48,31 @@ bool parse(LogicProgram &lp, ifstream &in) {
           lp_objects,
           number_of_vars_current_rule);
 
-      Atom head_atom(head_argument_indices, head_atom_name);
+      auto head_pred_pair =
+          map_atom_to_index.try_emplace(head_atom_name, number_of_atoms);
+      if (head_pred_pair.second) {
+        number_of_atoms++;
+      }
+      Atom head_atom(head_argument_indices, head_atom_name, map_atom_to_index[head_atom_name]);
 
       vector<string> condition_atoms_strings = get_rule_conditions(body);
       vector<Atom> condition_atoms;
       condition_atoms.reserve(condition_atoms_strings.size());
       for (auto s : condition_atoms_strings) {
         string atom_name = get_atom_name(s);
+        auto atom_pair =
+            map_atom_to_index.try_emplace(atom_name, number_of_atoms);
+        if (atom_pair.second) {
+          number_of_atoms++;
+        }
         vector<string> atom_arguments = extract_arguments_from_atom(s);
         vector<int> indices = transform_args_into_indices(
-          map_object_to_index,
-          map_variables_to_index,
-          atom_arguments,
-          lp_objects,
-          number_of_vars_current_rule);
-        condition_atoms.emplace_back(indices, atom_name);
+            map_object_to_index,
+            map_variables_to_index,
+            atom_arguments,
+            lp_objects,
+            number_of_vars_current_rule);
+        condition_atoms.emplace_back(indices, atom_name, map_atom_to_index[atom_name]);
       }
 
       if (boost::iequals(rule_type, "project")) {
@@ -78,6 +90,12 @@ bool parse(LogicProgram &lp, ifstream &in) {
     } else {
       // Fact
       string predicate = get_atom_name(line);
+      auto pred_pair =
+          map_atom_to_index.try_emplace(predicate, number_of_atoms);
+      if (pred_pair.second) {
+        number_of_atoms++;
+      }
+
       vector<string> arguments = extract_arguments_from_atom(line);
 
       vector<int> arguments_indices;
@@ -92,10 +110,14 @@ bool parse(LogicProgram &lp, ifstream &in) {
         arguments_indices.push_back(map_object_to_index[argument]);
       }
 
-      lp_facts.emplace_back(arguments_indices, predicate);
+      lp_facts.emplace_back(arguments_indices, predicate, map_atom_to_index[predicate]);
       number_of_facts++;
     }
   }
+
+  lp.set_facts(lp_facts);
+  lp.set_objects(lp_objects);
+  lp.set_rules(rules);
 
   return true;
 }
@@ -104,7 +126,9 @@ bool parse(LogicProgram &lp, ifstream &in) {
  * Get atom name
  */
 string get_atom_name(const string &str) {
-  return boost::trim_copy(str.substr(0, str.find('(')));
+  string new_str = str.substr(0, str.find('('));
+  boost::erase_all(new_str, ",");
+  return boost::trim_copy(new_str);
 }
 
 /*
@@ -130,7 +154,7 @@ vector<string> extract_arguments_from_atom(const string &atom) {
 
 /*
  * Transforms a vector of arguments (having constants and variables) into a vector
- * of integers. Variables have negative value.
+ * of integers. Free variables have negative value.
  */
 vector<int> transform_args_into_indices(
     unordered_map<string, int> &map_objects,
@@ -144,14 +168,14 @@ vector<int> transform_args_into_indices(
     if (a.front() == '?') {
       // Variable
       auto it_pair = map_variables.try_emplace(a, number_of_vars_current_rule);
-      if  (it_pair.second) {
+      if (it_pair.second) {
         // Variable is not new to the map. Increase counter.
         number_of_vars_current_rule--;
       }
       indices[counter++] = map_variables[a];
     } else {
       auto it_pair = map_objects.try_emplace(a, number_of_objects);
-      if  (it_pair.second) {
+      if (it_pair.second) {
         // Object is not new to the map. Increase counter.
         lp_objects.emplace_back(a);
         number_of_objects++;
@@ -167,7 +191,7 @@ vector<string> get_rule_conditions(string &body) {
   boost::erase_all(body, ":- ");
   boost::split(condition_atoms, body, boost::is_any_of(")"));
 
-  condition_atoms.pop_back(); // Last one is always a lonely '.'
+  condition_atoms.pop_back(); // Last one is always a dangling '.'
 
   return condition_atoms;
 }
