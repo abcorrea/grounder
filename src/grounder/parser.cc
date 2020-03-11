@@ -53,7 +53,9 @@ bool parse(LogicProgram &lp, ifstream &in) {
       if (head_pred_pair.second) {
         number_of_atoms++;
       }
-      Atom head_atom(head_argument_indices, head_atom_name, map_atom_to_index[head_atom_name]);
+      Atom head_atom(head_argument_indices,
+                     head_atom_name,
+                     map_atom_to_index[head_atom_name]);
 
       vector<string> condition_atoms_strings = get_rule_conditions(body);
       vector<Atom> condition_atoms;
@@ -72,7 +74,9 @@ bool parse(LogicProgram &lp, ifstream &in) {
             atom_arguments,
             lp_objects,
             number_of_vars_current_rule);
-        condition_atoms.emplace_back(indices, atom_name, map_atom_to_index[atom_name]);
+        condition_atoms.emplace_back(indices,
+                                     atom_name,
+                                     map_atom_to_index[atom_name]);
       }
 
       if (boost::iequals(rule_type, "project")) {
@@ -110,10 +114,16 @@ bool parse(LogicProgram &lp, ifstream &in) {
         arguments_indices.push_back(map_object_to_index[argument]);
       }
 
-      lp_facts.emplace_back(arguments_indices, predicate, map_atom_to_index[predicate]);
+      lp_facts.emplace_back(arguments_indices,
+                            predicate,
+                            map_atom_to_index[predicate]);
       number_of_facts++;
     }
   }
+
+  // Loop over the facts setting their fact indices
+  for (Fact &f : lp_facts)
+    f.set_fact_index();
 
   lp.set_facts(lp_facts);
   lp.set_objects(lp_objects);
@@ -176,7 +186,7 @@ vector<int> transform_args_into_indices(
     } else {
       auto it_pair = map_objects.try_emplace(a, number_of_objects);
       if (it_pair.second) {
-        // Object is not new to the map. Increase counter.
+        // Object is new to the map. Increase counter.
         lp_objects.emplace_back(a);
         number_of_objects++;
       }
