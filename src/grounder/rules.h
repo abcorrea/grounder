@@ -1,9 +1,13 @@
 #ifndef GROUNDER__RULES_H_
 #define GROUNDER__RULES_H_
 
+#include "atom.h"
+
 #include <string>
 #include <utility>
-#include "atom.h"
+#include <unordered_set>
+
+#include <boost/functional/hash.hpp>
 
 /*
  * Rule: Class implementing the rules of the datalog program. Divided into
@@ -30,13 +34,18 @@ class Rule {
   explicit Rule(Atom effect, std::vector<Atom> conditions, int type) :
       effect(std::move(effect)), conditions(std::move(conditions)), type(type) {
     index = next_index++;
-    type = -1;
+    hash_table_indices.clear();
+    hash_table_indices.resize(2);
   };
 
   Atom effect;
   std::vector<Atom> conditions;
   int index;
   int type;
+  std::vector<std::unordered_set<std::vector<int>,
+                                 boost::hash<std::vector<int>>>>
+      hash_table_indices;
+
 };
 
 #endif //GROUNDER__RULES_H_
