@@ -4,6 +4,8 @@
 #include "logic_program.h"
 #include "parser.h"
 
+#include "grounders/grounder_factory.h"
+
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -30,6 +32,14 @@ int main(int argc, char *argv[]) {
   }
 
   logic_program.create_rule_matcher();
+
+  Grounder *grounder = GrounderFactory::new_grounder(argv[2]);
+
+  cout << "Starting to ground the logical program..." << endl;
+  int grounded = grounder->ground(logic_program);
+  if (grounded != 0) {
+    cerr << "Error during grounding procedure. Grounding not finished!" << endl;
+  }
 
   return 0;
 }
