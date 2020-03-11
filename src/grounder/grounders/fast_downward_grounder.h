@@ -11,7 +11,7 @@ class FastDownwardGrounder : public Grounder {
     std::cout << "Using Fast Downward grounding algorithm..." << std::endl;
   }
 
-  int ground(const LogicProgram &lp) override;
+  int ground(LogicProgram &lp) override;
 
 };
 

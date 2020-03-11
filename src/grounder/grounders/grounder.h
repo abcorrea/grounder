@@ -7,7 +7,7 @@ class Grounder {
  public:
   Grounder() = default;
 
-  virtual int ground(const LogicProgram &lp) = 0;
+  virtual int ground(LogicProgram &lp) = 0;
 };
 
 #endif //GROUNDER_GROUNDERS_GROUNDER_H_

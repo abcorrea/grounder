@@ -1,12 +1,12 @@
 #ifndef GROUNDER__LOGIC_PROGRAM_H_
 #define GROUNDER__LOGIC_PROGRAM_H_
 
-#include <vector>
-#include <unordered_map>
-
 #include "fact.h"
 #include "object.h"
 #include "rules.h"
+
+#include <vector>
+#include <unordered_map>
 
 class LogicProgram {
  public:
