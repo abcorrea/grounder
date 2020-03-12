@@ -25,7 +25,7 @@
  */
 #define PROJECT 0
 #define JOIN 1
-#define PRODUCT 3
+#define PRODUCT 2
 
 class Rule {
  protected:
