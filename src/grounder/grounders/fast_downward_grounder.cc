@@ -26,15 +26,17 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
       if (lp.rules[rule_index].type == PROJECT) {
         // Projection rule - single condition in the body
         assert(position_in_the_body == 0);
-        Fact new_fact  = project(lp.rules[rule_index], current_fact);
+        Fact new_fact = project(lp.rules[rule_index], current_fact);
         if (is_new(new_fact, reached_facts, lp)) {
           q.push(new_fact.fact_index);
         }
       } else if (lp.rules[rule_index].type == JOIN) {
         // Join rule - two conditions in the body
         assert(position_in_the_body <= 1);
-        // TODO check for matching facts and enqueue them
-        // TODO check if we can get rid of symmetry using position_in_the_body
+        for (Fact new_fact : join(lp.rules[rule_index], current_fact, position_in_the_body))
+          if (is_new(new_fact, reached_facts, lp)) {
+            q.push(new_fact.fact_index);
+          }
       } else if (lp.rules[rule_index].type == PRODUCT) {
         // Product rule - more than one condition without shared free vars
         // TODO check what python code does
@@ -45,6 +47,16 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
   return 0;
 }
 
+/*
+ * Project a sequence of objects into another sequence. The head of the rule H
+ * has free(H) <= free(B), where B is the rule body (condition).
+ *
+ * First, we map every (negative) index in the head to its given position.
+ * Then, we loop over the single atom in the body and project the ones
+ * that are in the head.  If there are constants in the head, we keep them
+ * in the resulting fact when we create the mapping.
+ *
+ */
 Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
 
   vector<int> new_arguments(rule.effect.arguments.size());
@@ -67,13 +79,85 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
     for (const auto &arg : cond.arguments) {
       if (map_free_var_to_position.count(arg) > 0) {
         // Variable should NOT be projected away by this rule
-        new_arguments[map_free_var_to_position[arg]] = fact.arguments[position_counter];
+        new_arguments[map_free_var_to_position[arg]] =
+            fact.arguments[position_counter];
       }
       ++position_counter;
     }
   }
 
-  return Fact(move(new_arguments), rule.effect.predicate, rule.effect.predicate_index);
+  return Fact(move(new_arguments),
+              rule.effect.predicate,
+              rule.effect.predicate_index);
+}
+
+/*
+ * Compute the new facts produced by a join rule.
+ *
+ * The function starts by computing the fact restricted to the key elements
+ * (i.e., elements that the free var matches with the other condition). Then,
+ * it updates the hash tables.
+ *
+ * Next, it maps every free variable to its position in the head atom, similarly
+ * as done in the projection, but without considering constants in the head
+ * because these should not happen. (I guess.)
+ *
+ * Then, it computes the new ground head atom by performing first creating
+ * the new atom with the values from the currently fact being expanded. Then,
+ * it loops over all previously expanded facts matching the same key (the ones
+ * in the hash-table) and completing the instantiation.
+ *
+ * The function returns a list of acts.
+ *
+ */
+vector<Fact> FastDownwardGrounder::join(Rule &rule, const Fact &fact, int position) {
+
+  vector<Fact> facts;
+
+  vector<int> key(rule.matches.size());
+  for (int i : rule.position_of_matching_vars[position]) {
+    key.push_back(fact.arguments[i]);
+  }
+
+  pair<unordered_map<vector<int>, unordered_set<Fact>, boost::hash<vector<int>>>::iterator,
+       bool> try_to_insert =
+  rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
+  rule.hash_table_indices[position][key].insert(fact);
+
+  unordered_map<int, int> map_free_var_to_position;
+  int position_counter = 0;
+  for (const auto &eff : rule.effect.arguments) {
+    if (eff < 0) {
+      // Free variable
+      map_free_var_to_position[eff] = position_counter;
+    }
+    else {
+      cerr << "ERROR: Join rule with constant in the head." << endl;
+      exit(-1);
+    }
+    ++position_counter;
+  }
+
+  vector<int> new_arguments_persistent(rule.effect.arguments.size());
+  position_counter = 0;
+  for (auto &arg : rule.conditions[position].arguments) {
+    new_arguments_persistent[map_free_var_to_position[arg]] =
+        fact.arguments[position_counter++];
+  }
+
+  int inverse_position = (position + 1) % 2;
+  for (const Fact &f : rule.hash_table_indices[inverse_position][key]) {
+    vector<int> new_arguments = new_arguments_persistent;
+    position_counter = 0;
+    for (auto &arg : rule.conditions[inverse_position].arguments) {
+      new_arguments[map_free_var_to_position[arg]] =
+          f.arguments[position_counter++];
+    }
+    facts.emplace_back(move(new_arguments),
+                         rule.effect.predicate,
+                         rule.effect.predicate_index);
+  }
+  return facts;
 }
 
 bool FastDownwardGrounder::is_new(Fact &new_fact,

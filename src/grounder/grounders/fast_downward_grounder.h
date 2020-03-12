@@ -15,7 +15,8 @@ class FastDownwardGrounder : public Grounder {
   int ground(LogicProgram &lp) override;
 
   static Fact project(const Rule &rule, const Fact &fact);
-  bool is_new(Fact &new_fact,
+  static std::vector<Fact> join(Rule &rule, const Fact &fact, int position);
+  static bool is_new(Fact &new_fact,
               std::unordered_set<Fact> &reached_facts,
               LogicProgram &lp);
 };
