@@ -42,10 +42,6 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
     }
   }
 
-  /*for (const Fact &f : lp.facts) {
-    f.print_atom(lp.objects);
-  }*/
-
   return 0;
 }
 
