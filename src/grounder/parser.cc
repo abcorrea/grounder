@@ -35,10 +35,10 @@ bool parse(LogicProgram &lp, ifstream &in) {
       string body = line.substr(line.find(':')); // Still contains ':-'
 
       string rule_type = head.substr(0, head.find(' '));
-      string head_atom_name = head.substr(head.find(' '));
-      string head_predicate = get_atom_name(head_atom_name);
+      string head_atom_name_and_args = head.substr(head.find(' '));
+      string head_predicate = get_atom_name(head_atom_name_and_args);
       vector<string>
-          head_arguments = extract_arguments_from_atom(head_atom_name);
+          head_arguments = extract_arguments_from_atom(head_atom_name_and_args);
 
       unordered_map<string, int> map_variables_to_index;
       vector<int> head_argument_indices = transform_args_into_indices(
@@ -49,13 +49,13 @@ bool parse(LogicProgram &lp, ifstream &in) {
           number_of_vars_current_rule);
 
       auto head_pred_pair =
-          map_atom_to_index.try_emplace(head_atom_name, number_of_atoms);
+          map_atom_to_index.try_emplace(head_predicate, number_of_atoms);
       if (head_pred_pair.second) {
         number_of_atoms++;
       }
       Atom head_atom(head_argument_indices,
-                     head_atom_name,
-                     map_atom_to_index[head_atom_name]);
+                     head_predicate,
+                     map_atom_to_index[head_predicate]);
 
       vector<string> condition_atoms_strings = get_rule_conditions(body);
       vector<Atom> condition_atoms;
