@@ -19,7 +19,6 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
     int i = q.front();
     Fact current_fact = lp.facts[i];
     q.pop();
-    current_fact.print_atom(lp.objects);
     for (const auto &m : lp.rule_matcher[current_fact.predicate_index]) {
       int rule_index = m.first;
       int position_in_the_body = m.second;
