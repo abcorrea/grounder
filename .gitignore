@@ -2,6 +2,7 @@
 *.model
 *.theory
 *.lp
+builds/
 experiments/*/data/
 src/*.egg-info/
 src/grounder/CMakeLists.txt

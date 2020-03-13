@@ -32,10 +32,11 @@ def find_domain_filename(task_filename):
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Generate models.')
     parser.add_argument('-i', '--instance', required=True, help="The path to the problem instance file.")
-    parser.add_argument('--domain', default=None, help="(Optional) The path to the problem domain file. If none is "
+    parser.add_argument('-d', '--domain', default=None, help="(Optional) The path to the problem domain file. If none is "
                                                        "provided, the system will try to automatically deduce "
                                                        "it from the instance filename.")
-    parser.add_argument('-t', '--lp-output', default=None, help="Logical program output file.")
+    parser.add_argument('-t', '--lp-output', default="output.lp", help="Logical program output file.")
+    parser.add_argument('-m', '--method', default="fd", help="Grounding method.")
 
     args = parser.parse_args()
     if args.domain is None:
@@ -47,6 +48,7 @@ def parse_arguments():
 
 
 if __name__ == '__main__':
+    SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
     args = parse_arguments()
 
     domain_file = args.domain
@@ -58,7 +60,20 @@ if __name__ == '__main__':
         sys.stderr.write("Error: Instance file does not exist.\n")
         sys.exit()
 
+    BUILD_DIR = SCRIPT_PATH+'/builds/release/grounder'
+    if not os.path.exists(BUILD_DIR):
+        os.makedirs(BUILD_DIR)
+
+    os.chdir(SCRIPT_PATH+'/builds/release/grounder')
+    subprocess.check_call(['cmake', SCRIPT_PATH+'/src/grounder/'])
+    subprocess.check_call(['make'])
+    os.chdir(SCRIPT_PATH)
+
     f = args.lp_output
     if args.lp_output is not None:
         f = open(args.lp_output, 'w')
     subprocess.call([os.getcwd()+'/src/translate/pddl_to_prolog.py', domain_file, instance_file], stdout=f)
+
+    subprocess.check_call([SCRIPT_PATH+'/builds/release/grounder/grounder',
+                           args.lp_output,
+                           args.method])
