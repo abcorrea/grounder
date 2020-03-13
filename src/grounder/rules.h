@@ -33,13 +33,18 @@ class Rule {
   static int next_index;
 
  public:
-  explicit Rule(Atom effect, std::vector<Atom> conditions, int type) :
-      effect(std::move(effect)), conditions(std::move(conditions)), type(type) {
+  explicit Rule(Atom effect, std::vector<Atom> c, int type) :
+      effect(std::move(effect)), conditions(std::move(c)), type(type) {
     index = next_index++;
     hash_table_indices.clear();
-    hash_table_indices.resize(2);
+    reached_facts_per_condition.clear();
     if (type == JOIN) {
+      hash_table_indices.resize(2);
       matches = computing_matching_variables();
+    } else if (type == PRODUCT) {
+      reached_facts_per_condition.resize(conditions.size());
+      for (int i = 0; i < conditions.size(); ++i)
+        reached_facts_per_condition[i].push_back(std::vector<int>());
     }
   };
 
@@ -50,6 +55,11 @@ class Rule {
   std::vector<std::unordered_map<std::vector<int>, std::unordered_set<Fact>,
                                  boost::hash<std::vector<int>>>>
       hash_table_indices;
+
+  // Only need to keep track of this for product rules, the other ones are very
+  // predictable and have a well-behaved structure
+  std::vector<std::vector<std::vector<int>>>
+      reached_facts_per_condition;
 
   // A vector with two elements indicating the positions in which the variables
   // in the key occur in each respective rule of the body. If the first element

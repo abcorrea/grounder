@@ -158,7 +158,10 @@ vector<string> extract_arguments_from_atom(const string &atom) {
   boost::erase_all(arguments_in_str, " "); // Remove white spaces
 
   vector<string> arguments;
-  boost::split(arguments, arguments_in_str, boost::is_any_of(","));
+  if (!arguments_in_str.empty())
+    boost::split(arguments, arguments_in_str, boost::is_any_of(","));
+  else
+    arguments.resize(0);
   return arguments;
 }
 
@@ -184,6 +187,8 @@ vector<int> transform_args_into_indices(
       }
       indices[counter++] = map_variables[a];
     } else {
+      if (a.empty())
+        continue;
       auto it_pair = map_objects.try_emplace(a, number_of_objects);
       if (it_pair.second) {
         // Object is new to the map. Increase counter.

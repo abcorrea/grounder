@@ -33,18 +33,48 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
       } else if (lp.rules[rule_index].type == JOIN) {
         // Join rule - two conditions in the body
         assert(position_in_the_body <= 1);
-        for (Fact new_fact : join(lp.rules[rule_index], current_fact, position_in_the_body))
+        for (Fact new_fact : join(lp.rules[rule_index],
+                                  current_fact,
+                                  position_in_the_body))
           if (is_new(new_fact, reached_facts, lp)) {
             q.push(new_fact.fact_index);
           }
       } else if (lp.rules[rule_index].type == PRODUCT) {
         // Product rule - more than one condition without shared free vars
         // TODO check what python code does
+        for (Fact new_fact : product(lp.rules[rule_index],
+                                     current_fact,
+                                     position_in_the_body))
+          if (is_new(new_fact, reached_facts, lp)) {
+            q.push(new_fact.fact_index);
+          }
       }
     }
   }
 
   return 0;
+}
+
+unordered_map<int, int>
+FastDownwardGrounder::compute_mapping_free_vars(const Rule &rule,
+                                                vector<int> &new_arguments) {
+  unordered_map<int, int> map_free_var_to_position;
+  int position_counter = 0;
+  for (const auto &eff : rule.effect.arguments) {
+    if (eff < 0) {
+      // Free variable
+      map_free_var_to_position[eff] = position_counter;
+    } else {
+      // Constant -> keep it in the new fact
+      if (rule.type == JOIN) {
+        cerr << "ERROR: Join rule with constant in the head." << endl;
+        exit(-1);
+      }
+      new_arguments[position_counter] = eff;
+    }
+    ++position_counter;
+  }
+  return map_free_var_to_position;
 }
 
 /*
@@ -61,21 +91,12 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
 
   vector<int> new_arguments(rule.effect.arguments.size());
 
-  unordered_map<int, int> map_free_var_to_position;
-  int position_counter = 0;
-  for (const auto &eff : rule.effect.arguments) {
-    if (eff < 0) {
-      // Free variable
-      map_free_var_to_position[eff] = position_counter;
-    } else {
-      // Constant -> keep it in the new fact
-      new_arguments[position_counter] = eff;
-    }
-    ++position_counter;
-  }
+  unordered_map<int, int>
+      map_free_var_to_position = compute_mapping_free_vars(rule,
+                                                           new_arguments);
 
   for (const auto &cond : rule.conditions) {
-    position_counter = 0;
+    int position_counter = 0;
     for (const auto &arg : cond.arguments) {
       if (map_free_var_to_position.count(arg) > 0) {
         // Variable should NOT be projected away by this rule
@@ -110,7 +131,9 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
  * The function returns a list of acts.
  *
  */
-vector<Fact> FastDownwardGrounder::join(Rule &rule, const Fact &fact, int position) {
+vector<Fact> FastDownwardGrounder::join(Rule &rule,
+                                        const Fact &fact,
+                                        int position) {
 
   vector<Fact> facts;
 
@@ -119,27 +142,18 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule, const Fact &fact, int positi
     key.push_back(fact.arguments[i]);
   }
 
-  pair<unordered_map<vector<int>, unordered_set<Fact>, boost::hash<vector<int>>>::iterator,
+  pair<unordered_map<vector<int>,
+                     unordered_set<Fact>,
+                     boost::hash<vector<int>>>::iterator,
        bool> try_to_insert =
-  rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
+      rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
   rule.hash_table_indices[position][key].insert(fact);
 
-  unordered_map<int, int> map_free_var_to_position;
-  int position_counter = 0;
-  for (const auto &eff : rule.effect.arguments) {
-    if (eff < 0) {
-      // Free variable
-      map_free_var_to_position[eff] = position_counter;
-    }
-    else {
-      cerr << "ERROR: Join rule with constant in the head." << endl;
-      exit(-1);
-    }
-    ++position_counter;
-  }
-
   vector<int> new_arguments_persistent(rule.effect.arguments.size());
-  position_counter = 0;
+  unordered_map<int, int>
+      map_free_var_to_position = compute_mapping_free_vars(rule,
+                                                           new_arguments_persistent);
+  int position_counter = 0;
   for (auto &arg : rule.conditions[position].arguments) {
     new_arguments_persistent[map_free_var_to_position[arg]] =
         fact.arguments[position_counter++];
@@ -154,10 +168,86 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule, const Fact &fact, int positi
           f.arguments[position_counter++];
     }
     facts.emplace_back(move(new_arguments),
-                         rule.effect.predicate,
-                         rule.effect.predicate_index);
+                       rule.effect.predicate,
+                       rule.effect.predicate_index);
   }
   return facts;
+}
+
+/*
+ * In product rules, none of the free variables join and there might be
+ * several atoms in the body.
+ *
+ * In practice, this means two cenarios:
+ *
+ * (1) the head is empty;
+ * (2) every free variable in the body is also in the head
+ *
+ */
+vector<Fact> FastDownwardGrounder::product(Rule &rule,
+                                           const Fact &fact,
+                                           int position) {
+
+  vector<Fact> new_facts;
+
+  // First: check that *all* other positions of the effect have at least one tuple
+  rule.reached_facts_per_condition[position].push_back(fact.arguments);
+  int c = 0;
+  for (const auto &v : rule.reached_facts_per_condition) {
+    if (v.empty() and c != position)
+      return new_facts;
+    c++;
+  }
+
+  // If there is one reachable ground atom for every condition and the head
+  // is nullary, then simply trigger it.
+  if (rule.effect.arguments.empty()) {
+    new_facts.emplace_back(vector<int>(),
+                           rule.effect.predicate,
+                           rule.effect.predicate_index);
+    return new_facts;
+  }
+
+  // Second: start creating a base for the new effect atom based on the fact
+  // that we are currently expanding
+  vector<int> new_arguments_persistent(rule.effect.arguments.size());
+  unordered_map<int, int>
+      map_free_var_to_position = compute_mapping_free_vars(rule,
+                                                           new_arguments_persistent);
+
+  // Third: in this case, we just loop over the other conditions and its already
+  // reached facts and instantiate all possibilities (i.e., cartesian product).
+  // We do this using a queue
+  queue<pair<vector<int>, int>> q;
+  q.push(make_pair(new_arguments_persistent, 0));
+  while (!q.empty()) {
+    vector<int> current_args = q.front().first;
+    int counter = q.front().second;
+    q.pop();
+    if (counter >= rule.conditions.size()) {
+      new_facts.emplace_back(current_args,
+                             rule.effect.predicate,
+                             rule.effect.predicate_index);
+    } else if (counter == position) {
+      // If it is the condition that we are currently reaching, we do not need
+      // to consider the other tuples with this predicate
+      q.push(make_pair(current_args, counter + 2));
+    } else {
+      for (const auto &assignment : rule.reached_facts_per_condition[counter]) {
+        if (assignment.empty())
+          continue;
+        vector<int> new_arguments = current_args; // start as a copy
+        int value_counter = 0;
+        for (int arg : rule.conditions[counter].arguments) {
+          new_arguments[map_free_var_to_position[arg]] =
+              assignment[value_counter++];
+        }
+        q.emplace(new_arguments, counter+1);
+      }
+    }
+  }
+
+  return new_facts;
 }
 
 bool FastDownwardGrounder::is_new(Fact &new_fact,
@@ -171,3 +261,4 @@ bool FastDownwardGrounder::is_new(Fact &new_fact,
   }
   return false;
 }
+
