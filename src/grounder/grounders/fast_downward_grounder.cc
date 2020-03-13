@@ -214,6 +214,11 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   unordered_map<int, int>
       map_free_var_to_position = compute_mapping_free_vars(rule,
                                                            new_arguments_persistent);
+  int position_counter = 0;
+  for (auto &arg : rule.conditions[position].arguments) {
+    new_arguments_persistent[map_free_var_to_position[arg]] =
+        fact.arguments[position_counter++];
+  }
 
   // Third: in this case, we just loop over the other conditions and its already
   // reached facts and instantiate all possibilities (i.e., cartesian product).
@@ -231,7 +236,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
     } else if (counter == position) {
       // If it is the condition that we are currently reaching, we do not need
       // to consider the other tuples with this predicate
-      q.push(make_pair(current_args, counter + 2));
+      q.push(make_pair(current_args, counter + 1));
     } else {
       for (const auto &assignment : rule.reached_facts_per_condition[counter]) {
         if (assignment.empty())
@@ -239,8 +244,10 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
         vector<int> new_arguments = current_args; // start as a copy
         int value_counter = 0;
         for (int arg : rule.conditions[counter].arguments) {
+          assert (value_counter < assignment.size());
           new_arguments[map_free_var_to_position[arg]] =
-              assignment[value_counter++];
+              assignment[value_counter];
+          ++value_counter;
         }
         q.emplace(new_arguments, counter+1);
       }
