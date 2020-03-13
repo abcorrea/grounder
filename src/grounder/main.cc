@@ -41,5 +41,7 @@ int main(int argc, char *argv[]) {
     cerr << "Error during grounding procedure. Grounding not finished!" << endl;
   }
 
+  cout << logic_program.facts.size() << " atoms" << endl;
+
   return 0;
 }
