@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
   cout << "Total time: " << double(clock() - timer_start) / CLOCKS_PER_SEC << "s" << endl;
 
   for (const auto &f : logic_program.facts)
-    f.print_atom(logic_program.objects);
+    f.print_atom(logic_program.objects, logic_program.map_index_to_atom);
   cout << logic_program.facts.size() << " atoms" << endl;
 
   return 0;

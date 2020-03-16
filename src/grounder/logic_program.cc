@@ -31,3 +31,6 @@ void LogicProgram::create_rule_matcher() {
     }
   }
 }
+void LogicProgram::set_map_index_to_atom(const unordered_map<int, std::string> &m) {
+  LogicProgram::map_index_to_atom = m;
+}

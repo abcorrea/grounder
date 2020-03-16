@@ -83,7 +83,6 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
   }
 
   return Fact(move(new_arguments),
-              rule.effect.predicate,
               rule.effect.predicate_index);
 }
 
@@ -142,7 +141,6 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
           f.arguments[position_counter++];
     }
     facts.emplace_back(move(new_arguments),
-                       rule.effect.predicate,
                        rule.effect.predicate_index);
   }
   return facts;
@@ -177,7 +175,6 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   // is nullary, then simply trigger it.
   if (rule.effect.arguments.empty()) {
     new_facts.emplace_back(vector<int>(),
-                           rule.effect.predicate,
                            rule.effect.predicate_index);
     return new_facts;
   }
@@ -205,7 +202,6 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
     q.pop();
     if (counter >= rule.conditions.size()) {
       new_facts.emplace_back(current_args,
-                             rule.effect.predicate,
                              rule.effect.predicate_index);
     } else if (counter == position) {
       // If it is the condition that we are currently reaching, we do not need

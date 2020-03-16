@@ -18,6 +18,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
   unordered_map<string, int> map_object_to_index;
   unordered_map<string, int> map_atom_to_index;
+  unordered_map<int, string> map_index_to_atom;
 
   vector<Object> lp_objects;
   vector<Fact> lp_facts;
@@ -51,10 +52,10 @@ bool parse(LogicProgram &lp, ifstream &in) {
       auto head_pred_pair =
           map_atom_to_index.try_emplace(head_predicate, number_of_atoms);
       if (head_pred_pair.second) {
+        map_index_to_atom.emplace(number_of_atoms, head_predicate);
         number_of_atoms++;
       }
       Atom head_atom(head_argument_indices,
-                     head_predicate,
                      map_atom_to_index[head_predicate]);
 
       vector<string> condition_atoms_strings = get_rule_conditions(body);
@@ -65,6 +66,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
         auto atom_pair =
             map_atom_to_index.try_emplace(atom_name, number_of_atoms);
         if (atom_pair.second) {
+          map_index_to_atom.emplace(number_of_atoms, atom_name);
           number_of_atoms++;
         }
         vector<string> atom_arguments = extract_arguments_from_atom(s);
@@ -75,7 +77,6 @@ bool parse(LogicProgram &lp, ifstream &in) {
             lp_objects,
             number_of_vars_current_rule);
         condition_atoms.emplace_back(indices,
-                                     atom_name,
                                      map_atom_to_index[atom_name]);
       }
 
@@ -97,6 +98,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
       auto pred_pair =
           map_atom_to_index.try_emplace(predicate, number_of_atoms);
       if (pred_pair.second) {
+        map_index_to_atom.emplace(number_of_atoms, predicate);
         number_of_atoms++;
       }
 
@@ -115,7 +117,6 @@ bool parse(LogicProgram &lp, ifstream &in) {
       }
 
       lp_facts.emplace_back(arguments_indices,
-                            predicate,
                             map_atom_to_index[predicate]);
       number_of_facts++;
     }
@@ -132,6 +133,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
   lp.set_facts(lp_facts);
   lp.set_objects(lp_objects);
   lp.set_rules(rules);
+  lp.set_map_index_to_atom(map_index_to_atom);
 
   return true;
 }

@@ -15,6 +15,9 @@ class LogicProgram {
   std::vector<Fact> facts;
   std::vector<Object> objects;
   std::vector<Rule> rules;
+  std::unordered_map<int, std::string> map_index_to_atom;
+  void set_map_index_to_atom(const std::unordered_map<int,
+                                                      std::string> &m);
 
   // Maps index of an atom A to list of pairs (R, P) where R is a rule
   // with A in the body and P is the position of this atom in the condition

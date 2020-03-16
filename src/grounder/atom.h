@@ -7,6 +7,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <unordered_map>
 
 /*
  *
@@ -18,23 +19,22 @@
 class Atom {
  public:
   Atom(std::vector<int>  arguments,
-      std::string  predicate,
       int predicate_index) :
       arguments (std::move(arguments)),
-      predicate(std::move(predicate)),
       predicate_index(predicate_index) {
     index = next_index++;
   }
 
 
   // Print atom in a nice way.
-  void print_atom(const std::vector<Object> &obj) const {
-    std::cout << predicate << '(';
+  void print_atom(const std::vector<Object> &obj,
+      const std::unordered_map<int, std::string> map_index_to_atom) const {
+    std::cout << map_index_to_atom.at(predicate_index) << '(';
     int cont = 0;
     for (int a : arguments) {
       if (a >= 0) {
         // a >= 0 --> object. Print its name
-        std::cout << obj[a].predicate;
+        std::cout << obj[a].name;
       } else {
         // a < 0 --> free variable. Print the free variable of the rule.
         std::cout << '?' << char(65 + a);
@@ -48,7 +48,6 @@ class Atom {
 
 
   std::vector<int> arguments;
-  std::string predicate;
   int predicate_index;
   int index;
 

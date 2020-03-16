@@ -15,11 +15,11 @@ class Object {
   static int next_index;
  public:
 
-  explicit Object(std::string predicate) : predicate(std::move(predicate)) {
+  explicit Object(std::string name) : name(std::move(name)) {
     index = next_index++;
   };
 
-  std::string predicate;
+  std::string name;
   int index = -1;
 
  private:
