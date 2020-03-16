@@ -48,6 +48,23 @@ class Rule {
     }
   };
 
+  void set_map_heard_vars_to_positions() {
+    int position_counter = 0;
+    for (const auto &eff : effect.arguments) {
+      if (eff < 0) {
+        // Free variable
+        map_free_var_to_position[eff] = position_counter;
+      } else {
+        // Constant -> keep it in the new fact
+        if (type == JOIN) {
+          std::cerr << "ERROR: Join rule with constant in the head." << std::endl;
+          exit(-1);
+        }
+      }
+      ++position_counter;
+    }
+  }
+
   Atom effect;
   std::vector<Atom> conditions;
   int index;
@@ -67,6 +84,9 @@ class Rule {
   // has the third variable of the key in its Xth position.
   std::vector<std::vector<int>> position_of_matching_vars;
   std::vector<int> matches;
+
+  // Map each free variable of the head to the position of the argument
+  std::unordered_map<int, int> map_free_var_to_position;
 
  private:
   std::vector<int> computing_matching_variables();

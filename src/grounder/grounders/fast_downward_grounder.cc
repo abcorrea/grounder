@@ -54,28 +54,6 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
   return 0;
 }
 
-unordered_map<int, int>
-FastDownwardGrounder::compute_mapping_free_vars(const Rule &rule,
-                                                vector<int> &new_arguments) {
-  unordered_map<int, int> map_free_var_to_position;
-  int position_counter = 0;
-  for (const auto &eff : rule.effect.arguments) {
-    if (eff < 0) {
-      // Free variable
-      map_free_var_to_position[eff] = position_counter;
-    } else {
-      // Constant -> keep it in the new fact
-      if (rule.type == JOIN) {
-        cerr << "ERROR: Join rule with constant in the head." << endl;
-        exit(-1);
-      }
-      new_arguments[position_counter] = eff;
-    }
-    ++position_counter;
-  }
-  return map_free_var_to_position;
-}
-
 /*
  * Project a sequence of objects into another sequence. The head of the rule H
  * has free(H) <= free(B), where B is the rule body (condition).
@@ -88,18 +66,16 @@ FastDownwardGrounder::compute_mapping_free_vars(const Rule &rule,
  */
 Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
 
-  vector<int> new_arguments(rule.effect.arguments.size());
-
-  unordered_map<int, int>
-      map_free_var_to_position = compute_mapping_free_vars(rule,
-                                                           new_arguments);
+  // New arguments start as a copy of the head atom and we just replace the
+  // free variables. Constants will remain intact.
+  vector<int> new_arguments  = rule.effect.arguments;
 
   for (const auto &cond : rule.conditions) {
     int position_counter = 0;
     for (const auto &arg : cond.arguments) {
-      if (map_free_var_to_position.count(arg) > 0) {
+      if (rule.map_free_var_to_position.count(arg) > 0) {
         // Variable should NOT be projected away by this rule
-        new_arguments[map_free_var_to_position[arg]] =
+        new_arguments[rule.map_free_var_to_position.at(arg)] =
             fact.arguments[position_counter];
       }
       ++position_counter;
@@ -148,13 +124,12 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
       rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
   rule.hash_table_indices[position][key].insert(fact);
 
-  vector<int> new_arguments_persistent(rule.effect.arguments.size());
-  unordered_map<int, int>
-      map_free_var_to_position = compute_mapping_free_vars(rule,
-                                                           new_arguments_persistent);
+  // See comment in "project" about 'new_arguments' vector
+  vector<int> new_arguments_persistent = rule.effect.arguments;
+
   int position_counter = 0;
   for (auto &arg : rule.conditions[position].arguments) {
-    new_arguments_persistent[map_free_var_to_position[arg]] =
+    new_arguments_persistent[rule.map_free_var_to_position[arg]] =
         fact.arguments[position_counter++];
   }
 
@@ -163,7 +138,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
     vector<int> new_arguments = new_arguments_persistent;
     position_counter = 0;
     for (auto &arg : rule.conditions[inverse_position].arguments) {
-      new_arguments[map_free_var_to_position[arg]] =
+      new_arguments[rule.map_free_var_to_position[arg]] =
           f.arguments[position_counter++];
     }
     facts.emplace_back(move(new_arguments),
@@ -209,13 +184,13 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
 
   // Second: start creating a base for the new effect atom based on the fact
   // that we are currently expanding
-  vector<int> new_arguments_persistent(rule.effect.arguments.size());
-  unordered_map<int, int>
-      map_free_var_to_position = compute_mapping_free_vars(rule,
-                                                           new_arguments_persistent);
+
+  // See comment in "project" about 'new_arguments' vector
+  vector<int> new_arguments_persistent = rule.effect.arguments;
+
   int position_counter = 0;
   for (auto &arg : rule.conditions[position].arguments) {
-    new_arguments_persistent[map_free_var_to_position[arg]] =
+    new_arguments_persistent[rule.map_free_var_to_position[arg]] =
         fact.arguments[position_counter++];
   }
 
@@ -244,7 +219,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
         int value_counter = 0;
         for (int arg : rule.conditions[counter].arguments) {
           assert (value_counter < assignment.size());
-          new_arguments[map_free_var_to_position[arg]] =
+          new_arguments[rule.map_free_var_to_position[arg]] =
               assignment[value_counter];
           ++value_counter;
         }

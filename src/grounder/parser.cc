@@ -125,6 +125,10 @@ bool parse(LogicProgram &lp, ifstream &in) {
   for (Fact &f : lp_facts)
     f.set_fact_index();
 
+  // Loop over the rules setting the map between head free vars and arg position
+  for (Rule &r : rules)
+    r.set_map_heard_vars_to_positions();
+
   lp.set_facts(lp_facts);
   lp.set_objects(lp_objects);
   lp.set_rules(rules);
