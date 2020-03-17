@@ -40,7 +40,6 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
           }
       } else if (lp.rules[rule_index].type == PRODUCT) {
         // Product rule - more than one condition without shared free vars
-        // TODO check what python code does
         for (Fact new_fact : product(lp.rules[rule_index],
                                      current_fact,
                                      position_in_the_body))
@@ -116,7 +115,10 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
     key.push_back(fact.arguments[i]);
   }
 
-  auto it = rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
+  // Just need to be sure that this key is in the hash table
+  const auto it = rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
+
+  // Insert the fact in the hash table of the key
   rule.hash_table_indices[position][key].insert(fact);
 
   // See comment in "project" about 'new_arguments' vector
@@ -128,7 +130,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
         fact.arguments[position_counter++];
   }
 
-  int inverse_position = (position + 1) % 2;
+  const int inverse_position = (position + 1) % 2;
   for (const Fact &f : rule.hash_table_indices[inverse_position][key]) {
     vector<int> new_arguments = new_arguments_persistent;
     position_counter = 0;
@@ -228,8 +230,8 @@ bool FastDownwardGrounder::is_new(Fact &new_fact,
                                   LogicProgram &lp) {
   if (reached_facts.count(new_fact) == 0) {
     new_fact.set_fact_index();
-    lp.facts.push_back(new_fact);
     reached_facts.insert(new_fact);
+    lp.facts.push_back(new_fact);
     return true;
   }
   return false;
