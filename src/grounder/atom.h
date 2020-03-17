@@ -42,7 +42,7 @@ public:
       if (cont != arguments.size())
         std::cout << ", ";
     }
-    std::cout << ")." << std::endl;
+    std::cout << ')' << std::endl;
   }
 
 
