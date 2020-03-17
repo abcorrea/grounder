@@ -6,3 +6,4 @@ builds/
 experiments/*/data/
 src/*.egg-info/
 src/grounder/cmake-build-debug/
+callgrind.out*
