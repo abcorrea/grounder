@@ -30,7 +30,8 @@ def find_domain_filename(task_filename):
 
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='Generate models.')
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+                                     description='Ground STRIPS planning tasks.')
     parser.add_argument('-i', '--instance', required=True, help="The path to the problem instance file.")
     parser.add_argument('-d', '--domain', default=None, help="(Optional) The path to the problem domain file. If none is "
                                                        "provided, the system will try to automatically deduce "
