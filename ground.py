@@ -9,6 +9,8 @@ import sys
 import tempfile
 import time
 
+import build
+
 
 def find_domain_filename(task_filename):
     """
@@ -38,6 +40,8 @@ def parse_arguments():
                                                        "it from the instance filename.")
     parser.add_argument('-t', '--lp-output', default="output.lp", help="Logical program output file.")
     parser.add_argument('-m', '--method', default="fd", help="Grounding method.")
+    parser.add_argument('-b', '--build', action='store_true',
+                        help="Build the project before running it (Default: False).")
 
     args = parser.parse_args()
     if args.domain is None:
@@ -61,15 +65,8 @@ if __name__ == '__main__':
         sys.stderr.write("Error: Instance file does not exist.\n")
         sys.exit()
 
-    BUILD_DIR = SCRIPT_PATH+'/builds/release/grounder'
-    if not os.path.exists(BUILD_DIR):
-        os.makedirs(BUILD_DIR)
-
-    os.chdir(SCRIPT_PATH+'/builds/release/grounder')
-    subprocess.check_call(['cmake', SCRIPT_PATH+'/src/grounder/'])
-    subprocess.check_call(['make'])
-    os.chdir(SCRIPT_PATH)
-
+    if args.build:
+        build.build()
     f = args.lp_output
     if args.lp_output is not None:
         f = open(args.lp_output, 'w')
