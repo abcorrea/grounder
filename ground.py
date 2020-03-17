@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 
-
 import argparse
 import os
-import shutil
 import subprocess
 import sys
-import tempfile
-import time
 
 import build
+
+SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 def find_domain_filename(task_filename):
@@ -35,9 +33,9 @@ def parse_arguments():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
                                      description='Ground STRIPS planning tasks.')
     parser.add_argument('-i', '--instance', required=True, help="The path to the problem instance file.")
-    parser.add_argument('-d', '--domain', default=None, help="(Optional) The path to the problem domain file. If none is "
-                                                       "provided, the system will try to automatically deduce "
-                                                       "it from the instance filename.")
+    parser.add_argument('-d', '--domain', default=None,
+                        help="(Optional) The path to the problem domain file. If none is  provided, "
+                             "the system will try to automatically deduce it from the instance filename.")
     parser.add_argument('-t', '--lp-output', default="output.lp", help="Logical program output file.")
     parser.add_argument('-m', '--method', default="fd", help="Grounding method.")
     parser.add_argument('-b', '--build', action='store_true',
@@ -52,10 +50,7 @@ def parse_arguments():
     return args
 
 
-if __name__ == '__main__':
-    SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
-    args = parse_arguments()
-
+def main(args):
     domain_file = args.domain
     instance_file = args.instance
     if not os.path.isfile(domain_file):
@@ -75,3 +70,8 @@ if __name__ == '__main__':
     subprocess.check_call([SCRIPT_PATH+'/builds/release/grounder/grounder',
                            args.lp_output,
                            args.method])
+
+
+if __name__ == '__main__':
+    main(parse_arguments())
+
