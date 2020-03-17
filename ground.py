@@ -5,7 +5,7 @@ import os
 import subprocess
 import sys
 
-from build import SRC_DIR, BUILD_DIR, build
+from build import BUILD_DIR, build, PROJECT_ROOT
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
 
@@ -73,7 +73,7 @@ def main(args):
 
 def generate_lp(domain, instance, lp_output):
     with open(lp_output, 'w') as f:
-        subprocess.call([os.path.join(SRC_DIR, 'translate', 'pddl_to_prolog.py'), domain, instance], stdout=f)
+        subprocess.call([os.path.join(PROJECT_ROOT, 'src', 'translate', 'pddl_to_prolog.py'), domain, instance], stdout=f)
 
 
 def ground_lp(filename, method):
