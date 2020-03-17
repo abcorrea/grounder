@@ -6,7 +6,7 @@ import subprocess
 import sys
 
 import resources
-from build import BUILD_DIR, build, PROJECT_ROOT
+from build import get_build_dir, build, PROJECT_ROOT
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
 
@@ -42,6 +42,8 @@ def parse_arguments():
     parser.add_argument('-m', '--method', default="fd", help="Grounding method.")
     parser.add_argument('-b', '--build', action='store_true',
                         help="Build the project before running it (Default: False).")
+    parser.add_argument('--debug',
+                        action="store_true", help="Build in debug mode.")
 
     args = parser.parse_args()
     if args.domain is None:
@@ -63,12 +65,12 @@ def main(args):
         sys.exit()
 
     if args.build:
-        build()
+        build(args.debug)
 
     with resources.timing(f"Generating reachability LP", newline=True):
         generate_lp(args.domain, args.instance, args.lp_output)
 
-    ground_lp(args.lp_output, args.method)
+    ground_lp(args.lp_output, args.method, args.debug)
 
 
 def generate_lp(domain, instance, lp_output):
@@ -77,10 +79,10 @@ def generate_lp(domain, instance, lp_output):
                         stdout=f)
 
 
-def ground_lp(filename, method):
+def ground_lp(filename, method, debug_flag):
+    BUILD_DIR = get_build_dir(debug_flag)
     subprocess.check_call([os.path.join(BUILD_DIR, 'grounder'), filename, method])
 
 
 if __name__ == '__main__':
     main(parse_arguments())
-
