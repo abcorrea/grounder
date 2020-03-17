@@ -3,12 +3,15 @@ project(grounder)
 
 set(CMAKE_CXX_STANDARD 17)
 
+if(CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_CONFIGURATION_TYPES Debug Release)
+endif()
+
 # Release
-set(CMAKE_CXX_FLAGS "-O3 -g -DNDEBUG -fomit-frame-pointer")
+set(CMAKE_CXX_FLAGS_RELEASE  "-O3 -g -DNDEBUG -fomit-frame-pointer")
 
 # Debug and Profile
-#set(CMAKE_CXX_FLAGS "-O3 -D_GLIBCXX_DEBUG -pg")
-
+set(CMAKE_CXX_FLAGS_DEBUG  "-O0 -D_GLIBCXX_DEBUG -pg")
 
 add_executable(grounder
         main.cc
