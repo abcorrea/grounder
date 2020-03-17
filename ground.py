@@ -5,6 +5,7 @@ import os
 import subprocess
 import sys
 
+import resources
 from build import BUILD_DIR, build, PROJECT_ROOT
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -64,16 +65,16 @@ def main(args):
     if args.build:
         build()
 
-    generate_lp(args.domain, args.instance, args.lp_output)
+    with resources.timing(f"Generating reachability LP", newline=True):
+        generate_lp(args.domain, args.instance, args.lp_output)
 
     ground_lp(args.lp_output, args.method)
-
-    subprocess.check_call([os.path.join(BUILD_DIR, 'grounder'), args.lp_output, args.method])
 
 
 def generate_lp(domain, instance, lp_output):
     with open(lp_output, 'w') as f:
-        subprocess.call([os.path.join(PROJECT_ROOT, 'src', 'translate', 'pddl_to_prolog.py'), domain, instance], stdout=f)
+        subprocess.call([os.path.join(PROJECT_ROOT, 'src', 'translate', 'pddl_to_prolog.py'), domain, instance],
+                        stdout=f)
 
 
 def ground_lp(filename, method):
