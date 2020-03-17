@@ -5,7 +5,7 @@ import os
 import subprocess
 import sys
 
-import build
+from build import SRC_DIR, BUILD_DIR, build
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
 
@@ -36,7 +36,8 @@ def parse_arguments():
     parser.add_argument('-d', '--domain', default=None,
                         help="(Optional) The path to the problem domain file. If none is  provided, "
                              "the system will try to automatically deduce it from the instance filename.")
-    parser.add_argument('-t', '--lp-output', default="output.lp", help="Logical program output file.")
+    parser.add_argument('-t', '--lp-output', default="reachable.lp",
+                        help="File where the reachability logic program will be written.")
     parser.add_argument('-m', '--method', default="fd", help="Grounding method.")
     parser.add_argument('-b', '--build', action='store_true',
                         help="Build the project before running it (Default: False).")
@@ -61,15 +62,22 @@ def main(args):
         sys.exit()
 
     if args.build:
-        build.build()
-    f = args.lp_output
-    if args.lp_output is not None:
-        f = open(args.lp_output, 'w')
-    subprocess.call([os.getcwd()+'/src/translate/pddl_to_prolog.py', domain_file, instance_file], stdout=f)
+        build()
 
-    subprocess.check_call([SCRIPT_PATH+'/builds/release/grounder/grounder',
-                           args.lp_output,
-                           args.method])
+    generate_lp(args.domain, args.instance, args.lp_output)
+
+    ground_lp(args.lp_output, args.method)
+
+    subprocess.check_call([os.path.join(BUILD_DIR, 'grounder'), args.lp_output, args.method])
+
+
+def generate_lp(domain, instance, lp_output):
+    with open(lp_output, 'w') as f:
+        subprocess.call([os.path.join(SRC_DIR, 'translate', 'pddl_to_prolog.py'), domain, instance], stdout=f)
+
+
+def ground_lp(filename, method):
+    subprocess.check_call([os.path.join(BUILD_DIR, 'grounder'), filename, method])
 
 
 if __name__ == '__main__':
