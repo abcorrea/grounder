@@ -17,18 +17,17 @@
  *
  */
 class Atom {
- public:
-  Atom(std::vector<int>  arguments,
-      int predicate_index) :
-      arguments (std::move(arguments)),
-      predicate_index(predicate_index) {
-    index = next_index++;
-  }
+public:
+    Atom(std::vector<int>  arguments, int predicate_index) :
+        arguments(std::move(arguments)),
+        predicate_index(predicate_index),
+        index(next_index++)
+    { }
 
 
   // Print atom in a nice way.
   void print_atom(const std::vector<Object> &obj,
-      const std::unordered_map<int, std::string> map_index_to_atom) const {
+      const std::unordered_map<int, std::string>& map_index_to_atom) const {
     std::cout << map_index_to_atom.at(predicate_index) << '(';
     int cont = 0;
     for (int a : arguments) {
@@ -51,8 +50,8 @@ class Atom {
   int predicate_index;
   int index;
 
- private:
-  static int next_index;
+protected:
+    static int next_index;
 };
 
 

@@ -116,11 +116,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
     key.push_back(fact.arguments[i]);
   }
 
-  pair<unordered_map<vector<int>,
-                     unordered_set<Fact>,
-                     boost::hash<vector<int>>>::iterator,
-       bool> try_to_insert =
-      rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
+  auto it = rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
   rule.hash_table_indices[position][key].insert(fact);
 
   // See comment in "project" about 'new_arguments' vector

@@ -29,24 +29,29 @@
 #define PRODUCT 2
 
 class Rule {
- protected:
-  static int next_index;
+protected:
+    static int next_index;
 
- public:
-  explicit Rule(Atom effect, std::vector<Atom> c, int type) :
-      effect(std::move(effect)), conditions(std::move(c)), type(type) {
-    index = next_index++;
-    hash_table_indices.clear();
-    reached_facts_per_condition.clear();
-    if (type == JOIN) {
-      hash_table_indices.resize(2);
-      matches = computing_matching_variables();
-    } else if (type == PRODUCT) {
-      reached_facts_per_condition.resize(conditions.size());
-      for (int i = 0; i < conditions.size(); ++i)
-        reached_facts_per_condition[i].push_back(std::vector<int>());
-    }
-  };
+public:
+    Rule(Atom effect, std::vector<Atom> c, int type) :
+        effect(std::move(effect)),
+        conditions(std::move(c)),
+        index(next_index++),
+        type(type),
+        hash_table_indices(0),
+        reached_facts_per_condition(0)
+    {
+        if (type == JOIN) {
+            hash_table_indices.resize(2);
+            matches = computing_matching_variables();
+
+        } else if (type == PRODUCT) {
+            reached_facts_per_condition.resize(conditions.size());
+            for (std::size_t i = 0; i < conditions.size(); ++i) {
+              reached_facts_per_condition[i].push_back(std::vector<int>());
+            }
+        }
+    };
 
   void set_map_heard_vars_to_positions() {
     int position_counter = 0;
@@ -69,18 +74,18 @@ class Rule {
   std::vector<Atom> conditions;
   int index;
   int type;
-  std::vector<std::unordered_map<std::vector<int>, std::unordered_set<Fact>,
-                                 boost::hash<std::vector<int>>>>
-      hash_table_indices;
+
+  using key_t = std::vector<int>;
+  using index_t = std::unordered_map<key_t, std::unordered_set<Fact>, boost::hash<key_t>>;
+  std::vector<index_t> hash_table_indices;
 
   // Only need to keep track of this for product rules, the other ones are very
   // predictable and have a well-behaved structure
-  std::vector<std::vector<std::vector<int>>>
-      reached_facts_per_condition;
+  std::vector<std::vector<std::vector<int>>> reached_facts_per_condition;
 
   // A vector with two elements indicating the positions in which the variables
   // in the key occur in each respective rule of the body. If the first element
-  // has X in it's 3rd position, than it means that the first rule of the body
+  // has X in it's 3rd position, then it means that the first rule of the body
   // has the third variable of the key in its Xth position.
   std::vector<std::vector<int>> position_of_matching_vars;
   std::vector<int> matches;

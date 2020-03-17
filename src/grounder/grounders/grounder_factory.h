@@ -13,11 +13,10 @@ class GrounderFactory {
   static Grounder *new_grounder (const std::string &method) {
     std::cout << "Creating grounder..." << std::endl;
     if (boost::iequals(method, "fd")) {
-            return new FastDownwardGrounder();
+        return new FastDownwardGrounder();
     }
-    else {
-      return nullptr;
-    }
+
+    throw std::runtime_error("Unexpected grounding method: \"" + method + "\"");
   }
 };
 
