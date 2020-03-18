@@ -28,6 +28,10 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
   while (getline(in, line)) {
     // Check if it is a fact or a rule
+    if (line.find("Warning:") != string::npos) {
+      // Warning message, skip!
+      continue;
+    }
     if (line.find(":-") != string::npos) {
       // Rule
       int number_of_vars_current_rule = -1; // Variables have negative counter
@@ -70,12 +74,18 @@ bool parse(LogicProgram &lp, ifstream &in) {
           number_of_atoms++;
         }
         vector<string> atom_arguments = extract_arguments_from_atom(s);
-        vector<int> indices = transform_args_into_indices(
-            map_object_to_index,
-            map_variables_to_index,
-            atom_arguments,
-            lp_objects,
-            number_of_vars_current_rule);
+        vector<int> indices;
+        if (!atom_arguments.empty()) {
+          indices = transform_args_into_indices(
+              map_object_to_index,
+              map_variables_to_index,
+              atom_arguments,
+              lp_objects,
+              number_of_vars_current_rule);
+        } else {
+          indices.clear();
+          indices.resize(0);
+        }
         condition_atoms.emplace_back(indices,
                                      map_atom_to_index[atom_name]);
       }
@@ -156,6 +166,10 @@ vector<string> extract_arguments_from_atom(const string &atom) {
   unsigned args_start = atom.find('(');
   unsigned args_end = atom.find(')');
   string arguments_in_str = boost::trim_copy(atom.substr(args_start, args_end));
+  if ((args_start == args_end-1) or (atom.back() == '(')) {
+    // Nullary atoms
+    return vector<string>(0);
+  }
   arguments_in_str.erase(0, 1); // Removes first delimiter, '('
   if (arguments_in_str.back() == '.')
     arguments_in_str.pop_back(); // Remove last delimiter, '.'
