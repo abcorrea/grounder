@@ -29,7 +29,7 @@ public:
   void print_atom(const std::vector<Object> &obj,
       const std::unordered_map<int, std::string>& map_index_to_atom) const {
     std::cout << map_index_to_atom.at(predicate_index) << '(';
-    int cont = 0;
+    size_t cont = 0;
     for (int a : arguments) {
       if (a >= 0) {
         // a >= 0 --> object. Print its name

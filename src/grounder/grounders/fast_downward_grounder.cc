@@ -116,7 +116,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
   }
 
   // Just need to be sure that this key is in the hash table
-  const auto it = rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
+  rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
 
   // Insert the fact in the hash table of the key
   rule.hash_table_indices[position][key].insert(fact);
@@ -198,7 +198,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
     vector<int> current_args = q.front().first;
     int counter = q.front().second;
     q.pop();
-    if (counter >= rule.conditions.size()) {
+    if (counter >= int(rule.conditions.size())) {
       new_facts.emplace_back(current_args,
                              rule.effect.predicate_index);
     } else if (counter == position) {
@@ -210,7 +210,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
         if (assignment.empty())
           continue;
         vector<int> new_arguments = current_args; // start as a copy
-        int value_counter = 0;
+        size_t value_counter = 0;
         for (int arg : rule.conditions[counter].arguments) {
           assert (value_counter < assignment.size());
           new_arguments[rule.map_free_var_to_position[arg]] =

@@ -37,7 +37,7 @@ public:
       return false;
     if (a.arguments.size() != b.arguments.size())
       return false;
-    for (int i = 0; i < a.arguments.size(); i++)
+    for (size_t i = 0; i < a.arguments.size(); i++)
       if (a.arguments[i] != b.arguments[i])
         return false;
     return true;
