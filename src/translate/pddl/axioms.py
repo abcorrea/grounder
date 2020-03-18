@@ -14,7 +14,7 @@ class Axiom:
         self.uniquify_variables()
 
     def __repr__(self):
-        return "axiom_%s" % self.name
+        return "axiom_%s_%s" % (self.name, self.__hash__())
 
     def dump(self):
         args = map(str, self.parameters[:self.num_external_parameters])

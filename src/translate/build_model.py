@@ -341,11 +341,6 @@ if __name__ == "__main__":
     start_time = time.time()
     model = compute_model(prog)
     print("Total time: {}s".format((time.time() - start_time)))
-
-    # We do this because Fast Downward has a bug with dummy actions
-    diff_atoms = set()
     for atom in model:
-        if atom.__repr__() not in diff_atoms:
-            diff_atoms.add(atom.__repr__())
-            print(atom)
-    print("%d atoms" % len(diff_atoms))
+        print(atom)
+    print("%d atoms" % len(model))
