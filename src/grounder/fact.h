@@ -33,12 +33,12 @@ public:
    * fact_index because they are not set in the point of comparison.
    */
   friend bool operator==(const Fact &a, const Fact &b) {
-    if (a.predicate_index != b.predicate_index)
+    if (a.get_predicate_index() != b.get_predicate_index())
       return false;
-    if (a.arguments.size() != b.arguments.size())
+    if (a.get_arguments().size() != b.get_arguments().size())
       return false;
-    for (size_t i = 0; i < a.arguments.size(); i++)
-      if (a.arguments[i] != b.arguments[i])
+    for (size_t i = 0; i < a.get_arguments().size(); i++)
+      if (a.get_argument_by_index(i) != b.get_argument_by_index(i))
         return false;
     return true;
   }
@@ -67,8 +67,8 @@ template<> struct std::hash<Fact> {
   // See comment of operator==
   std::size_t operator()(const Fact &f) const {
     std::size_t
-        seed = boost::hash_range(f.arguments.begin(), f.arguments.end());
-    boost::hash_combine(seed, f.predicate_index);
+        seed = boost::hash_range(f.get_arguments().begin(), f.get_arguments().end());
+    boost::hash_combine(seed, f.get_predicate_index());
     return seed;
   }
 };

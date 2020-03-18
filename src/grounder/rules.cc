@@ -14,11 +14,11 @@ vector<int> Rule::computing_matching_variables() {
   vector<vector<int>> positions(2);
 
   int pos1 = 0;
-  for (int c : conditions[0].arguments) {
-    auto it2 = find(conditions[1].arguments.begin(), conditions[1].arguments.end(), c);
-    if (it2 != conditions[1].arguments.end()) {
+  for (int c : conditions[0].get_arguments()) {
+    auto it2 = find(conditions[1].get_arguments().begin(), conditions[1].get_arguments().end(), c);
+    if (it2 != conditions[1].get_arguments().end()) {
       // Free variables match in both atoms
-      int pos2 = distance(conditions[1].arguments.begin(), it2);
+      int pos2 = distance(conditions[1].get_arguments().begin(), it2);
       new_key.push_back(c);
       positions[0].push_back(pos1);
       positions[1].push_back(pos2);

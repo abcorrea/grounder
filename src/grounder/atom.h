@@ -17,6 +17,10 @@
  *
  */
 class Atom {
+  std::vector<int> arguments;
+  int predicate_index;
+  int index;
+
 public:
     Atom(std::vector<int>  arguments, int predicate_index) :
         arguments(std::move(arguments)),
@@ -45,12 +49,21 @@ public:
     std::cout << ')' << std::endl;
   }
 
+  const std::vector<int> &get_arguments() const {
+    return arguments;
+  }
+  int get_predicate_index() const {
+    return predicate_index;
+  }
+  int get_index() const {
+    return index;
+  }
 
-  std::vector<int> arguments;
-  int predicate_index;
-  int index;
+  const int get_argument_by_index(int i) const {
+    return arguments[i];
+  }
 
-protected:
+ protected:
   static int next_index;
 };
 

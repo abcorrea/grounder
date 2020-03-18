@@ -77,7 +77,7 @@ class Rule {
 
   void set_map_heard_vars_to_positions() {
     int position_counter = 0;
-    for (const auto &eff : effect.arguments) {
+    for (const auto &eff : effect.get_arguments()) {
       if (eff < 0) {
         // Free variable
         map_free_var_to_position[eff] = position_counter;
@@ -137,6 +137,16 @@ class Rule {
   const std::vector<int> &get_matches() const;
 
   const std::unordered_map<int, int> &get_map_free_var_to_position() const;
+
+  // Get arguments of the ith condition in the body
+  const std::vector<int> &get_condition_arguments(int i) const {
+    return conditions[i].get_arguments();
+  }
+
+  const std::vector<int> &get_effect_arguments() const {
+    return effect.get_arguments();
+  }
+
 
  protected:
   static int next_index;

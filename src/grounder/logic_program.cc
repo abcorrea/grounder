@@ -18,14 +18,14 @@ void LogicProgram::create_rule_matcher() {
     int cont = 0;
     for (const auto& condition : rule.get_conditions()) {
       unordered_map<int, vector<pair<int,int>>>::const_iterator
-          found = LogicProgram::rule_matcher.find(condition.predicate_index);
+          found = LogicProgram::rule_matcher.find(condition.get_predicate_index());
       if (found == LogicProgram::rule_matcher.end()) {
         // Not found
-        LogicProgram::rule_matcher[condition.predicate_index] =
+        LogicProgram::rule_matcher[condition.get_predicate_index()] =
             vector<pair<int,int>>(1, pair<int,int>(rule.get_index(), cont++));
       }
       else {
-        LogicProgram::rule_matcher[condition.predicate_index].emplace_back(
+        LogicProgram::rule_matcher[condition.get_predicate_index()].emplace_back(
             rule.get_index(), cont++);
       }
     }
