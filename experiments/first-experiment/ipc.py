@@ -34,7 +34,7 @@ if REMOTE:
         extra_options='#SBATCH --cpus-per-task=3',
         setup="%s\n%s" % (
             BaselSlurmEnvironment.DEFAULT_SETUP,
-            "source /infai/blaas/virtualenvs/asp-grounding-planning/bin/activate\n"),
+            "source /infai/blaas/virtualenvs/grounder/bin/activate\n"),
         export=["PATH", "DOWNWARD_BENCHMARKS", "POWER_LIFTED_DIR"])
 else:
     SUITE = ['gripper:prob01.pddl',
