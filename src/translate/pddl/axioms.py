@@ -13,9 +13,12 @@ class Axiom:
         self.condition = condition
         self.uniquify_variables()
 
+    def __repr__(self):
+        return "axiom_%s" % self.name
+
     def dump(self):
         args = map(str, self.parameters[:self.num_external_parameters])
-        print("Axiom %s(%s)" % (self.name, ", ".join(args)))
+        print("axiom_%s(%s)" % (self.name, ", ".join(args)))
         self.condition.dump()
 
     def uniquify_variables(self):
