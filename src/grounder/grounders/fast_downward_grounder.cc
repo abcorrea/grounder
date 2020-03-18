@@ -83,7 +83,7 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
         // Variable should NOT be projected away by this rule
         new_arguments[rule.get_head_position_of_arg(arg)] =
             fact.get_argument_by_index(position_counter);
-      } else if (arg > 0) {
+      } else if (arg >= 0) {
         // Constant instead of free var
         if (fact.get_argument_by_index(position_counter) != arg) {
           // constants do not match!
