@@ -16,17 +16,17 @@ void LogicProgram::create_rule_matcher() {
   // Loop over rule conditions
   for (const auto& rule : LogicProgram::rules) {
     int cont = 0;
-    for (const auto& condition : rule.conditions) {
+    for (const auto& condition : rule.get_conditions()) {
       unordered_map<int, vector<pair<int,int>>>::const_iterator
           found = LogicProgram::rule_matcher.find(condition.predicate_index);
       if (found == LogicProgram::rule_matcher.end()) {
         // Not found
         LogicProgram::rule_matcher[condition.predicate_index] =
-            vector<pair<int,int>>(1, pair<int,int>(rule.index, cont++));
+            vector<pair<int,int>>(1, pair<int,int>(rule.get_index(), cont++));
       }
       else {
         LogicProgram::rule_matcher[condition.predicate_index].emplace_back(
-            rule.index, cont++);
+            rule.get_index(), cont++);
       }
     }
   }

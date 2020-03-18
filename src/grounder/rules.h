@@ -29,10 +29,32 @@
 #define PRODUCT 2
 
 class Rule {
-protected:
-    static int next_index;
+  Atom effect;
+  std::vector<Atom> conditions;
+  int index;
+  int type;
 
-public:
+  using key_t = std::vector<int>;
+  using index_t = std::unordered_map<key_t, std::unordered_set<Fact>, boost::hash<key_t>>;
+  std::vector<index_t> hash_table_indices;
+
+  // Only need to keep track of this for product rules, the other ones are very
+  // predictable and have a well-behaved structure
+  std::vector<std::vector<std::vector<int>>> reached_facts_per_condition;
+
+  // A vector with two elements indicating the positions in which the variables
+  // in the key occur in each respective rule of the body. If the first element
+  // has X in it's 3rd position, then it means that the first rule of the body
+  // has the third variable of the key in its Xth position.
+  std::vector<std::vector<int>> position_of_matching_vars;
+  std::vector<int> matches;
+
+  // Map each free variable of the head to the position of the argument
+  std::unordered_map<int, int> map_free_var_to_position;
+
+  std::vector<int> computing_matching_variables();
+
+ public:
     Rule(Atom effect, std::vector<Atom> c, int type) :
         effect(std::move(effect)),
         conditions(std::move(c)),
@@ -70,31 +92,54 @@ public:
     }
   }
 
-  Atom effect;
-  std::vector<Atom> conditions;
-  int index;
-  int type;
+  // Check if head has argument with variable index i
+  bool head_has_argument(int i) const;
 
-  using key_t = std::vector<int>;
-  using index_t = std::unordered_map<key_t, std::unordered_set<Fact>, boost::hash<key_t>>;
-  std::vector<index_t> hash_table_indices;
+  // Assume that "head_has_argument" returned true
+  size_t get_head_position_of_arg(int arg) const;
 
-  // Only need to keep track of this for product rules, the other ones are very
-  // predictable and have a well-behaved structure
-  std::vector<std::vector<std::vector<int>>> reached_facts_per_condition;
+  const Atom &get_effect() const;
 
-  // A vector with two elements indicating the positions in which the variables
-  // in the key occur in each respective rule of the body. If the first element
-  // has X in it's 3rd position, then it means that the first rule of the body
-  // has the third variable of the key in its Xth position.
-  std::vector<std::vector<int>> position_of_matching_vars;
-  std::vector<int> matches;
+  const std::vector<Atom> &get_conditions() const;
 
-  // Map each free variable of the head to the position of the argument
-  std::unordered_map<int, int> map_free_var_to_position;
+  int get_index() const;
 
- private:
-  std::vector<int> computing_matching_variables();
+  int get_type() const;
+
+  const std::unordered_set<Fact> &get_hash_table_indices_by_index(const key_t& k, int i);
+
+  // Insert a key with empty correspondence in the has.
+  // Use this to guarantee that a key exists.
+  // Only useful for join rules.
+  void insert_key_in_hash(const std::vector<int> &key, int position);
+
+  // Insert the fact to a given key of one of the hashes.
+  // Run insert_key_in_hash first.
+  // Only useful for join rules.
+  void insert_fact_in_hash(const Fact& fact, const std::vector<int> &key, int position);
+
+  // Return all facts that match a given key for the atom in position i.
+  // Only useful for join rules.
+  const std::unordered_set<Fact> &get_facts_matching_key(const std::vector<int> &key, int position);
+
+  // Return atom in the ith position of the condition (body)
+  const Atom &get_condition_by_position(int i);
+
+  // Return the facts matching the SINGLE CONDITION IN THE iTH POSITION
+  std::vector<std::vector<int>> &get_reached_facts_of_condition(int i);
+
+  // Return the facts matching EVERY CONDITION
+  const std::vector<std::vector<std::vector<int>>> &get_reached_facts_all_conditions() const;
+
+  // Only useful for join rules.
+  const std::vector<int> &get_position_of_matching_vars(int position) const;
+
+  const std::vector<int> &get_matches() const;
+
+  const std::unordered_map<int, int> &get_map_free_var_to_position() const;
+
+ protected:
+  static int next_index;
 };
 
 #endif //GROUNDER__RULES_H_

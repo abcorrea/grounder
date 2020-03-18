@@ -25,7 +25,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
         int rule_index = m.first;
         int position_in_the_body = m.second;
         Rule &rule = lp.get_rule_by_index(rule_index);
-        if (rule.type == PROJECT) {
+        if (rule.get_type() == PROJECT) {
           // Projection rule - single condition in the body
           assert(position_in_the_body == 0);
           Fact new_fact =
@@ -33,7 +33,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
           if (is_new(new_fact, reached_facts, lp)) {
             q.push(new_fact.fact_index);
           }
-        } else if (rule.type == JOIN) {
+        } else if (rule.get_type() == JOIN) {
           // Join rule - two conditions in the body
           assert(position_in_the_body <= 1);
           for (Fact new_fact : join(rule,
@@ -42,7 +42,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
             if (is_new(new_fact, reached_facts, lp)) {
               q.push(new_fact.fact_index);
             }
-        } else if (rule.type == PRODUCT) {
+        } else if (rule.get_type() == PRODUCT) {
           // Product rule - more than one condition without shared free vars
           for (Fact new_fact : product(rule,
                                        current_fact,
@@ -72,14 +72,14 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
 
   // New arguments start as a copy of the head atom and we just replace the
   // free variables. Constants will remain intact.
-  vector<int> new_arguments  = rule.effect.arguments;
+  vector<int> new_arguments  = rule.get_effect().arguments;
 
-  for (const auto &cond : rule.conditions) {
+  for (const auto &cond : rule.get_conditions()) {
     int position_counter = 0;
     for (const auto &arg : cond.arguments) {
-      if (rule.map_free_var_to_position.count(arg) > 0) {
+      if (rule.head_has_argument(arg)) {
         // Variable should NOT be projected away by this rule
-        new_arguments[rule.map_free_var_to_position.at(arg)] =
+        new_arguments[rule.get_head_position_of_arg(arg)] =
             fact.arguments[position_counter];
       }
       ++position_counter;
@@ -87,7 +87,7 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
   }
 
   return Fact(move(new_arguments),
-              rule.effect.predicate_index);
+              rule.get_effect().predicate_index);
 }
 
 /*
@@ -115,36 +115,36 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
 
   vector<Fact> facts;
 
-  vector<int> key(rule.matches.size());
-  for (int i : rule.position_of_matching_vars[position]) {
+  vector<int> key(rule.get_matches().size());
+  for (int i : rule.get_position_of_matching_vars(position)) {
     key.push_back(fact.arguments[i]);
   }
 
   // Just need to be sure that this key is in the hash table
-  rule.hash_table_indices[position].emplace(key, unordered_set<Fact>());
+  rule.insert_key_in_hash(key, position);
 
   // Insert the fact in the hash table of the key
-  rule.hash_table_indices[position][key].insert(fact);
+  rule.insert_fact_in_hash(fact, key, position);
 
   // See comment in "project" about 'new_arguments' vector
-  vector<int> new_arguments_persistent = rule.effect.arguments;
+  vector<int> new_arguments_persistent = rule.get_effect().arguments;
 
   int position_counter = 0;
-  for (auto &arg : rule.conditions[position].arguments) {
-    new_arguments_persistent[rule.map_free_var_to_position[arg]] =
+  for (auto &arg : rule.get_conditions()[position].arguments) {
+    new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
         fact.arguments[position_counter++];
   }
 
   const int inverse_position = (position + 1) % 2;
-  for (const Fact &f : rule.hash_table_indices[inverse_position][key]) {
+  for (const Fact &f : rule.get_facts_matching_key(key, inverse_position)) {
     vector<int> new_arguments = new_arguments_persistent;
     position_counter = 0;
-    for (auto &arg : rule.conditions[inverse_position].arguments) {
-      new_arguments[rule.map_free_var_to_position[arg]] =
+    for (auto &arg : rule.get_conditions()[inverse_position].arguments) {
+      new_arguments[rule.get_head_position_of_arg(arg)] =
           f.arguments[position_counter++];
     }
     facts.emplace_back(move(new_arguments),
-                       rule.effect.predicate_index);
+                       rule.get_effect().predicate_index);
   }
   return facts;
 }
@@ -166,9 +166,9 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   vector<Fact> new_facts;
 
   // First: check that *all* other positions of the effect have at least one tuple
-  rule.reached_facts_per_condition[position].push_back(fact.arguments);
+  rule.get_reached_facts_of_condition(position).push_back(fact.arguments);
   int c = 0;
-  for (const auto &v : rule.reached_facts_per_condition) {
+  for (const auto &v : rule.get_reached_facts_all_conditions()) {
     if (v.empty() and c != position)
       return new_facts;
     c++;
@@ -176,9 +176,9 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
 
   // If there is one reachable ground atom for every condition and the head
   // is nullary, then simply trigger it.
-  if (rule.effect.arguments.empty()) {
+  if (rule.get_effect().arguments.empty()) {
     new_facts.emplace_back(vector<int>(),
-                           rule.effect.predicate_index);
+                           rule.get_effect().predicate_index);
     return new_facts;
   }
 
@@ -186,11 +186,11 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   // that we are currently expanding
 
   // See comment in "project" about 'new_arguments' vector
-  vector<int> new_arguments_persistent = rule.effect.arguments;
+  vector<int> new_arguments_persistent = rule.get_effect().arguments;
 
   int position_counter = 0;
-  for (auto &arg : rule.conditions[position].arguments) {
-    new_arguments_persistent[rule.map_free_var_to_position[arg]] =
+  for (auto &arg : rule.get_condition_by_position(position).arguments) {
+    new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
         fact.arguments[position_counter++];
   }
 
@@ -203,22 +203,22 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
     vector<int> current_args = q.front().first;
     int counter = q.front().second;
     q.pop();
-    if (counter >= int(rule.conditions.size())) {
+    if (counter >= int(rule.get_conditions().size())) {
       new_facts.emplace_back(current_args,
-                             rule.effect.predicate_index);
+                             rule.get_effect().predicate_index);
     } else if (counter == position) {
       // If it is the condition that we are currently reaching, we do not need
       // to consider the other tuples with this predicate
       q.push(make_pair(current_args, counter + 1));
     } else {
-      for (const auto &assignment : rule.reached_facts_per_condition[counter]) {
+      for (const auto &assignment : rule.get_reached_facts_of_condition(counter)) {
         if (assignment.empty())
           continue;
         vector<int> new_arguments = current_args; // start as a copy
         size_t value_counter = 0;
-        for (int arg : rule.conditions[counter].arguments) {
+        for (int arg : rule.get_conditions()[counter].arguments) {
           assert (value_counter < assignment.size());
-          new_arguments[rule.map_free_var_to_position[arg]] =
+          new_arguments[rule.get_head_position_of_arg(arg)] =
               assignment[value_counter];
           ++value_counter;
         }

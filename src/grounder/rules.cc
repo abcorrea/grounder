@@ -28,3 +28,67 @@ vector<int> Rule::computing_matching_variables() {
   position_of_matching_vars = positions;
   return new_key;
 }
+
+bool Rule::head_has_argument(int i) const {
+  return (map_free_var_to_position.count(i) > 0);
+}
+
+// Assume that "head_has_argument" returned true
+size_t Rule::get_head_position_of_arg(int arg) const {
+  return map_free_var_to_position.at(arg);
+}
+
+const Atom &Rule::get_effect() const {
+  return effect;
+}
+
+const vector<Atom> &Rule::get_conditions() const {
+  return conditions;
+}
+
+int Rule::get_index() const {
+  return index;
+}
+
+int Rule::get_type() const {
+  return type;
+}
+
+const std::unordered_set<Fact> &Rule::get_hash_table_indices_by_index(const key_t& k, int i)  {
+  return hash_table_indices[i].at(k);
+}
+
+std::vector<std::vector<int>> &Rule::get_reached_facts_of_condition(int i) {
+  return reached_facts_per_condition[i];
+}
+
+void Rule::insert_key_in_hash(const vector<int> &key, int position) {
+  hash_table_indices[position].emplace(key, unordered_set<Fact>());
+}
+
+void Rule::insert_fact_in_hash(const Fact& fact, const vector<int> &key, int position) {
+  hash_table_indices[position][key].insert(fact);
+}
+
+const vector<int> &Rule::get_position_of_matching_vars(int position) const {
+  return position_of_matching_vars[position];
+}
+const vector<int> &Rule::get_matches() const {
+  return matches;
+}
+const unordered_map<int, int> &Rule::get_map_free_var_to_position() const {
+  return map_free_var_to_position;
+}
+
+const std::unordered_set<Fact> &Rule::get_facts_matching_key(const vector<int> &key,
+                                                      int position) {
+  return hash_table_indices[position][key];
+}
+
+const Atom &Rule::get_condition_by_position(int i) {
+  return conditions[i];
+}
+
+const vector<std::vector<std::vector<int>>> &Rule::get_reached_facts_all_conditions() const {
+  return reached_facts_per_condition;
+}
