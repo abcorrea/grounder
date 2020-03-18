@@ -10,42 +10,47 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
   unordered_set<Fact> reached_facts;
   queue<int> q;
 
-  for (const Fact &f : lp.facts) {
+  for (const Fact &f : lp.get_facts()) {
     q.push(f.fact_index);
     reached_facts.insert(f);
   }
 
   while (!q.empty()) {
     int i = q.front();
-    Fact current_fact = lp.facts[i];
+    Fact current_fact = lp.get_fact_by_index(i);
+    int predicate_index = current_fact.predicate_index;
     q.pop();
-    for (const auto &m : lp.rule_matcher[current_fact.predicate_index]) {
-      int rule_index = m.first;
-      int position_in_the_body = m.second;
-      if (lp.rules[rule_index].type == PROJECT) {
-        // Projection rule - single condition in the body
-        assert(position_in_the_body == 0);
-        Fact new_fact = project(lp.rules[rule_index], current_fact);
-        if (is_new(new_fact, reached_facts, lp)) {
-          q.push(new_fact.fact_index);
+    if (lp.has_matched_rule(predicate_index)) {
+      for (const auto &m : lp.get_matched_rules(predicate_index)) {
+        int rule_index = m.first;
+        int position_in_the_body = m.second;
+        Rule &rule = lp.get_rule_by_index(rule_index);
+        if (rule.type == PROJECT) {
+          // Projection rule - single condition in the body
+          assert(position_in_the_body == 0);
+          Fact new_fact =
+              project(rule, current_fact);
+          if (is_new(new_fact, reached_facts, lp)) {
+            q.push(new_fact.fact_index);
+          }
+        } else if (rule.type == JOIN) {
+          // Join rule - two conditions in the body
+          assert(position_in_the_body <= 1);
+          for (Fact new_fact : join(rule,
+                                    current_fact,
+                                    position_in_the_body))
+            if (is_new(new_fact, reached_facts, lp)) {
+              q.push(new_fact.fact_index);
+            }
+        } else if (rule.type == PRODUCT) {
+          // Product rule - more than one condition without shared free vars
+          for (Fact new_fact : product(rule,
+                                       current_fact,
+                                       position_in_the_body))
+            if (is_new(new_fact, reached_facts, lp)) {
+              q.push(new_fact.fact_index);
+            }
         }
-      } else if (lp.rules[rule_index].type == JOIN) {
-        // Join rule - two conditions in the body
-        assert(position_in_the_body <= 1);
-        for (Fact new_fact : join(lp.rules[rule_index],
-                                  current_fact,
-                                  position_in_the_body))
-          if (is_new(new_fact, reached_facts, lp)) {
-            q.push(new_fact.fact_index);
-          }
-      } else if (lp.rules[rule_index].type == PRODUCT) {
-        // Product rule - more than one condition without shared free vars
-        for (Fact new_fact : product(lp.rules[rule_index],
-                                     current_fact,
-                                     position_in_the_body))
-          if (is_new(new_fact, reached_facts, lp)) {
-            q.push(new_fact.fact_index);
-          }
       }
     }
   }
@@ -231,7 +236,7 @@ bool FastDownwardGrounder::is_new(Fact &new_fact,
   if (reached_facts.count(new_fact) == 0) {
     new_fact.set_fact_index();
     reached_facts.insert(new_fact);
-    lp.facts.push_back(new_fact);
+    lp.insert_fact(new_fact);
     return true;
   }
   return false;

@@ -51,7 +51,7 @@ public:
   int index;
 
 protected:
-    static int next_index;
+  static int next_index;
 };
 
 
