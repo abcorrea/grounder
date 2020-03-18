@@ -11,7 +11,7 @@ endif()
 set(CMAKE_CXX_FLAGS_RELEASE  "-O3 -g -DNDEBUG -fomit-frame-pointer -Wall")
 
 # Debug and Profile
-set(CMAKE_CXX_FLAGS_DEBUG  "-O0 -D_GLIBCXX_DEBUG -pg -Wall")
+set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -D_GLIBCXX_DEBUG -pg -Wall")
 
 add_executable(grounder
         main.cc
