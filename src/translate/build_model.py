@@ -2,6 +2,7 @@
 
 
 import sys
+import time
 import itertools
 
 import pddl
@@ -337,7 +338,9 @@ if __name__ == "__main__":
     print("Writing rules...")
     prog = pddl_to_prolog.translate(task)
 
+    start_time = time.time()
     model = compute_model(prog)
+    print("Total time: {}s".format((time.time() - start_time)))
     for atom in model:
         print(atom)
     print("%d atoms" % len(model))
