@@ -9,6 +9,8 @@
 
 bool parse(LogicProgram &lp, std::ifstream &in);
 
+bool is_warning_message(const std::string& line);
+
 std::string get_atom_name(const std::string &str);
 
 std::vector<std::string> extract_arguments_from_atom(const std::string &atom);

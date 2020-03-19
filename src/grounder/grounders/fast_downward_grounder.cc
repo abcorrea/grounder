@@ -114,7 +114,7 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
  * it loops over all previously expanded facts matching the same key (the ones
  * in the hash-table) and completing the instantiation.
  *
- * The function returns a list of acts.
+ * The function returns a list of actions.
  *
  */
 vector<Fact> FastDownwardGrounder::join(Rule &rule,
@@ -123,7 +123,8 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
 
   vector<Fact> facts;
 
-  vector<int> key(rule.get_matches().size());
+  vector<int> key;
+  key.reserve(rule.get_matches().size());
   for (int i : rule.get_position_of_matching_vars(position)) {
     key.push_back(fact.get_argument_by_index(i));
   }
@@ -139,8 +140,11 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
 
   int position_counter = 0;
   for (auto &arg : rule.get_condition_arguments(position)) {
-    new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
-        fact.get_argument_by_index(position_counter++);
+    if (rule.head_has_argument(arg)) {
+      new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
+          fact.get_argument_by_index(position_counter);
+    }
+    position_counter++;
   }
 
   const int inverse_position = (position + 1) % 2;
@@ -148,8 +152,11 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
     vector<int> new_arguments = new_arguments_persistent;
     position_counter = 0;
     for (auto &arg : rule.get_condition_arguments(inverse_position)) {
-      new_arguments[rule.get_head_position_of_arg(arg)] =
-          f.get_argument_by_index(position_counter++);
+      if (rule.head_has_argument(arg)) {
+        new_arguments[rule.get_head_position_of_arg(arg)] =
+            f.get_argument_by_index(position_counter);
+      }
+      position_counter++;
     }
     facts.emplace_back(move(new_arguments),
                        rule.get_effect().get_predicate_index());
@@ -198,8 +205,11 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
 
   int position_counter = 0;
   for (auto &arg : rule.get_condition_arguments(position)) {
-    new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
-        fact.get_argument_by_index(position_counter++);
+    if (rule.head_has_argument(arg)) {
+      new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
+          fact.get_argument_by_index(position_counter);
+    }
+    position_counter++;
   }
 
   // Third: in this case, we just loop over the other conditions and its already
@@ -233,8 +243,10 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
         size_t value_counter = 0;
         for (int arg : rule.get_condition_arguments(counter)) {
           assert (value_counter < assignment.size());
-          new_arguments[rule.get_head_position_of_arg(arg)] =
-              assignment[value_counter];
+          if (rule.head_has_argument(arg)) {
+            new_arguments[rule.get_head_position_of_arg(arg)] =
+                assignment[value_counter];
+          }
           ++value_counter;
         }
         q.emplace(new_arguments, counter+1);

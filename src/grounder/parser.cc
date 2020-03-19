@@ -28,8 +28,8 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
   while (getline(in, line)) {
     // Check if it is a fact or a rule
-    if (line.find("Warning:") != string::npos) {
-      // Warning message, skip!
+    if (is_warning_message(line)) {
+      // One of the translator warning message, skip!
       continue;
     }
     if (line.find(":-") != string::npos) {
@@ -146,6 +146,15 @@ bool parse(LogicProgram &lp, ifstream &in) {
   lp.set_map_index_to_atom(map_index_to_atom);
 
   return true;
+}
+bool is_warning_message(const string& line) {
+  if (line.find("Warning:") != string::npos) {
+    return true;
+  }
+  if (line.find("Duplicate arguments:") != string::npos) {
+    return true;
+  }
+  return false;
 }
 
 /*

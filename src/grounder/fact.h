@@ -47,6 +47,10 @@ public:
     fact_index = next_fact_index++;
   }
 
+  int get_fact_index() const {
+    return fact_index;
+  }
+
   // Fact index is used to be able to refer to a specific fact in the vector of
   // facts of a LogicProgram. In this way, we only refer to the fact by its
   // index in the vector and we do not need to keep a mapping between facts
