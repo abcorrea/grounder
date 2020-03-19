@@ -341,6 +341,6 @@ if __name__ == "__main__":
     start_time = time.time()
     model = compute_model(prog)
     print("Total time: {}s".format((time.time() - start_time)))
-    for atom in model:
-        print(atom)
+    #for atom in model:
+    #    print(atom)
     print("%d atoms" % len(model))
