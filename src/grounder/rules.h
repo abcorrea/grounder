@@ -81,12 +81,6 @@ class Rule {
       if (eff < 0) {
         // Free variable
         map_free_var_to_position[eff] = position_counter;
-      } else {
-        // Constant -> keep it in the new fact
-        if (type == JOIN) {
-          std::cerr << "ERROR: Join rule with constant in the head." << std::endl;
-          exit(-1);
-        }
       }
       ++position_counter;
     }
