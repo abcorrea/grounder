@@ -29,7 +29,7 @@ vector<int> Rule::computing_matching_variables() {
   return new_key;
 }
 
-bool Rule::head_has_argument(int i) const {
+bool Rule::head_has_variale(int i) const {
   return (map_free_var_to_position.count(i) > 0);
 }
 
@@ -91,4 +91,8 @@ const Atom &Rule::get_condition_by_position(int i) {
 
 const vector<std::vector<std::vector<int>>> &Rule::get_reached_facts_all_conditions() const {
   return reached_facts_per_condition;
+}
+
+bool Rule::head_is_ground() const {
+  return ground_effect;
 }

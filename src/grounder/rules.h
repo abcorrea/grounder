@@ -34,6 +34,10 @@ class Rule {
   int index;
   int type;
 
+  // Head has no free var (including nullary atom).
+  // Set in 'set_map_heard_vars_to_positions'
+  bool ground_effect;
+
   using key_t = std::vector<int>;
   using index_t = std::unordered_map<key_t, std::unordered_set<Fact>, boost::hash<key_t>>;
   std::vector<index_t> hash_table_indices;
@@ -61,22 +65,28 @@ class Rule {
         index(next_index++),
         type(type),
         hash_table_indices(0),
-        reached_facts_per_condition(0)
-    {
-        if (type == JOIN) {
-            hash_table_indices.resize(2);
-            matches = computing_matching_variables();
+        reached_facts_per_condition(0) {
+      if (type == JOIN) {
+        hash_table_indices.resize(2);
+        matches = computing_matching_variables();
 
-        } else if (type == PRODUCT) {
-            reached_facts_per_condition.resize(conditions.size());
-        }
+      } else if (type == PRODUCT) {
+        reached_facts_per_condition.resize(conditions.size());
+      }
     };
 
+    /*
+     * Creates a map between free variables and the position of arguments
+     * and also sets the boolean variable checking if the rule is ground or
+     * not.
+     */
   void set_map_heard_vars_to_positions() {
+    ground_effect = true;
     int position_counter = 0;
     for (const auto &eff : effect.get_arguments()) {
       if (eff < 0) {
         // Free variable
+        ground_effect = false;
         map_free_var_to_position[eff] = position_counter;
       }
       ++position_counter;
@@ -88,7 +98,9 @@ class Rule {
   }
 
   // Check if head has argument with variable index i
-  bool head_has_argument(int i) const;
+  bool head_has_variale(int i) const;
+
+  bool head_is_ground() const;
 
   // Assume that "head_has_argument" returned true
   size_t get_head_position_of_arg(int arg) const;

@@ -79,7 +79,7 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
   for (const auto &cond : rule.get_conditions()) {
     int position_counter = 0;
     for (const auto &arg : cond.get_arguments()) {
-      if (rule.head_has_argument(arg)) {
+      if (rule.head_has_variale(arg)) {
         // Variable should NOT be projected away by this rule
         new_arguments[rule.get_head_position_of_arg(arg)] =
             fact.get_argument_by_index(position_counter);
@@ -140,7 +140,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
 
   int position_counter = 0;
   for (auto &arg : rule.get_condition_arguments(position)) {
-    if (rule.head_has_argument(arg)) {
+    if (rule.head_has_variale(arg)) {
       new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
           fact.get_argument_by_index(position_counter);
     }
@@ -152,7 +152,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
     vector<int> new_arguments = new_arguments_persistent;
     position_counter = 0;
     for (auto &arg : rule.get_condition_arguments(inverse_position)) {
-      if (rule.head_has_argument(arg)) {
+      if (rule.head_has_variale(arg)) {
         new_arguments[rule.get_head_position_of_arg(arg)] =
             f.get_argument_by_index(position_counter);
       }
@@ -180,9 +180,19 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
 
   vector<Fact> new_facts;
 
-  // First: check that *all* other positions of the effect have at least one tuple
-  rule.add_reached_fact_to_condition(fact.get_arguments(), position);
+  // Verify that if there is a ground object in the condition of this atom,
+  // then it matches the fact being expanded
   int c = 0;
+  for (const auto &arg : rule.get_condition_arguments(position)) {
+    if (arg >= 0 and arg != fact.get_argument_by_index(c)) {
+      return new_facts;
+    }
+    ++c;
+  }
+
+  // Check that *all* other positions of the effect have at least one tuple
+  rule.add_reached_fact_to_condition(fact.get_arguments(), position);
+  c = 0;
   for (const auto &v : rule.get_reached_facts_all_conditions()) {
     if (v.empty() and c != position)
       return new_facts;
@@ -190,9 +200,10 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   }
 
   // If there is one reachable ground atom for every condition and the head
-  // is nullary, then simply trigger it.
-  if (rule.get_effect_arguments().empty()) {
-    new_facts.emplace_back(vector<int>(),
+  // is nullary or has no free variable, then simply trigger it.
+  //if (rule.get_effect_arguments().empty()) {
+  if (rule.head_is_ground()) {
+    new_facts.emplace_back(rule.get_effect_arguments(),
                            rule.get_effect().get_predicate_index());
     return new_facts;
   }
@@ -205,7 +216,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
 
   int position_counter = 0;
   for (auto &arg : rule.get_condition_arguments(position)) {
-    if (rule.head_has_argument(arg)) {
+    if (rule.head_has_variale(arg)) {
       new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
           fact.get_argument_by_index(position_counter);
     }
@@ -234,7 +245,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
         size_t value_counter = 0;
         for (int arg : rule.get_condition_arguments(counter)) {
           assert (value_counter < assignment.size());
-          if (rule.head_has_argument(arg)) {
+          if (rule.head_has_variale(arg)) {
             new_arguments[rule.get_head_position_of_arg(arg)] =
                 assignment[value_counter];
           }
