@@ -181,7 +181,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   vector<Fact> new_facts;
 
   // First: check that *all* other positions of the effect have at least one tuple
-  rule.get_reached_facts_of_condition(position).push_back(fact.get_arguments());
+  rule.add_reached_fact_to_condition(fact.get_arguments(), position);
   int c = 0;
   for (const auto &v : rule.get_reached_facts_all_conditions()) {
     if (v.empty() and c != position)

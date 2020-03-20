@@ -86,6 +86,10 @@ class Rule {
     }
   }
 
+  void add_reached_fact_to_condition(const std::vector<int>& args, int position) {
+    reached_facts_per_condition[position].push_back(args);
+  }
+
   // Check if head has argument with variable index i
   bool head_has_argument(int i) const;
 
@@ -106,7 +110,6 @@ class Rule {
   // Use this to guarantee that a key exists.
   // Only useful for join rules.
   void insert_key_in_hash(const std::vector<int> &key, int position);
-
   // Insert the fact to a given key of one of the hashes.
   // Run insert_key_in_hash first.
   // Only useful for join rules.
