@@ -154,6 +154,9 @@ bool is_warning_message(const string& line) {
   if (line.find("Duplicate arguments:") != string::npos) {
     return true;
   }
+  if (line.find("Trivial rules:") != string::npos) {
+    return true;
+  }
   return false;
 }
 
