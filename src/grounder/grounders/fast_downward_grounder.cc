@@ -229,16 +229,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
       // to consider the other tuples with this predicate
       q.push(make_pair(current_args, counter + 1));
     } else {
-      bool first = true;
       for (const auto &assignment : rule.get_reached_facts_of_condition(counter)) {
-        if (assignment.empty() and first) {
-          // HACK: for some reason not yet identified, every reached_facts has
-          // an empty container at the beginning. We simply ignore it. If there
-          // are more, it means that it is a nullary atom.
-          first = false;
-          continue;
-        }
-        first = false;
         vector<int> new_arguments = current_args; // start as a copy
         size_t value_counter = 0;
         for (int arg : rule.get_condition_arguments(counter)) {

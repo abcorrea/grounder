@@ -69,9 +69,6 @@ class Rule {
 
         } else if (type == PRODUCT) {
             reached_facts_per_condition.resize(conditions.size());
-            for (std::size_t i = 0; i < conditions.size(); ++i) {
-              reached_facts_per_condition[i].push_back(std::vector<int>());
-            }
         }
     };
 
@@ -86,7 +83,7 @@ class Rule {
     }
   }
 
-  void add_reached_fact_to_condition(const std::vector<int>& args, int position) {
+  void add_reached_fact_to_condition(const std::vector<int> args, int position) {
     reached_facts_per_condition[position].push_back(args);
   }
 
