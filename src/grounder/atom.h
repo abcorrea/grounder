@@ -31,23 +31,7 @@ public:
 
   // Print atom in a nice way.
   void print_atom(const std::vector<Object> &obj,
-      const std::unordered_map<int, std::string>& map_index_to_atom) const {
-    std::cout << map_index_to_atom.at(predicate_index) << '(';
-    size_t cont = 0;
-    for (int a : arguments) {
-      if (a >= 0) {
-        // a >= 0 --> object. Print its name
-        std::cout << obj[a].name;
-      } else {
-        // a < 0 --> free variable. Print the free variable of the rule.
-        std::cout << '?' << char(65 + a);
-      }
-      cont++;
-      if (cont != arguments.size())
-        std::cout << ", ";
-    }
-    std::cout << ')' << std::endl;
-  }
+      const std::unordered_map<int, std::string>& map_index_to_atom) const;
 
   const std::vector<int> &get_arguments() const {
     return arguments;
