@@ -46,6 +46,8 @@ TIME_LIMIT = 1800
 MEMORY_LIMIT = 16384
 
 ATTRIBUTES=['atoms',
+            'grounding_time',
+            'parsing_time',
             'total_time']
 
 # Create a new experiment.

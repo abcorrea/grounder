@@ -331,6 +331,8 @@ if __name__ == "__main__":
     import normalize
     import pddl_to_prolog
 
+    start_time = time.time()
+
     print("Parsing...")
     task = pddl_parser.open()
     print("Normalizing...")
@@ -338,9 +340,16 @@ if __name__ == "__main__":
     print("Writing rules...")
     prog = pddl_to_prolog.translate(task)
 
-    start_time = time.time()
+    # Parsing time here includes also normalization and writting rules
+    parsing_time = time.time() - start_time
+    print("Parsing time: {}s".format(parsing_time))
+
     model = compute_model(prog)
-    print("Total time: {}s".format((time.time() - start_time)))
+    total_time = time.time() - start_time
+    grounding_time = total_time - parsing_time
+    print("Grounding time: {}s".format(grounding_time))
+    print("Total time: {}s".format(total_time))
+
     #for atom in model:
     #    print(atom)
     print("%d atoms" % len(model))

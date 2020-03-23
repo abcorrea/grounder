@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     cerr << "Usage: ./grounder [LP PROGRAM] [GROUNDING METHOD]" << endl;
     exit(-1);
   }
-
+  clock_t timer_start = clock();
   cout << "Opening file: " << argv[1] << endl;
   ifstream in(argv[1]);
   if (!in) {
@@ -31,18 +31,23 @@ int main(int argc, char *argv[]) {
     cerr << "Parser failed." << endl;
     return -1;
   }
+  double parsing_time = double(clock() - timer_start) / CLOCKS_PER_SEC;
+  cout << "Parsing time: " << parsing_time << "s" << endl;
 
   logic_program.create_rule_matcher();
 
   Grounder *grounder = GrounderFactory::new_grounder(argv[2]);
 
   cout << "Starting to ground the logical program..." << endl;
-  clock_t timer_start = clock();
+
   int grounded = grounder->ground(logic_program);
   if (grounded != 0) {
     cerr << "Error during grounding procedure. Grounding not finished!" << endl;
   }
-  cout << "Total time: " << double(clock() - timer_start) / CLOCKS_PER_SEC << "s" << endl;
+  double total_time = double(clock() - timer_start) / CLOCKS_PER_SEC;
+  double grounding_time = total_time - parsing_time;
+  cout << "Grounding time: " << grounding_time << "s" << endl;
+  cout << "Total time: " << total_time << "s" << endl;
 
   /*for (const auto &f : logic_program.get_facts())
     f.print_atom(logic_program.get_objects(), logic_program.get_map_index_to_atom());*/

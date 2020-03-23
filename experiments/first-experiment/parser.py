@@ -7,6 +7,8 @@ from lab.parser import Parser
 
 PATTERNS = [
     ('atoms', r'(\d+) atoms', int),
+    ('parsing_time', r'Parsing time: (.+)s', float),
+    ('grounding_time', r'Grounding time: (.+)s', float),
     ('total_time', r'Total time: (.+)s', float),
 ]
 
