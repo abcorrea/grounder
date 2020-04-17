@@ -1,6 +1,12 @@
 Grounder
 ======
 
+Requirements
+--
+- Boost
+- CMake 3.10 or higher
+- Python 3.6
+
 Current state
 --
 - Implementing Fast Downward grounder in C++
