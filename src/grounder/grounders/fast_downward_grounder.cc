@@ -22,8 +22,8 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
     q.pop();
     if (lp.has_matched_rule(predicate_index)) {
       for (const auto &m : lp.get_matched_rules(predicate_index)) {
-        int rule_index = m.first;
-        int position_in_the_body = m.second;
+        int rule_index = m.get_rule();
+        int position_in_the_body = m.get_position();
         Rule &rule = lp.get_rule_by_index(rule_index);
         if (rule.get_type() == PROJECT) {
           // Projection rule - single condition in the body
