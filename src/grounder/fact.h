@@ -26,7 +26,7 @@ class Fact : public Atom {
   // and indices.
   int fact_index;
 public:
-    Fact(std::vector<int> arguments, int predicate_index) :
+    Fact(Arguments arguments, int predicate_index) :
         Atom(std::move(arguments), predicate_index)
     {
     // Every fact starts with a fact of -1 and then we set it to a proper value

@@ -15,7 +15,7 @@ std::string get_atom_name(const std::string &str);
 
 std::vector<std::string> extract_arguments_from_atom(const std::string &atom);
 
-std::vector<int> transform_args_into_indices(
+Arguments transform_args_into_indices(
     std::unordered_map<std::string, int> &map_objects,
     std::unordered_map<std::string, int> &map_variables,
     const std::vector<std::string> &arguments,

@@ -74,20 +74,20 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
 
   // New arguments start as a copy of the head atom and we just replace the
   // free variables. Constants will remain intact.
-  vector<int> new_arguments  = rule.get_effect_arguments();
+  Arguments new_arguments  = rule.get_effect_arguments();
 
   for (const auto &cond : rule.get_conditions()) {
     int position_counter = 0;
     for (const auto &arg : cond.get_arguments()) {
       if (rule.head_has_variale(arg)) {
         // Variable should NOT be projected away by this rule
-        new_arguments[rule.get_head_position_of_arg(arg)] =
-            fact.argument(position_counter);
+        new_arguments.set_value(rule.get_head_position_of_arg(arg),
+            fact.argument(position_counter));
       } else if (arg >= 0) {
         // Constant instead of free var
         if (fact.argument(position_counter) != arg) {
           // constants do not match!
-          return Fact(vector<int>(0), -1);
+          return Fact(Arguments(vector<int>(0)), -1);
         }
       }
       ++position_counter;
@@ -136,25 +136,25 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
   rule.insert_fact_in_hash(fact, key, position);
 
   // See comment in "project" about 'new_arguments' vector
-  vector<int> new_arguments_persistent = rule.get_effect_arguments();
+  Arguments new_arguments_persistent = rule.get_effect_arguments();
 
   int position_counter = 0;
   for (auto &arg : rule.get_condition_arguments(position)) {
     if (rule.head_has_variale(arg)) {
-      new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
-          fact.argument(position_counter);
+      new_arguments_persistent.set_value(rule.get_head_position_of_arg(arg),
+                                         fact.argument(position_counter));
     }
     position_counter++;
   }
 
   const int inverse_position = (position + 1) % 2;
   for (const Fact &f : rule.get_facts_matching_key(key, inverse_position)) {
-    vector<int> new_arguments = new_arguments_persistent;
+    Arguments new_arguments = new_arguments_persistent;
     position_counter = 0;
     for (auto &arg : rule.get_condition_arguments(inverse_position)) {
       if (rule.head_has_variale(arg)) {
-        new_arguments[rule.get_head_position_of_arg(arg)] =
-            f.argument(position_counter);
+        new_arguments.set_value(rule.get_head_position_of_arg(arg),
+                                f.argument(position_counter));
       }
       position_counter++;
     }
@@ -212,13 +212,13 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   // that we are currently expanding
 
   // See comment in "project" about 'new_arguments' vector
-  vector<int> new_arguments_persistent = rule.get_effect_arguments();
+  Arguments new_arguments_persistent = rule.get_effect_arguments();
 
   int position_counter = 0;
   for (auto &arg : rule.get_condition_arguments(position)) {
     if (rule.head_has_variale(arg)) {
-      new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
-          fact.argument(position_counter);
+      new_arguments_persistent.set_value(rule.get_head_position_of_arg(arg),
+                                         fact.argument(position_counter));
     }
     position_counter++;
   }
@@ -226,10 +226,10 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   // Third: in this case, we just loop over the other conditions and its already
   // reached facts and instantiate all possibilities (i.e., cartesian product).
   // We do this using a queue
-  queue<pair<vector<int>, int>> q;
+  queue<pair<Arguments, int>> q;
   q.push(make_pair(new_arguments_persistent, 0));
   while (!q.empty()) {
-    vector<int> current_args = q.front().first;
+    Arguments current_args = q.front().first;
     int counter = q.front().second;
     q.pop();
     if (counter >= int(rule.get_conditions().size())) {
@@ -241,13 +241,13 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
       q.push(make_pair(current_args, counter + 1));
     } else {
       for (const auto &assignment : rule.get_reached_facts_of_condition(counter)) {
-        vector<int> new_arguments = current_args; // start as a copy
+        Arguments new_arguments = current_args; // start as a copy
         size_t value_counter = 0;
         for (int arg : rule.get_condition_arguments(counter)) {
           assert (value_counter < assignment.size());
           if (rule.head_has_variale(arg)) {
-            new_arguments[rule.get_head_position_of_arg(arg)] =
-                assignment[value_counter];
+            new_arguments.set_value(rule.get_head_position_of_arg(arg),
+                                    assignment[value_counter]);
           }
           ++value_counter;
         }

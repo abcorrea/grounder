@@ -47,7 +47,7 @@ class Rule {
 
   // Only need to keep track of this for product rules, the other ones are very
   // predictable and have a well-behaved structure
-  std::vector<std::vector<std::vector<int>>> reached_facts_per_condition;
+  std::vector<std::vector<Arguments>> reached_facts_per_condition;
 
   // A vector with two elements indicating the positions in which the variables
   // in the key occur in each respective rule of the body. If the first element
@@ -96,7 +96,7 @@ class Rule {
     }
   }
 
-  void add_reached_fact_to_condition(const std::vector<int> args, int position) {
+  void add_reached_fact_to_condition(const Arguments args, int position) {
     reached_facts_per_condition[position].push_back(args);
   }
 
@@ -136,10 +136,10 @@ class Rule {
   const Atom &get_condition_by_position(int i);
 
   // Return the facts matching the SINGLE CONDITION IN THE iTH POSITION
-  std::vector<std::vector<int>> &get_reached_facts_of_condition(int i);
+  std::vector<Arguments> &get_reached_facts_of_condition(int i);
 
   // Return the facts matching EVERY CONDITION
-  const std::vector<std::vector<std::vector<int>>> &get_reached_facts_all_conditions() const;
+  const std::vector<std::vector<Arguments>> &get_reached_facts_all_conditions() const;
 
   // Only useful for join rules.
   const std::vector<int> &get_position_of_matching_vars(int position) const;
@@ -149,11 +149,11 @@ class Rule {
   const std::unordered_map<int, int> &get_map_free_var_to_position() const;
 
   // Get arguments of the ith condition in the body
-  const std::vector<int> &get_condition_arguments(int i) const {
+  const Arguments &get_condition_arguments(int i) const {
     return conditions[i].get_arguments();
   }
 
-  const std::vector<int> &get_effect_arguments() const {
+  const Arguments &get_effect_arguments() const {
     return effect.get_arguments();
   }
 };

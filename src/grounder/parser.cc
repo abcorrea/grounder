@@ -46,7 +46,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
           head_arguments = extract_arguments_from_atom(head_atom_name_and_args);
 
       unordered_map<string, int> map_variables_to_index;
-      vector<int> head_argument_indices = transform_args_into_indices(
+      Arguments head_argument_indices = transform_args_into_indices(
           map_object_to_index,
           map_variables_to_index,
           head_arguments,
@@ -74,7 +74,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
           number_of_atoms++;
         }
         vector<string> atom_arguments = extract_arguments_from_atom(s);
-        vector<int> indices;
+        Arguments indices;
         if (!atom_arguments.empty()) {
           indices = transform_args_into_indices(
               map_object_to_index,
@@ -82,9 +82,6 @@ bool parse(LogicProgram &lp, ifstream &in) {
               atom_arguments,
               lp_objects,
               number_of_vars_current_rule);
-        } else {
-          indices.clear();
-          indices.resize(0);
         }
         condition_atoms.emplace_back(indices,
                                      map_atom_to_index[atom_name]);
@@ -114,7 +111,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
       vector<string> arguments = extract_arguments_from_atom(line);
 
-      vector<int> arguments_indices;
+      Arguments arguments_indices;
       for (const auto &argument : arguments) {
         auto it_pair =
             map_object_to_index.try_emplace(argument, number_of_objects);
@@ -202,7 +199,7 @@ vector<string> extract_arguments_from_atom(const string &atom) {
  * Transforms a vector of arguments (having constants and variables) into a vector
  * of integers. Free variables have negative value.
  */
-vector<int> transform_args_into_indices(
+Arguments transform_args_into_indices(
     unordered_map<string, int> &map_objects,
     unordered_map<string, int> &map_variables,
     const vector<string> &arguments,
@@ -231,7 +228,7 @@ vector<int> transform_args_into_indices(
       indices[counter++] = map_objects[a];
     }
   }
-  return indices;
+  return Arguments(indices);
 }
 
 vector<string> get_rule_conditions(string &body) {
