@@ -29,17 +29,20 @@
 #define PRODUCT 2
 
 class Rule {
+  using key_t = std::vector<int>;
+  using index_t = std::unordered_map<key_t, std::unordered_set<Fact>, boost::hash<key_t>>;
+
   Atom effect;
   std::vector<Atom> conditions;
   int index;
   int type;
 
+  static int next_index;
+
   // Head has no free var (including nullary atom).
   // Set in 'set_map_heard_vars_to_positions'
   bool ground_effect;
 
-  using key_t = std::vector<int>;
-  using index_t = std::unordered_map<key_t, std::unordered_set<Fact>, boost::hash<key_t>>;
   std::vector<index_t> hash_table_indices;
 
   // Only need to keep track of this for product rules, the other ones are very
@@ -153,10 +156,6 @@ class Rule {
   const std::vector<int> &get_effect_arguments() const {
     return effect.get_arguments();
   }
-
-
- protected:
-  static int next_index;
 };
 
 #endif //GROUNDER__RULES_H_

@@ -7,6 +7,8 @@ class Grounder {
  public:
   Grounder() = default;
 
+  virtual ~Grounder() = default;
+
   virtual int ground(LogicProgram &lp) = 0;
 };
 

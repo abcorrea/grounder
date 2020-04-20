@@ -1,12 +1,12 @@
 #ifndef GROUNDER_GROUNDERS_GROUNDER_FACTORY_H_
 #define GROUNDER_GROUNDERS_GROUNDER_FACTORY_H_
 
+#include "grounder.h"
+
+#include "fast_downward_grounder.h"
+
 #include <iostream>
 #include <boost/algorithm/string.hpp>
-
-
-#include "grounder.h"
-#include "fast_downward_grounder.h"
 
 class GrounderFactory {
  public:

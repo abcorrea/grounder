@@ -11,18 +11,19 @@
  *
  */
 class Object {
- protected:
   static int next_index;
+  int index = -1;
+  std::string name;
+
  public:
 
   explicit Object(std::string name) : name(std::move(name)) {
     index = next_index++;
   };
 
-  std::string name;
-  int index = -1;
-
- private:
+  const std::string &get_name() const {
+    return name;
+  }
 
 };
 

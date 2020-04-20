@@ -1,10 +1,10 @@
 #ifndef GROUNDER_GROUNDERS_FAST_DOWNWARD_GROUNDER_H_
 #define GROUNDER_GROUNDERS_FAST_DOWNWARD_GROUNDER_H_
 
+#include "grounder.h"
+
 #include <iostream>
 #include <unordered_set>
-
-#include "grounder.h"
 
 class FastDownwardGrounder : public Grounder {
  public:

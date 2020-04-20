@@ -11,7 +11,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
   queue<int> q;
 
   for (const Fact &f : lp.get_facts()) {
-    q.push(f.fact_index);
+    q.push(f.get_fact_index());
     reached_facts.insert(f);
   }
 
@@ -32,7 +32,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
               project(rule, current_fact);
           if ((new_fact.get_predicate_index() != -1) and
               is_new(new_fact, reached_facts, lp)) {
-            q.push(new_fact.fact_index);
+            q.push(new_fact.get_fact_index());
           }
         } else if (rule.get_type() == JOIN) {
           // Join rule - two conditions in the body
@@ -41,7 +41,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
                                     current_fact,
                                     position_in_the_body))
             if (is_new(new_fact, reached_facts, lp)) {
-              q.push(new_fact.fact_index);
+              q.push(new_fact.get_fact_index());
             }
         } else if (rule.get_type() == PRODUCT) {
           // Product rule - more than one condition without shared free vars
@@ -49,7 +49,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
                                        current_fact,
                                        position_in_the_body))
             if (is_new(new_fact, reached_facts, lp)) {
-              q.push(new_fact.fact_index);
+              q.push(new_fact.get_fact_index());
             }
         }
       }
@@ -82,10 +82,10 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
       if (rule.head_has_variale(arg)) {
         // Variable should NOT be projected away by this rule
         new_arguments[rule.get_head_position_of_arg(arg)] =
-            fact.get_argument_by_index(position_counter);
+            fact.argument(position_counter);
       } else if (arg >= 0) {
         // Constant instead of free var
-        if (fact.get_argument_by_index(position_counter) != arg) {
+        if (fact.argument(position_counter) != arg) {
           // constants do not match!
           return Fact(vector<int>(0), -1);
         }
@@ -126,7 +126,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
   vector<int> key;
   key.reserve(rule.get_matches().size());
   for (int i : rule.get_position_of_matching_vars(position)) {
-    key.push_back(fact.get_argument_by_index(i));
+    key.push_back(fact.argument(i));
   }
 
   // Just need to be sure that this key is in the hash table
@@ -142,7 +142,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
   for (auto &arg : rule.get_condition_arguments(position)) {
     if (rule.head_has_variale(arg)) {
       new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
-          fact.get_argument_by_index(position_counter);
+          fact.argument(position_counter);
     }
     position_counter++;
   }
@@ -154,7 +154,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
     for (auto &arg : rule.get_condition_arguments(inverse_position)) {
       if (rule.head_has_variale(arg)) {
         new_arguments[rule.get_head_position_of_arg(arg)] =
-            f.get_argument_by_index(position_counter);
+            f.argument(position_counter);
       }
       position_counter++;
     }
@@ -184,7 +184,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   // then it matches the fact being expanded
   int c = 0;
   for (const auto &arg : rule.get_condition_arguments(position)) {
-    if (arg >= 0 and arg != fact.get_argument_by_index(c)) {
+    if (arg >= 0 and arg !=fact.argument(c)) {
       return new_facts;
     }
     ++c;
@@ -218,7 +218,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
   for (auto &arg : rule.get_condition_arguments(position)) {
     if (rule.head_has_variale(arg)) {
       new_arguments_persistent[rule.get_head_position_of_arg(arg)] =
-          fact.get_argument_by_index(position_counter);
+          fact.argument(position_counter);
     }
     position_counter++;
   }

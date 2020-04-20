@@ -11,10 +11,10 @@ void Atom::print_atom(const vector<Object> &obj,
   for (int a : arguments) {
     if (a >= 0) {
       // a >= 0 --> object. Print its name
-      cout << obj[a].name;
+      cout << obj[a].get_name();
     } else {
       // a < 0 --> free variable. Print the free variable of the rule.
-      cout << '?' << char(65 + a);
+      cout << '?' << char('A' + a);
     }
     cont++;
     if (cont != arguments.size())
