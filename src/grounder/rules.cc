@@ -65,13 +65,10 @@ std::vector<Arguments> &Rule::get_reached_facts_of_condition(int i) {
     return reached_facts_per_condition[i];
 }
 
-void Rule::insert_key_in_hash(const vector<int> &key, int position) {
-    hash_table_indices[position].emplace(key, unordered_set<Fact>());
-}
-
 void Rule::insert_fact_in_hash(const Fact &fact,
                                const vector<int> &key,
                                int position) {
+    hash_table_indices[position].emplace(key, unordered_set<Fact>());
     hash_table_indices[position][key].insert(fact);
 }
 

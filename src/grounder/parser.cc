@@ -137,7 +137,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
     // Loop over the rules setting the map between head free vars and arg position
     for (Rule &r : rules) {
-        r.set_map_heard_vars_to_positions();
+        r.set_map_head_vars_to_positions();
     }
 
     lp.set_facts(lp_facts);

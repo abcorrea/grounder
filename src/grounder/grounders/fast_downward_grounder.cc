@@ -132,9 +132,6 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
         key.push_back(fact.argument(i));
     }
 
-    // Just need to be sure that this key is in the hash table
-    rule.insert_key_in_hash(key, position);
-
     // Insert the fact in the hash table of the key
     rule.insert_fact_in_hash(fact, key, position);
 

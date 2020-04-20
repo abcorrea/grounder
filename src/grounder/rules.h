@@ -42,7 +42,7 @@ class Rule {
     static int next_index;
 
     // Head has no free var (including nullary atom).
-    // Set in 'set_map_heard_vars_to_positions'
+    // Set in 'set_map_head_vars_to_positions'
     bool ground_effect;
 
     std::vector<index_t> hash_table_indices;
@@ -85,7 +85,7 @@ public:
      * and also sets the boolean variable checking if the rule is ground or
      * not.
      */
-    void set_map_heard_vars_to_positions() {
+    void set_map_head_vars_to_positions() {
         ground_effect = true;
         int position_counter = 0;
         for (const auto &eff : effect.get_arguments()) {
@@ -121,13 +121,8 @@ public:
     const std::unordered_set<Fact> &get_hash_table_indices_by_index(const key_t &k,
                                                                     int i);
 
-    // Insert a key with empty correspondence in the has.
-    // Use this to guarantee that a key exists.
-    // Only useful for join rules.
-    void insert_key_in_hash(const std::vector<int> &key, int position);
 
     // Insert the fact to a given key of one of the hashes.
-    // Run insert_key_in_hash first.
     // Only useful for join rules.
     void insert_fact_in_hash(const Fact &fact,
                              const std::vector<int> &key,
