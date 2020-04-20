@@ -9,7 +9,7 @@
 
 bool parse(LogicProgram &lp, std::ifstream &in);
 
-bool is_warning_message(const std::string& line);
+bool is_warning_message(const std::string &line);
 
 std::string get_atom_name(const std::string &str);
 
@@ -23,6 +23,5 @@ Arguments transform_args_into_indices(
     int &number_of_vars_current_rule);
 
 std::vector<std::string> get_rule_conditions(std::string &body);
-
 
 #endif //GROUNDER__PARSER_H_

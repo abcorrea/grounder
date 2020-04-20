@@ -12,7 +12,6 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
     unordered_set<Fact> reached_facts;
     queue<int> q;
 
-
     for (const Fact &f : lp.get_facts()) {
         q.push(f.get_fact_index());
         reached_facts.insert(f);
@@ -24,7 +23,8 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
         int predicate_index = current_fact.get_predicate_index();
         q.pop();
         if (rule_matcher.atom_has_matched_rules(predicate_index)) {
-            for (const auto &m : rule_matcher.get_matched_rules(predicate_index)) {
+            for (const auto
+                    &m : rule_matcher.get_matched_rules(predicate_index)) {
                 int rule_index = m.get_rule();
                 int position_in_the_body = m.get_position();
                 Rule &rule = lp.get_rule_by_index(rule_index);
@@ -61,7 +61,6 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
 
     return 0;
 }
-
 
 /*
  * Project a sequence of objects into another sequence. The head of the rule H

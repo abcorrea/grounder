@@ -29,39 +29,41 @@
 #define PRODUCT 2
 
 class Rule {
-  using key_t = std::vector<int>;
-  using index_t = std::unordered_map<key_t, std::unordered_set<Fact>, boost::hash<key_t>>;
+    using key_t = std::vector<int>;
+    using index_t = std::unordered_map<key_t,
+                                       std::unordered_set<Fact>,
+                                       boost::hash<key_t>>;
 
-  Atom effect;
-  std::vector<Atom> conditions;
-  int index;
-  int type;
+    Atom effect;
+    std::vector<Atom> conditions;
+    int index;
+    int type;
 
-  static int next_index;
+    static int next_index;
 
-  // Head has no free var (including nullary atom).
-  // Set in 'set_map_heard_vars_to_positions'
-  bool ground_effect;
+    // Head has no free var (including nullary atom).
+    // Set in 'set_map_heard_vars_to_positions'
+    bool ground_effect;
 
-  std::vector<index_t> hash_table_indices;
+    std::vector<index_t> hash_table_indices;
 
-  // Only need to keep track of this for product rules, the other ones are very
-  // predictable and have a well-behaved structure
-  std::vector<std::vector<Arguments>> reached_facts_per_condition;
+    // Only need to keep track of this for product rules, the other ones are very
+    // predictable and have a well-behaved structure
+    std::vector<std::vector<Arguments>> reached_facts_per_condition;
 
-  // A vector with two elements indicating the positions in which the variables
-  // in the key occur in each respective rule of the body. If the first element
-  // has X in it's 3rd position, then it means that the first rule of the body
-  // has the third variable of the key in its Xth position.
-  std::vector<std::vector<int>> position_of_matching_vars;
-  std::vector<int> matches;
+    // A vector with two elements indicating the positions in which the variables
+    // in the key occur in each respective rule of the body. If the first element
+    // has X in it's 3rd position, then it means that the first rule of the body
+    // has the third variable of the key in its Xth position.
+    std::vector<std::vector<int>> position_of_matching_vars;
+    std::vector<int> matches;
 
-  // Map each free variable of the head to the position of the argument
-  std::unordered_map<int, int> map_free_var_to_position;
+    // Map each free variable of the head to the position of the argument
+    std::unordered_map<int, int> map_free_var_to_position;
 
-  std::vector<int> computing_matching_variables();
+    std::vector<int> computing_matching_variables();
 
- public:
+public:
     Rule(Atom effect, std::vector<Atom> c, int type) :
         effect(std::move(effect)),
         conditions(std::move(c)),
@@ -69,13 +71,13 @@ class Rule {
         type(type),
         hash_table_indices(0),
         reached_facts_per_condition(0) {
-      if (type == JOIN) {
-        hash_table_indices.resize(2);
-        matches = computing_matching_variables();
+        if (type==JOIN) {
+            hash_table_indices.resize(2);
+            matches = computing_matching_variables();
 
-      } else if (type == PRODUCT) {
-        reached_facts_per_condition.resize(conditions.size());
-      }
+        } else if (type==PRODUCT) {
+            reached_facts_per_condition.resize(conditions.size());
+        }
     };
 
     /*
@@ -83,79 +85,83 @@ class Rule {
      * and also sets the boolean variable checking if the rule is ground or
      * not.
      */
-  void set_map_heard_vars_to_positions() {
-    ground_effect = true;
-    int position_counter = 0;
-    for (const auto &eff : effect.get_arguments()) {
-      if (eff < 0) {
-        // Free variable
-        ground_effect = false;
-        map_free_var_to_position[eff] = position_counter;
-      }
-      ++position_counter;
+    void set_map_heard_vars_to_positions() {
+        ground_effect = true;
+        int position_counter = 0;
+        for (const auto &eff : effect.get_arguments()) {
+            if (eff < 0) {
+                // Free variable
+                ground_effect = false;
+                map_free_var_to_position[eff] = position_counter;
+            }
+            ++position_counter;
+        }
     }
-  }
 
-  void add_reached_fact_to_condition(const Arguments args, int position) {
-    reached_facts_per_condition[position].push_back(args);
-  }
+    void add_reached_fact_to_condition(const Arguments args, int position) {
+        reached_facts_per_condition[position].push_back(args);
+    }
 
-  // Check if head has argument with variable index i
-  bool head_has_variale(int i) const;
+    // Check if head has argument with variable index i
+    bool head_has_variale(int i) const;
 
-  bool head_is_ground() const;
+    bool head_is_ground() const;
 
-  // Assume that "head_has_argument" returned true
-  size_t get_head_position_of_arg(int arg) const;
+    // Assume that "head_has_argument" returned true
+    size_t get_head_position_of_arg(int arg) const;
 
-  const Atom &get_effect() const;
+    const Atom &get_effect() const;
 
-  const std::vector<Atom> &get_conditions() const;
+    const std::vector<Atom> &get_conditions() const;
 
-  int get_index() const;
+    int get_index() const;
 
-  int get_type() const;
+    int get_type() const;
 
-  const std::unordered_set<Fact> &get_hash_table_indices_by_index(const key_t& k, int i);
+    const std::unordered_set<Fact> &get_hash_table_indices_by_index(const key_t &k,
+                                                                    int i);
 
-  // Insert a key with empty correspondence in the has.
-  // Use this to guarantee that a key exists.
-  // Only useful for join rules.
-  void insert_key_in_hash(const std::vector<int> &key, int position);
+    // Insert a key with empty correspondence in the has.
+    // Use this to guarantee that a key exists.
+    // Only useful for join rules.
+    void insert_key_in_hash(const std::vector<int> &key, int position);
 
-  // Insert the fact to a given key of one of the hashes.
-  // Run insert_key_in_hash first.
-  // Only useful for join rules.
-  void insert_fact_in_hash(const Fact& fact, const std::vector<int> &key, int position);
+    // Insert the fact to a given key of one of the hashes.
+    // Run insert_key_in_hash first.
+    // Only useful for join rules.
+    void insert_fact_in_hash(const Fact &fact,
+                             const std::vector<int> &key,
+                             int position);
 
-  // Return all facts that match a given key for the atom in position i.
-  // Only useful for join rules.
-  const std::unordered_set<Fact> &get_facts_matching_key(const std::vector<int> &key, int position);
+    // Return all facts that match a given key for the atom in position i.
+    // Only useful for join rules.
+    const std::unordered_set<Fact> &get_facts_matching_key(const std::vector<int> &key,
+                                                           int position);
 
-  // Return atom in the ith position of the condition (body)
-  const Atom &get_condition_by_position(int i);
+    // Return atom in the ith position of the condition (body)
+    const Atom &get_condition_by_position(int i);
 
-  // Return the facts matching the SINGLE CONDITION IN THE iTH POSITION
-  std::vector<Arguments> &get_reached_facts_of_condition(int i);
+    // Return the facts matching the SINGLE CONDITION IN THE iTH POSITION
+    std::vector<Arguments> &get_reached_facts_of_condition(int i);
 
-  // Return the facts matching EVERY CONDITION
-  const std::vector<std::vector<Arguments>> &get_reached_facts_all_conditions() const;
+    // Return the facts matching EVERY CONDITION
+    const std::vector<std::vector<Arguments>> &get_reached_facts_all_conditions() const;
 
-  // Only useful for join rules.
-  const std::vector<int> &get_position_of_matching_vars(int position) const;
+    // Only useful for join rules.
+    const std::vector<int> &get_position_of_matching_vars(int position) const;
 
-  const std::vector<int> &get_matches() const;
+    const std::vector<int> &get_matches() const;
 
-  const std::unordered_map<int, int> &get_map_free_var_to_position() const;
+    const std::unordered_map<int, int> &get_map_free_var_to_position() const;
 
-  // Get arguments of the ith condition in the body
-  const Arguments &get_condition_arguments(int i) const {
-    return conditions[i].get_arguments();
-  }
+    // Get arguments of the ith condition in the body
+    const Arguments &get_condition_arguments(int i) const {
+        return conditions[i].get_arguments();
+    }
 
-  const Arguments &get_effect_arguments() const {
-    return effect.get_arguments();
-  }
+    const Arguments &get_effect_arguments() const {
+        return effect.get_arguments();
+    }
 };
 
 #endif //GROUNDER__RULES_H_

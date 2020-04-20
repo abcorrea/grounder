@@ -11,7 +11,6 @@
 #include <utility>
 #include <vector>
 
-
 class Arguments {
     std::vector<int> arguments;
 
@@ -21,7 +20,7 @@ public:
     explicit
     Arguments(std::vector<int> arguments) : arguments(std::move(arguments)) {}
 
-    int operator[] (size_t i) const {
+    int operator[](size_t i) const {
         assert(i < arguments.size());
         return arguments[i];
     }
@@ -48,8 +47,6 @@ public:
 
 };
 
-
-
 /*
  *
  * The class Atom represents a any atom of the task. These can be completely
@@ -72,7 +69,7 @@ public:
     // Print atom in a nice way.
     void print_atom(
         const std::vector<Object> &obj,
-        const std::unordered_map<int,std::string> &map_index_to_atom) const;
+        const std::unordered_map<int, std::string> &map_index_to_atom) const;
 
     const Arguments &get_arguments() const {
         return arguments;

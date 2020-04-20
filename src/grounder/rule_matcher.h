@@ -55,9 +55,8 @@ public:
     RuleMatcher(std::unordered_map<int, Matches> rule_matcher) :
         rule_matcher(std::move(rule_matcher)) {}
 
-
     bool atom_has_matched_rules(int i) const {
-        return (rule_matcher.find(i) != rule_matcher.end());
+        return (rule_matcher.find(i)!=rule_matcher.end());
     }
 
     void insert(int predicate_index, int rule_index, int position) {

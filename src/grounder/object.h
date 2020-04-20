@@ -11,19 +11,19 @@
  *
  */
 class Object {
-  static int next_index;
-  int index = -1;
-  std::string name;
+    static int next_index;
+    int index = -1;
+    std::string name;
 
- public:
+public:
 
-  explicit Object(std::string name) : name(std::move(name)) {
-    index = next_index++;
-  };
+    explicit Object(std::string name) : name(std::move(name)) {
+        index = next_index++;
+    };
 
-  const std::string &get_name() const {
-    return name;
-  }
+    const std::string &get_name() const {
+        return name;
+    }
 
 };
 

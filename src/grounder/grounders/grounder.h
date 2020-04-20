@@ -4,12 +4,12 @@
 #include "../logic_program.h"
 
 class Grounder {
- public:
-  Grounder() = default;
+public:
+    Grounder() = default;
 
-  virtual ~Grounder() = default;
+    virtual ~Grounder() = default;
 
-  virtual int ground(LogicProgram &lp) = 0;
+    virtual int ground(LogicProgram &lp) = 0;
 };
 
 #endif //GROUNDER_GROUNDERS_GROUNDER_H_

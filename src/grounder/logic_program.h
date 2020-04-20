@@ -36,7 +36,6 @@ public:
 
     size_t get_number_of_facts();
 
-
 };
 
 #endif

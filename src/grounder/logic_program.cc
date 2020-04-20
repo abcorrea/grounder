@@ -37,7 +37,6 @@ const unordered_map<int,
     return map_index_to_atom;
 }
 
-
 Rule &LogicProgram::get_rule_by_index(int index) {
     return rules[index];
 }

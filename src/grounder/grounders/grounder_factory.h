@@ -9,15 +9,16 @@
 #include <boost/algorithm/string.hpp>
 
 class GrounderFactory {
- public:
-  static Grounder *new_grounder (const std::string &method) {
-    std::cout << "Creating grounder..." << std::endl;
-    if (boost::iequals(method, "fd")) {
-        return new FastDownwardGrounder();
-    }
+public:
+    static Grounder *new_grounder(const std::string &method) {
+        std::cout << "Creating grounder..." << std::endl;
+        if (boost::iequals(method, "fd")) {
+            return new FastDownwardGrounder();
+        }
 
-    throw std::runtime_error("Unexpected grounding method: \"" + method + "\"");
-  }
+        throw std::runtime_error(
+            "Unexpected grounding method: \"" + method + "\"");
+    }
 };
 
 #endif //GROUNDER_GROUNDERS_GROUNDER_FACTORY_H_
