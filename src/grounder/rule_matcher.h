@@ -67,7 +67,7 @@ public:
         rule_matcher[predicate_index].insert_new_match(rule_index, position);
     }
 
-    const Matches &at(int index) const {
+    const Matches &get_matched_rules(int index) const {
         return rule_matcher.at(index);
     }
 

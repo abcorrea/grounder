@@ -34,8 +34,6 @@ int main(int argc, char *argv[]) {
   double parsing_time = double(clock() - timer_start) / CLOCKS_PER_SEC;
   cout << "Parsing time: " << parsing_time << "s" << endl;
 
-  logic_program.create_rule_matcher();
-
   Grounder *grounder = GrounderFactory::new_grounder(argv[2]);
 
   cout << "Starting to ground the logical program..." << endl;
