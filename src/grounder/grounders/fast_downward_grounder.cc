@@ -128,7 +128,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
     vector<Fact> facts;
 
     JoinHashKey key;
-    key.reserve(rule.get_matches().size());
+    key.reserve(rule.get_number_joining_vars());
     for (int i : rule.get_position_of_matching_vars(position)) {
         key.push_back(fact.argument(i));
     }

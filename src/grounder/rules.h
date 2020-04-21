@@ -3,7 +3,7 @@
 
 #include "atom.h"
 #include "fact.h"
-#include "join_hash_table.h"
+#include "join_structures.h"
 
 #include <string>
 #include <utility>
@@ -100,12 +100,12 @@ class Rule {
     // in the key occur in each respective rule of the body. If the first element
     // has X in it's 3rd position, then it means that the first rule of the body
     // has the third variable of the key in its Xth position.
-    std::vector<std::vector<int>> position_of_matching_vars;
-    std::vector<int> matches;
+    std::vector<std::vector<int>> position_of_joining_vars;
+    size_t number_joining_vars;
 
     MapVariablePosition variable_position;
 
-    std::vector<int> computing_matching_variables();
+    size_t computing_matching_variables();
 
 
 public:
@@ -117,7 +117,7 @@ public:
         hash_table_indices(),
         reached_facts_per_condition(0) {
         if (type==JOIN) {
-            matches = computing_matching_variables();
+            number_joining_vars = computing_matching_variables();
 
         } else if (type==PRODUCT) {
             reached_facts_per_condition.resize(conditions.size());
@@ -189,12 +189,12 @@ public:
 
     const std::vector<int> &get_position_of_matching_vars(int position) const {
         assert(type == JOIN);
-        return position_of_matching_vars[position];
+        return position_of_joining_vars[position];
     }
 
-    const std::vector<int> &get_matches() const {
+    size_t get_number_joining_vars() const {
         assert(type == JOIN);
-        return matches;
+        return number_joining_vars;
     }
 
     const Arguments &get_condition_arguments(int i) const {

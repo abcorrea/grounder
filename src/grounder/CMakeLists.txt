@@ -25,4 +25,4 @@ add_executable(grounder
         atom.cc atom.h
         grounders/grounder_factory.h
         grounders/grounder.h
-        grounders/fast_downward_grounder.cc grounders/fast_downward_grounder.h rule_matcher.h join_hash_table.h)
+        grounders/fast_downward_grounder.cc grounders/fast_downward_grounder.h rule_matcher.h join_structures.h)

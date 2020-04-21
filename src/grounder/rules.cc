@@ -6,7 +6,7 @@ using namespace std;
 
 int Rule::next_index = 0;
 
-vector<int> Rule::computing_matching_variables() {
+size_t Rule::computing_matching_variables() {
     // Join rule should have only have two atoms in the conditions
     assert(conditions.size()==2);
 
@@ -27,6 +27,6 @@ vector<int> Rule::computing_matching_variables() {
         }
         ++pos1;
     }
-    position_of_matching_vars = positions;
-    return new_key;
+    position_of_joining_vars = positions;
+    return new_key.size();
 }
