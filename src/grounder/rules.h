@@ -1,5 +1,5 @@
-#ifndef GROUNDER__RULES_H_
-#define GROUNDER__RULES_H_
+#ifndef GROUNDER_RULES_H
+#define GROUNDER_RULES_H
 
 #include "atom.h"
 #include "fact.h"
@@ -91,13 +91,11 @@ class Rule {
     static int next_index;
 
     JoinHashTable hash_table_indices;
+    JoiningVariables position_of_joining_vars;
 
     // Only need to keep track of this for product rules, the other ones are very
     // predictable and have a well-behaved structure
     std::vector<ReachedFacts> reached_facts_per_condition;
-
-
-    JoiningVariables position_of_joining_vars;
 
     MapVariablePosition variable_position;
 
@@ -109,8 +107,8 @@ public:
         index(next_index++),
         type(type),
         hash_table_indices(),
-        reached_facts_per_condition(0),
-        position_of_joining_vars(conditions) {
+        position_of_joining_vars(conditions),
+        reached_facts_per_condition(0) {
         if (type==JOIN) {
             position_of_joining_vars = JoiningVariables(conditions);
 
@@ -125,13 +123,7 @@ public:
                 ground_effect = false;
             }
         }
-
     };
-
-    void add_reached_fact_to_condition(const Arguments& args, int position) {
-        assert(type == PRODUCT);
-        reached_facts_per_condition[position].push_back(args);
-    }
 
     bool head_is_ground() const {
         return ground_effect;
@@ -159,6 +151,14 @@ public:
         return type;
     }
 
+    const Arguments &get_condition_arguments(int i) const {
+        return conditions[i].get_arguments();
+    }
+
+    const Arguments &get_effect_arguments() const {
+        return effect.get_arguments();
+    }
+
     void insert_fact_in_hash(const Fact &fact,
                                    const JoinHashKey &key,
                                    int position) {
@@ -172,16 +172,6 @@ public:
         return hash_table_indices.get_entries(key, position);
     }
 
-    ReachedFacts &get_reached_facts_of_condition(int i) {
-        assert(type == PRODUCT);
-        return reached_facts_per_condition[i];
-    }
-
-    const std::vector<ReachedFacts> &get_reached_facts_all_conditions() const {
-        assert(type == PRODUCT);
-        return reached_facts_per_condition;
-    }
-
     const std::vector<int> &get_position_of_matching_vars(int condition) const {
         assert(type == JOIN);
         return position_of_joining_vars.get_joining_vars_of_condition(condition);
@@ -192,13 +182,20 @@ public:
         return position_of_joining_vars.get_number_of_joining_vars();
     }
 
-    const Arguments &get_condition_arguments(int i) const {
-        return conditions[i].get_arguments();
+    void add_reached_fact_to_condition(const Arguments& args, int position) {
+        assert(type == PRODUCT);
+        reached_facts_per_condition[position].push_back(args);
     }
 
-    const Arguments &get_effect_arguments() const {
-        return effect.get_arguments();
+    ReachedFacts &get_reached_facts_of_condition(int i) {
+        assert(type == PRODUCT);
+        return reached_facts_per_condition[i];
+    }
+
+    const std::vector<ReachedFacts> &get_reached_facts_all_conditions() const {
+        assert(type == PRODUCT);
+        return reached_facts_per_condition;
     }
 };
 
-#endif //GROUNDER__RULES_H_
+#endif //GROUNDER_RULES_H
