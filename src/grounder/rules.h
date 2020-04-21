@@ -9,8 +9,6 @@
 #include <utility>
 #include <unordered_set>
 
-#include <boost/functional/hash.hpp>
-
 
 class MapVariablePosition {
     // Class mapping free variables to positions of the head/effect
@@ -136,47 +134,69 @@ public:
     };
 
     void add_reached_fact_to_condition(const Arguments& args, int position) {
+        assert(type == PRODUCT);
         reached_facts_per_condition[position].push_back(args);
     }
 
-    bool head_is_ground() const;
+    bool head_is_ground() const {
+        return ground_effect;
+    }
 
-    int head_has_arg(int arg) const;
+    int head_has_arg(int arg) const {
+        if (variable_position.has_variable(arg))
+            return variable_position.at(arg);
+        return -1;
+    }
 
-    const Atom &get_effect() const;
+    const Atom &get_effect() const {
+        return effect;
+    }
 
-    const std::vector<Atom> &get_conditions() const;
+    const std::vector<Atom> &get_conditions() const {
+        return conditions;
+    }
 
-    int get_index() const;
+    int get_index() const {
+        return index;
+    }
 
-    int get_type() const;
+    int get_type() const {
+        return type;
+    }
 
-    // Insert the fact to a given key of one of the hashes.
-    // Only useful for join rules.
     void insert_fact_in_hash(const Fact &fact,
-                             const std::vector<int> &key,
-                             int position);
+                                   const JoinHashKey &key,
+                                   int position) {
+        assert(type == JOIN);
+        hash_table_indices.insert(fact, key, position);
+    }
 
     const JoinHashEntry &get_facts_matching_key(const JoinHashKey &key,
                                                 int position) {
+        assert(type == JOIN);
         return hash_table_indices.get_entries(key, position);
     }
 
     ReachedFacts &get_reached_facts_of_condition(int i) {
+        assert(type == PRODUCT);
         return reached_facts_per_condition[i];
     }
 
-    // Return the facts matching EVERY CONDITION
     const std::vector<ReachedFacts> &get_reached_facts_all_conditions() const {
+        assert(type == PRODUCT);
         return reached_facts_per_condition;
     }
 
-    // Only useful for join rules.
-    const std::vector<int> &get_position_of_matching_vars(int position) const;
+    const std::vector<int> &get_position_of_matching_vars(int position) const {
+        assert(type == JOIN);
+        return position_of_matching_vars[position];
+    }
 
-    const std::vector<int> &get_matches() const;
+    const std::vector<int> &get_matches() const {
+        assert(type == JOIN);
+        return matches;
+    }
 
-    // Get arguments of the ith condition in the body
     const Arguments &get_condition_arguments(int i) const {
         return conditions[i].get_arguments();
     }
