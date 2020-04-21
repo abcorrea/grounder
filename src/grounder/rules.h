@@ -96,16 +96,10 @@ class Rule {
     // predictable and have a well-behaved structure
     std::vector<ReachedFacts> reached_facts_per_condition;
 
-    // A vector with two elements indicating the positions in which the variables
-    // in the key occur in each respective rule of the body. If the first element
-    // has X in it's 3rd position, then it means that the first rule of the body
-    // has the third variable of the key in its Xth position.
-    std::vector<std::vector<int>> position_of_joining_vars;
-    size_t number_joining_vars;
+
+    JoiningVariables position_of_joining_vars;
 
     MapVariablePosition variable_position;
-
-    size_t computing_matching_variables();
 
 
 public:
@@ -115,9 +109,10 @@ public:
         index(next_index++),
         type(type),
         hash_table_indices(),
-        reached_facts_per_condition(0) {
+        reached_facts_per_condition(0),
+        position_of_joining_vars(conditions) {
         if (type==JOIN) {
-            number_joining_vars = computing_matching_variables();
+            position_of_joining_vars = JoiningVariables(conditions);
 
         } else if (type==PRODUCT) {
             reached_facts_per_condition.resize(conditions.size());
@@ -187,14 +182,14 @@ public:
         return reached_facts_per_condition;
     }
 
-    const std::vector<int> &get_position_of_matching_vars(int position) const {
+    const std::vector<int> &get_position_of_matching_vars(int condition) const {
         assert(type == JOIN);
-        return position_of_joining_vars[position];
+        return position_of_joining_vars.get_joining_vars_of_condition(condition);
     }
 
     size_t get_number_joining_vars() const {
         assert(type == JOIN);
-        return number_joining_vars;
+        return position_of_joining_vars.get_number_of_joining_vars();
     }
 
     const Arguments &get_condition_arguments(int i) const {
