@@ -3,6 +3,7 @@
 
 #include "atom.h"
 #include "fact.h"
+#include "join_hash_table.h"
 
 #include <string>
 #include <utility>
@@ -40,6 +41,8 @@ public:
 
 
 class ReachedFacts {
+    // We do not use a vector of Facts because the Fact class is more complex than
+    // what we need here for this use case.
     std::vector<Arguments> facts;
 
 public:
@@ -81,23 +84,15 @@ public:
 enum RuleType {JOIN, PRODUCT, PROJECT};
 
 class Rule {
-    using key_t = std::vector<int>;
-    using index_t = std::unordered_map<key_t,
-                                       std::unordered_set<Fact>,
-                                       boost::hash<key_t>>;
 
     Atom effect;
     std::vector<Atom> conditions;
     int index;
     int type;
-
+    bool ground_effect;
     static int next_index;
 
-    // Head has no free var (including nullary atom).
-    // Set in 'set_map_head_vars_to_positions'
-    bool ground_effect;
-
-    std::vector<index_t> hash_table_indices;
+    JoinHashTable hash_table_indices;
 
     // Only need to keep track of this for product rules, the other ones are very
     // predictable and have a well-behaved structure
@@ -121,10 +116,9 @@ public:
         conditions(std::move(c)),
         index(next_index++),
         type(type),
-        hash_table_indices(0),
+        hash_table_indices(),
         reached_facts_per_condition(0) {
         if (type==JOIN) {
-            hash_table_indices.resize(2);
             matches = computing_matching_variables();
 
         } else if (type==PRODUCT) {
@@ -163,10 +157,10 @@ public:
                              const std::vector<int> &key,
                              int position);
 
-    // Return all facts that match a given key for the atom in position i.
-    // Only useful for join rules.
-    const std::unordered_set<Fact> &get_facts_matching_key(const std::vector<int> &key,
-                                                           int position);
+    const JoinHashEntry &get_facts_matching_key(const JoinHashKey &key,
+                                                int position) {
+        return hash_table_indices.get_entries(key, position);
+    }
 
     ReachedFacts &get_reached_facts_of_condition(int i) {
         return reached_facts_per_condition[i];
@@ -181,7 +175,6 @@ public:
     const std::vector<int> &get_position_of_matching_vars(int position) const;
 
     const std::vector<int> &get_matches() const;
-
 
     // Get arguments of the ith condition in the body
     const Arguments &get_condition_arguments(int i) const {

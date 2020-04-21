@@ -58,20 +58,15 @@ int Rule::get_type() const {
 }
 
 void Rule::insert_fact_in_hash(const Fact &fact,
-                               const vector<int> &key,
+                               const JoinHashKey &key,
                                int position) {
-    hash_table_indices[position].emplace(key, unordered_set<Fact>());
-    hash_table_indices[position][key].insert(fact);
+    hash_table_indices.insert(fact, key, position);
 }
 
 const vector<int> &Rule::get_position_of_matching_vars(int position) const {
     return position_of_matching_vars[position];
 }
+
 const vector<int> &Rule::get_matches() const {
     return matches;
-}
-
-const std::unordered_set<Fact> &Rule::get_facts_matching_key(const vector<int> &key,
-                                                             int position) {
-    return hash_table_indices[position][key];
 }
