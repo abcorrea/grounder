@@ -39,6 +39,31 @@ public:
 };
 
 
+class ReachedFacts {
+    std::vector<Arguments> facts;
+
+public:
+    ReachedFacts() = default;
+
+    void push_back(const Arguments& args) {
+        facts.push_back(args);
+    }
+
+    bool empty() const {
+        return facts.empty();
+    }
+
+    std::vector<Arguments>::const_iterator begin() const {
+        return facts.begin();
+    }
+
+    std::vector<Arguments>::const_iterator end() const {
+        return facts.end();
+    }
+
+};
+
+
 /*
  * Rule: Class implementing the rules of the datalog program. Divided into
  * three distinct types:
@@ -76,7 +101,7 @@ class Rule {
 
     // Only need to keep track of this for product rules, the other ones are very
     // predictable and have a well-behaved structure
-    std::vector<std::vector<Arguments>> reached_facts_per_condition;
+    std::vector<ReachedFacts> reached_facts_per_condition;
 
     // A vector with two elements indicating the positions in which the variables
     // in the key occur in each respective rule of the body. If the first element
@@ -116,7 +141,7 @@ public:
 
     };
 
-    void add_reached_fact_to_condition(const Arguments args, int position) {
+    void add_reached_fact_to_condition(const Arguments& args, int position) {
         reached_facts_per_condition[position].push_back(args);
     }
 
@@ -143,14 +168,14 @@ public:
     const std::unordered_set<Fact> &get_facts_matching_key(const std::vector<int> &key,
                                                            int position);
 
-    // Return atom in the ith position of the condition (body)
-    const Atom &get_condition_by_position(int i);
-
-    // Return the facts matching the SINGLE CONDITION IN THE iTH POSITION
-    std::vector<Arguments> &get_reached_facts_of_condition(int i);
+    ReachedFacts &get_reached_facts_of_condition(int i) {
+        return reached_facts_per_condition[i];
+    }
 
     // Return the facts matching EVERY CONDITION
-    const std::vector<std::vector<Arguments>> &get_reached_facts_all_conditions() const;
+    const std::vector<ReachedFacts> &get_reached_facts_all_conditions() const {
+        return reached_facts_per_condition;
+    }
 
     // Only useful for join rules.
     const std::vector<int> &get_position_of_matching_vars(int position) const;

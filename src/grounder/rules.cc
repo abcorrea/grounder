@@ -57,10 +57,6 @@ int Rule::get_type() const {
     return type;
 }
 
-std::vector<Arguments> &Rule::get_reached_facts_of_condition(int i) {
-    return reached_facts_per_condition[i];
-}
-
 void Rule::insert_fact_in_hash(const Fact &fact,
                                const vector<int> &key,
                                int position) {
@@ -79,12 +75,3 @@ const std::unordered_set<Fact> &Rule::get_facts_matching_key(const vector<int> &
                                                              int position) {
     return hash_table_indices[position][key];
 }
-
-const Atom &Rule::get_condition_by_position(int i) {
-    return conditions[i];
-}
-
-const vector<std::vector<Arguments>> &Rule::get_reached_facts_all_conditions() const {
-    return reached_facts_per_condition;
-}
-

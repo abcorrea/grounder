@@ -196,7 +196,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
     // Check that *all* other positions of the effect have at least one tuple
     rule.add_reached_fact_to_condition(fact.get_arguments(), position);
     c = 0;
-    for (const auto &v : rule.get_reached_facts_all_conditions()) {
+    for (const ReachedFacts &v : rule.get_reached_facts_all_conditions()) {
         if (v.empty() and c!=position)
             return new_facts;
         c++;
@@ -244,8 +244,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
             // to consider the other tuples with this predicate
             q.push(make_pair(current_args, counter + 1));
         } else {
-            for (const auto &assignment : rule.get_reached_facts_of_condition(
-                counter)) {
+            for (const auto &assignment : rule.get_reached_facts_of_condition(counter)) {
                 Arguments new_arguments = current_args; // start as a copy
                 size_t value_counter = 0;
                 for (int arg : rule.get_condition_arguments(counter)) {
