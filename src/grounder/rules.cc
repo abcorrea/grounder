@@ -31,13 +31,14 @@ vector<int> Rule::computing_matching_variables() {
     return new_key;
 }
 
-bool Rule::head_has_variale(int i) const {
-    return (map_free_var_to_position.count(i) > 0);
+bool Rule::head_is_ground() const {
+    return ground_effect;
 }
 
-// Assume that "head_has_argument" returned true
-size_t Rule::get_head_position_of_arg(int arg) const {
-    return map_free_var_to_position.at(arg);
+int Rule::head_has_arg(int arg) const {
+    if (variable_position.has_variable(arg))
+        return variable_position.at(arg);
+    return -1;
 }
 
 const Atom &Rule::get_effect() const {
@@ -54,11 +55,6 @@ int Rule::get_index() const {
 
 int Rule::get_type() const {
     return type;
-}
-
-const std::unordered_set<Fact> &Rule::get_hash_table_indices_by_index(const key_t &k,
-                                                                      int i) {
-    return hash_table_indices[i].at(k);
 }
 
 std::vector<Arguments> &Rule::get_reached_facts_of_condition(int i) {
@@ -78,9 +74,6 @@ const vector<int> &Rule::get_position_of_matching_vars(int position) const {
 const vector<int> &Rule::get_matches() const {
     return matches;
 }
-const unordered_map<int, int> &Rule::get_map_free_var_to_position() const {
-    return map_free_var_to_position;
-}
 
 const std::unordered_set<Fact> &Rule::get_facts_matching_key(const vector<int> &key,
                                                              int position) {
@@ -95,6 +88,3 @@ const vector<std::vector<Arguments>> &Rule::get_reached_facts_all_conditions() c
     return reached_facts_per_condition;
 }
 
-bool Rule::head_is_ground() const {
-    return ground_effect;
-}

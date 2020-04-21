@@ -10,23 +10,50 @@
 
 #include <boost/functional/hash.hpp>
 
+
+class MapVariablePosition {
+    // Class mapping free variables to positions of the head/effect
+    std::unordered_map<int, int> mapping;
+
+public:
+    MapVariablePosition() = default;
+
+    void create_map(const Atom &effect) {
+        int position_counter = 0;
+        for (const auto &eff : effect.get_arguments()) {
+            if (eff < 0) {
+                // Free variable
+                mapping[eff] = position_counter;
+            }
+            ++position_counter;
+        }
+    }
+
+    bool has_variable(int i) const {
+        return (mapping.count(i) > 0);
+    }
+
+    size_t at(int i) const {
+        return mapping.at(i);
+    }
+};
+
+
 /*
  * Rule: Class implementing the rules of the datalog program. Divided into
  * three distinct types:
  *
- * (0): Project rules: Unary rules where all variables in the head occur in
- * the body.
- *
- * (1): Join rules: Binary rules where all vars in the head occur in the body
+ * Join rules: Binary rules where all vars in the head occur in the body
  * and all variables in the body but not in the head occur in both atoms.
  *
- * (2): Product rules: Special rule for the rules which are not necessarily in
+ * Product rules: Special rule for the rules which are not necessarily in
  * any format of the ones above. The goal rule always falls into this case.
  *
+ * Project rules: Unary rules where all variables in the head occur in
+ * the body.
+ *
  */
-#define PROJECT 0
-#define JOIN 1
-#define PRODUCT 2
+enum RuleType {JOIN, PRODUCT, PROJECT};
 
 class Rule {
     using key_t = std::vector<int>;
@@ -58,14 +85,14 @@ class Rule {
     std::vector<std::vector<int>> position_of_matching_vars;
     std::vector<int> matches;
 
-    // Map each free variable of the head to the position of the argument
-    std::unordered_map<int, int> map_free_var_to_position;
+    MapVariablePosition variable_position;
 
     std::vector<int> computing_matching_variables();
 
+
 public:
-    Rule(Atom effect, std::vector<Atom> c, int type) :
-        effect(std::move(effect)),
+    Rule(Atom eff, std::vector<Atom> c, int type) :
+        effect(std::move(eff)),
         conditions(std::move(c)),
         index(next_index++),
         type(type),
@@ -78,37 +105,24 @@ public:
         } else if (type==PRODUCT) {
             reached_facts_per_condition.resize(conditions.size());
         }
-    };
 
-    /*
-     * Creates a map between free variables and the position of arguments
-     * and also sets the boolean variable checking if the rule is ground or
-     * not.
-     */
-    void set_map_head_vars_to_positions() {
+        variable_position.create_map(effect);
         ground_effect = true;
-        int position_counter = 0;
-        for (const auto &eff : effect.get_arguments()) {
-            if (eff < 0) {
-                // Free variable
+        for (const auto &e : effect.get_arguments()) {
+            if (e < 0) {
                 ground_effect = false;
-                map_free_var_to_position[eff] = position_counter;
             }
-            ++position_counter;
         }
-    }
+
+    };
 
     void add_reached_fact_to_condition(const Arguments args, int position) {
         reached_facts_per_condition[position].push_back(args);
     }
 
-    // Check if head has argument with variable index i
-    bool head_has_variale(int i) const;
-
     bool head_is_ground() const;
 
-    // Assume that "head_has_argument" returned true
-    size_t get_head_position_of_arg(int arg) const;
+    int head_has_arg(int arg) const;
 
     const Atom &get_effect() const;
 
@@ -117,10 +131,6 @@ public:
     int get_index() const;
 
     int get_type() const;
-
-    const std::unordered_set<Fact> &get_hash_table_indices_by_index(const key_t &k,
-                                                                    int i);
-
 
     // Insert the fact to a given key of one of the hashes.
     // Only useful for join rules.
@@ -147,7 +157,6 @@ public:
 
     const std::vector<int> &get_matches() const;
 
-    const std::unordered_map<int, int> &get_map_free_var_to_position() const;
 
     // Get arguments of the ith condition in the body
     const Arguments &get_condition_arguments(int i) const {

@@ -82,9 +82,10 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
     for (const auto &cond : rule.get_conditions()) {
         int position_counter = 0;
         for (const auto &arg : cond.get_arguments()) {
-            if (rule.head_has_variale(arg)) {
+            int pos = rule.head_has_arg(arg);
+            if (pos != -1) {
                 // Variable should NOT be projected away by this rule
-                new_arguments.set_value(rule.get_head_position_of_arg(arg),
+                new_arguments.set_value(pos,
                                         fact.argument(position_counter));
             } else if (arg >= 0) {
                 // Constant instead of free var
@@ -140,8 +141,9 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
 
     int position_counter = 0;
     for (auto &arg : rule.get_condition_arguments(position)) {
-        if (rule.head_has_variale(arg)) {
-            new_arguments_persistent.set_value(rule.get_head_position_of_arg(arg),
+        int pos = rule.head_has_arg(arg);
+        if (pos != -1) {
+            new_arguments_persistent.set_value(pos,
                                                fact.argument(position_counter));
         }
         position_counter++;
@@ -152,8 +154,9 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
         Arguments new_arguments = new_arguments_persistent;
         position_counter = 0;
         for (auto &arg : rule.get_condition_arguments(inverse_position)) {
-            if (rule.head_has_variale(arg)) {
-                new_arguments.set_value(rule.get_head_position_of_arg(arg),
+            int pos = rule.head_has_arg(arg);
+            if (pos != -1) {
+                new_arguments.set_value(pos,
                                         f.argument(position_counter));
             }
             position_counter++;
@@ -216,8 +219,9 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
 
     int position_counter = 0;
     for (auto &arg : rule.get_condition_arguments(position)) {
-        if (rule.head_has_variale(arg)) {
-            new_arguments_persistent.set_value(rule.get_head_position_of_arg(arg),
+        int pos = rule.head_has_arg(arg);
+        if (pos != -1) {
+            new_arguments_persistent.set_value(pos,
                                                fact.argument(position_counter));
         }
         position_counter++;
@@ -246,8 +250,9 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
                 size_t value_counter = 0;
                 for (int arg : rule.get_condition_arguments(counter)) {
                     assert (value_counter < assignment.size());
-                    if (rule.head_has_variale(arg)) {
-                        new_arguments.set_value(rule.get_head_position_of_arg(arg),
+                    int pos = rule.head_has_arg(arg);
+                    if (pos != -1) {
+                        new_arguments.set_value(pos,
                                                 assignment[value_counter]);
                     }
                     ++value_counter;
