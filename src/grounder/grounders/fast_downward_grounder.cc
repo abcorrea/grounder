@@ -85,7 +85,7 @@ optional<Fact> FastDownwardGrounder::project(const Rule &rule, const Fact &fact)
                     return {};
                 }
             } else {
-                int pos = rule.head_has_arg(arg);
+                int pos = rule.get_head_position_of_arg(arg);
                 if (pos != -1) {
                     // Variable should NOT be projected away by this rule
                     new_arguments.set_value(pos,
@@ -140,7 +140,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
 
     int position_counter = 0;
     for (auto &arg : rule.get_condition_arguments(position)) {
-        int pos = rule.head_has_arg(arg);
+        int pos = rule.get_head_position_of_arg(arg);
         if (pos != -1) {
             new_arguments_persistent.set_value(pos,
                                                fact.argument(position_counter));
@@ -153,7 +153,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
         Arguments new_arguments = new_arguments_persistent;
         position_counter = 0;
         for (auto &arg : rule.get_condition_arguments(inverse_position)) {
-            int pos = rule.head_has_arg(arg);
+            int pos = rule.get_head_position_of_arg(arg);
             if (pos != -1) {
                 new_arguments.set_value(pos,
                                         f.argument(position_counter));
@@ -218,7 +218,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
 
     int position_counter = 0;
     for (auto &arg : rule.get_condition_arguments(position)) {
-        int pos = rule.head_has_arg(arg);
+        int pos = rule.get_head_position_of_arg(arg);
         if (pos != -1) {
             new_arguments_persistent.set_value(pos,
                                                fact.argument(position_counter));
@@ -248,7 +248,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
                 size_t value_counter = 0;
                 for (int arg : rule.get_condition_arguments(counter)) {
                     assert (value_counter < assignment.size());
-                    int pos = rule.head_has_arg(arg);
+                    int pos = rule.get_head_position_of_arg(arg);
                     if (pos != -1) {
                         new_arguments.set_value(pos,
                                                 assignment[value_counter]);

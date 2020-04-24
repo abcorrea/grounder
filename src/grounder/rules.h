@@ -129,7 +129,7 @@ public:
         return ground_effect;
     }
 
-    int head_has_arg(int arg) const {
+    int get_head_position_of_arg(int arg) const {
         if (variable_position.has_variable(arg))
             return variable_position.at(arg);
         return -1;
