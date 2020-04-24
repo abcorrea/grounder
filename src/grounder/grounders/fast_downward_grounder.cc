@@ -10,51 +10,48 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
     create_rule_matcher(lp);
 
     unordered_set<Fact> reached_facts;
-    queue<int> q;
+    vector<int> q;
 
     for (const Fact &f : lp.get_facts()) {
-        q.push(f.get_fact_index());
+        q.push_back(f.get_fact_index());
         reached_facts.insert(f);
     }
 
     while (!q.empty()) {
-        int i = q.front();
+        int i = q.back();
+        q.pop_back();
         Fact current_fact = lp.get_fact_by_index(i);
         int predicate_index = current_fact.get_predicate_index();
-        q.pop();
-        if (rule_matcher.atom_has_matched_rules(predicate_index)) {
-            for (const auto
-                    &m : rule_matcher.get_matched_rules(predicate_index)) {
-                int rule_index = m.get_rule();
-                int position_in_the_body = m.get_position();
-                Rule &rule = lp.get_rule_by_index(rule_index);
-                if (rule.get_type()==PROJECT) {
-                    // Projection rule - single condition in the body
-                    assert(position_in_the_body==0);
-                    Fact new_fact =
-                        project(rule, current_fact);
-                    if ((new_fact.get_predicate_index()!=-1) and
-                        is_new(new_fact, reached_facts, lp)) {
-                        q.push(new_fact.get_fact_index());
-                    }
-                } else if (rule.get_type()==JOIN) {
-                    // Join rule - two conditions in the body
-                    assert(position_in_the_body <= 1);
-                    for (Fact new_fact : join(rule,
-                                              current_fact,
-                                              position_in_the_body))
-                        if (is_new(new_fact, reached_facts, lp)) {
-                            q.push(new_fact.get_fact_index());
-                        }
-                } else if (rule.get_type()==PRODUCT) {
-                    // Product rule - more than one condition without shared free vars
-                    for (Fact new_fact : product(rule,
-                                                 current_fact,
-                                                 position_in_the_body))
-                        if (is_new(new_fact, reached_facts, lp)) {
-                            q.push(new_fact.get_fact_index());
-                        }
+        for (const auto
+                 &m : rule_matcher.get_matched_rules(predicate_index)) {
+            int rule_index = m.get_rule();
+            int position_in_the_body = m.get_position();
+            Rule &rule = lp.get_rule_by_index(rule_index);
+
+            if (rule.get_type()==PROJECT) {
+                // Projection rule - single condition in the body
+                assert(position_in_the_body==0);
+                optional<Fact> new_fact = project(rule, current_fact);
+                if (new_fact and is_new(*new_fact, reached_facts, lp)) {
+                    q.push_back(new_fact->get_fact_index());
                 }
+            } else if (rule.get_type()==JOIN) {
+                // Join rule - two conditions in the body
+                assert(position_in_the_body <= 1);
+                for (Fact new_fact : join(rule,
+                                          current_fact,
+                                          position_in_the_body))
+                    if (is_new(new_fact, reached_facts, lp)) {
+                        q.push_back(new_fact.get_fact_index());
+                    }
+            } else if (rule.get_type()==PRODUCT) {
+                // Product rule - more than one condition without shared free vars
+                for (Fact new_fact : product(rule,
+                                             current_fact,
+                                             position_in_the_body))
+                    if (is_new(new_fact, reached_facts, lp)) {
+                        q.push_back(new_fact.get_fact_index());
+                    }
             }
         }
     }
@@ -72,9 +69,8 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
  * in the resulting fact when we create the mapping.
  *
  */
-Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
 
-
+optional<Fact> FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
     // New arguments start as a copy of the head atom and we just replace the
     // free variables. Constants will remain intact.
     Arguments new_arguments = rule.get_effect_arguments();
@@ -82,18 +78,21 @@ Fact FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
     for (const auto &cond : rule.get_conditions()) {
         int position_counter = 0;
         for (const auto &arg : cond.get_arguments()) {
-            int pos = rule.head_has_arg(arg);
-            if (pos != -1) {
-                // Variable should NOT be projected away by this rule
-                new_arguments.set_value(pos,
-                                        fact.argument(position_counter));
-            } else if (arg >= 0) {
+            if (arg >= 0) {
                 // Constant instead of free var
                 if (fact.argument(position_counter)!=arg) {
                     // constants do not match!
-                    return Fact(Arguments(vector<int>(0)), -1);
+                    return {};
+                }
+            } else {
+                int pos = rule.head_has_arg(arg);
+                if (pos != -1) {
+                    // Variable should NOT be projected away by this rule
+                    new_arguments.set_value(pos,
+                                            fact.argument(position_counter));
                 }
             }
+
             ++position_counter;
         }
     }
@@ -267,9 +266,9 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
 bool FastDownwardGrounder::is_new(Fact &new_fact,
                                   unordered_set<Fact> &reached_facts,
                                   LogicProgram &lp) {
-    if (reached_facts.count(new_fact)==0) {
+    auto insert_result = reached_facts.insert(new_fact);
+    if (insert_result.second) {
         new_fact.set_fact_index();
-        reached_facts.insert(new_fact);
         lp.insert_fact(new_fact);
         return true;
     }

@@ -6,6 +6,7 @@
 #include "../rule_matcher.h"
 
 #include <iostream>
+#include <optional>
 #include <unordered_set>
 
 class FastDownwardGrounder : public Grounder {
@@ -24,7 +25,7 @@ class FastDownwardGrounder : public Grounder {
         }
     }
 
-    static Fact project(const Rule &rule, const Fact &fact);
+    static std::optional<Fact> project(const Rule &rule, const Fact &fact);
     static std::vector<Fact> join(Rule &rule, const Fact &fact, int position);
     static bool is_new(Fact &new_fact,
                        std::unordered_set<Fact> &reached_facts,

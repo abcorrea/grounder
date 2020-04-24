@@ -49,6 +49,7 @@ class RuleMatcher {
     */
     std::unordered_map<int, Matches> rule_matcher;
 
+    static const Matches empty_matches;
 public:
     RuleMatcher() = default;
 
@@ -67,7 +68,10 @@ public:
     }
 
     const Matches &get_matched_rules(int index) const {
-        return rule_matcher.at(index);
+        auto result = rule_matcher.find(index);
+        if (result == rule_matcher.end())
+            return empty_matches;
+        return result->second;
     }
 
 };
