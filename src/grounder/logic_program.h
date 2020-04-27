@@ -3,7 +3,8 @@
 
 #include "fact.h"
 #include "object.h"
-#include "rules.h"
+
+#include "rules/rule.h"
 
 #include <vector>
 #include <unordered_map>
