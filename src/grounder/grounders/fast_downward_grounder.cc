@@ -76,24 +76,23 @@ optional<Fact> FastDownwardGrounder::project(const Rule &rule, const Fact &fact)
     Arguments new_arguments = rule.get_effect_arguments();
 
     for (const auto &cond : rule.get_conditions()) {
-        int position_counter = 0;
-        for (const auto &arg : cond.get_arguments()) {
-            if (arg >= 0) {
+        const Arguments &args = cond.get_arguments();
+        for (size_t i = 0; i < args.size(); ++i) {
+            const auto a = args[i];
+            if (args.is_constant(i)) {
                 // Constant instead of free var
-                if (fact.argument(position_counter)!=arg) {
+                if (fact.argument(i) != a) {
                     // constants do not match!
                     return {};
                 }
             } else {
-                int pos = rule.get_head_position_of_arg(arg);
+                int pos = rule.get_head_position_of_arg(a);
                 if (pos != -1) {
                     // Variable should NOT be projected away by this rule
                     new_arguments.set_value(pos,
-                                            fact.argument(position_counter));
+                                            fact.argument(i));
                 }
             }
-
-            ++position_counter;
         }
     }
 
@@ -185,8 +184,10 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
     // Verify that if there is a ground object in the condition of this atom,
     // then it matches the fact being expanded
     int c = 0;
-    for (const auto &arg : rule.get_condition_arguments(position)) {
-        if (arg >= 0 and arg!=fact.argument(c)) {
+    const Arguments cond_args = rule.get_condition_arguments(position);
+    for (size_t i = 0; i < cond_args.size(); ++i) {
+        const auto &arg = cond_args[i];
+        if (cond_args.is_constant(i) and arg!=fact.argument(c)) {
             return new_facts;
         }
         ++c;

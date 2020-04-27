@@ -13,12 +13,17 @@
 
 class Arguments {
     std::vector<int> arguments;
+    std::vector<bool> constants;
 
 public:
     Arguments() = default;
 
     explicit
-    Arguments(std::vector<int> arguments) : arguments(std::move(arguments)) {}
+    Arguments(std::vector<int> args) : arguments(std::move(args)) {
+        for (int i : arguments) {
+            constants.push_back(i >= 0);
+        }
+    }
 
     int operator[](size_t i) const {
         assert(i < arguments.size());
@@ -43,6 +48,10 @@ public:
 
     void set_value(int i, int j) {
         arguments[i] = j;
+    }
+
+    bool is_constant(size_t i) const {
+        return constants[i];
     }
 
 };
@@ -87,6 +96,11 @@ public:
         assert(i < arguments.size());
         return arguments[i];
     }
+
+    bool is_argument_constant(size_t i) const {
+        return arguments.is_constant(i);
+    }
+
 
 };
 
