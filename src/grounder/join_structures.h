@@ -1,7 +1,7 @@
 #ifndef GROUNDER_HASH_TABLE_H
 #define GROUNDER_HASH_TABLE_H
 
-#include "../fact.h"
+#include "fact.h"
 
 #include <cassert>
 #include <utility>
