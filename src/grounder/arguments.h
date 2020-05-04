@@ -20,9 +20,9 @@ public:
 
     explicit Arguments(std::vector<Term> &&args) : arguments(args) {}
 
-    int operator[](size_t i) const {
+    Term operator[](size_t i) const {
         assert(i < arguments.size());
-        return arguments[i].get_index();
+        return arguments[i];
     }
 
     std::vector<Term>::const_iterator begin() const {

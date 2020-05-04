@@ -12,7 +12,7 @@
 
 class MapVariablePosition {
     // Class mapping free variables to positions of the head/effect
-    std::unordered_map<int, int> mapping;
+    std::unordered_map<Term, int, boost::hash<Term>> mapping;
 
 public:
     MapVariablePosition() = default;
@@ -20,20 +20,20 @@ public:
     void create_map(const Atom &effect) {
         int position_counter = 0;
         for (const auto &eff : effect.get_arguments()) {
-            if (eff.is_object()) {
+            if (!eff.is_object()) {
                 // Free variable
-                mapping[eff.get_index()] = position_counter;
+                mapping[eff] = position_counter;
             }
             ++position_counter;
         }
     }
 
-    bool has_variable(int i) const {
-        return (mapping.count(i) > 0);
+    bool has_variable(const Term &t) const {
+        return (mapping.count(t) > 0);
     }
 
-    size_t at(int i) const {
-        return mapping.at(i);
+    size_t at(const Term &t) const {
+        return mapping.at(t);
     }
 };
 
@@ -119,7 +119,7 @@ public:
         variable_position.create_map(effect);
         ground_effect = true;
         for (const auto &e : effect.get_arguments()) {
-            if (e.is_object()) {
+            if (!e.is_object()) {
                 ground_effect = false;
             }
         }
@@ -129,7 +129,8 @@ public:
         return ground_effect;
     }
 
-    int get_head_position_of_arg(int arg) const {
+    // TODO Introduce overload using only index and passing VARIABLE to has_variable
+    int get_head_position_of_arg(const Term &arg) const {
         if (variable_position.has_variable(arg))
             return variable_position.at(arg);
         return -1;

@@ -90,14 +90,13 @@ optional<Fact> FastDownwardGrounder::project(const Rule &rule, const Fact &fact)
                 if (pos != -1) {
                     // Variable should NOT be projected away by this rule
                     new_arguments.set_term_to_object(pos,
-                                                     fact.argument(i));
+                                                     fact.argument(i).get_index());
                 }
             }
         }
     }
 
-    return Fact(move(new_arguments),
-                rule.get_effect().get_predicate_index());
+    return Fact(move(new_arguments), rule.get_effect().get_predicate_index());
 }
 
 /*
@@ -128,7 +127,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
     JoinHashKey key;
     key.reserve(rule.get_number_joining_vars());
     for (int i : rule.get_position_of_matching_vars(position)) {
-        key.push_back(fact.argument(i));
+        key.push_back(fact.argument(i).get_index());
     }
 
     // Insert the fact in the hash table of the key
@@ -139,10 +138,10 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
 
     int position_counter = 0;
     for (auto &arg : rule.get_condition_arguments(position)) {
-        int pos = rule.get_head_position_of_arg(arg.get_index());
-        if (pos != -1) {
+        int pos = rule.get_head_position_of_arg(arg);
+        if (pos != -1 and !arg.is_object()) {
             new_arguments_persistent.set_term_to_object(pos,
-                                                        fact.argument(position_counter));
+                                                        fact.argument(position_counter).get_index());
         }
         position_counter++;
     }
@@ -152,10 +151,10 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
         Arguments new_arguments = new_arguments_persistent;
         position_counter = 0;
         for (auto &arg : rule.get_condition_arguments(inverse_position)) {
-            int pos = rule.get_head_position_of_arg(arg.get_index());
-            if (pos != -1) {
+            int pos = rule.get_head_position_of_arg(arg);
+            if (pos != -1 and !arg.is_object()) {
                 new_arguments.set_term_to_object(pos,
-                                                 f.argument(position_counter));
+                                                 f.argument(position_counter).get_index());
             }
             position_counter++;
         }
@@ -186,8 +185,8 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
     int c = 0;
     const Arguments cond_args = rule.get_condition_arguments(position);
     for (size_t i = 0; i < cond_args.size(); ++i) {
-        const auto &arg = cond_args[i];
-        if (cond_args.is_object(i) and arg!=fact.argument(c)) {
+        const Term &term = cond_args[i];
+        if (term.is_object() and term.get_index() != fact.argument(c).get_index()) {
             return new_facts;
         }
         ++c;
@@ -219,10 +218,10 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
 
     int position_counter = 0;
     for (auto &arg : rule.get_condition_arguments(position)) {
-        int pos = rule.get_head_position_of_arg(arg.get_index());
-        if (pos != -1) {
+        int pos = rule.get_head_position_of_arg(arg);
+        if (pos != -1 and !arg.is_object()) {
             new_arguments_persistent.set_term_to_object(pos,
-                                                        fact.argument(position_counter));
+                                                        fact.argument(position_counter).get_index());
         }
         position_counter++;
     }
@@ -248,12 +247,11 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
                 Arguments new_arguments = current_args; // start as a copy
                 size_t value_counter = 0;
                 for (const Term &term : rule.get_condition_arguments(counter)) {
-                    int arg = term.get_index();
                     assert (value_counter < assignment.size());
-                    int pos = rule.get_head_position_of_arg(arg);
+                    int pos = rule.get_head_position_of_arg(term);
                     if (pos != -1) {
                         new_arguments.set_term_to_object(pos,
-                                                         assignment[value_counter]);
+                                                         assignment[value_counter].get_index());
                     }
                     ++value_counter;
                 }

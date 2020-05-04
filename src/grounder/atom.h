@@ -41,7 +41,7 @@ public:
         return index;
     }
 
-    int argument(size_t i) const {
+    Term argument(size_t i) const {
         assert(i < arguments.size());
         return arguments[i];
     }

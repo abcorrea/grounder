@@ -34,8 +34,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
         }
         if (line.find(":-")!=string::npos) {
             // Rule
-            int number_of_vars_current_rule =
-                -1; // Variables have negative counter
+            int number_of_vars_current_rule = 0; // Variables have negative counter
 
             string head = line.substr(0, line.find(':'));
             string body = line.substr(line.find(':')); // Still contains ':-'
@@ -216,7 +215,7 @@ Arguments transform_args_into_indices(
                 map_variables.try_emplace(a, number_of_vars_current_rule);
             if (it_pair.second) {
                 // Variable is not new to the map. Increase counter.
-                number_of_vars_current_rule--;
+                number_of_vars_current_rule++;
             }
             indices[counter++] = Term(map_variables[a], VARIABLE);
         } else {

@@ -43,7 +43,7 @@ public:
         if (a.get_arguments().size()!=b.get_arguments().size())
             return false;
         for (size_t i = 0; i < a.get_arguments().size(); i++)
-            if (a.argument(i)!=b.argument(i))
+            if (a.argument(i) != b.argument(i))
                 return false;
         return true;
     }

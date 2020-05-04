@@ -22,8 +22,8 @@ public:
         return (type == OBJECT);
     }
 
-    void set_term_to_object(int i) {
-        index = i;
+    void set_term_to_object(int j) {
+        index = j;
         type = OBJECT;
     }
 
@@ -35,7 +35,11 @@ public:
     }
 
     friend bool operator==(const Term &lhs, const Term &rhs) {
-        return ((rhs.get_index() == rhs.get_index()) and (lhs.is_object() & rhs.is_object()));
+        return ((lhs.get_index() == rhs.get_index()) and (lhs.is_object() == rhs.is_object()));
+    }
+
+    friend bool operator!=(const Term &lhs, const Term &rhs) {
+        return (!(lhs == rhs));
     }
 
 };
