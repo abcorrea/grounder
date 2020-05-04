@@ -169,7 +169,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
  * In product rules, none of the free variables join and there might be
  * several atoms in the body.
  *
- * In practice, this means two cenarios:
+ * In practice, this means two scenarios:
  *
  * (1) the head is empty;
  * (2) every free variable in the body is also in the head
