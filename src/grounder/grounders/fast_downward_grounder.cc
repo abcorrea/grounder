@@ -79,7 +79,7 @@ optional<Fact> FastDownwardGrounder::project(const Rule &rule, const Fact &fact)
         const Arguments &args = cond.get_arguments();
         for (size_t i = 0; i < args.size(); ++i) {
             const auto a = args[i];
-            if (args.is_constant(i)) {
+            if (args.is_object(i)) {
                 // Constant instead of free var
                 if (fact.argument(i) != a) {
                     // constants do not match!
@@ -89,8 +89,8 @@ optional<Fact> FastDownwardGrounder::project(const Rule &rule, const Fact &fact)
                 int pos = rule.get_head_position_of_arg(a);
                 if (pos != -1) {
                     // Variable should NOT be projected away by this rule
-                    new_arguments.set_value_to_constant(pos,
-                                                        fact.argument(i));
+                    new_arguments.set_term_to_object(pos,
+                                                     fact.argument(i));
                 }
             }
         }
@@ -141,8 +141,8 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
     for (auto &arg : rule.get_condition_arguments(position)) {
         int pos = rule.get_head_position_of_arg(arg.get_index());
         if (pos != -1) {
-            new_arguments_persistent.set_value_to_constant(pos,
-                                                           fact.argument(position_counter));
+            new_arguments_persistent.set_term_to_object(pos,
+                                                        fact.argument(position_counter));
         }
         position_counter++;
     }
@@ -154,8 +154,8 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
         for (auto &arg : rule.get_condition_arguments(inverse_position)) {
             int pos = rule.get_head_position_of_arg(arg.get_index());
             if (pos != -1) {
-                new_arguments.set_value_to_constant(pos,
-                                                    f.argument(position_counter));
+                new_arguments.set_term_to_object(pos,
+                                                 f.argument(position_counter));
             }
             position_counter++;
         }
@@ -187,7 +187,7 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
     const Arguments cond_args = rule.get_condition_arguments(position);
     for (size_t i = 0; i < cond_args.size(); ++i) {
         const auto &arg = cond_args[i];
-        if (cond_args.is_constant(i) and arg!=fact.argument(c)) {
+        if (cond_args.is_object(i) and arg!=fact.argument(c)) {
             return new_facts;
         }
         ++c;
@@ -221,8 +221,8 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
     for (auto &arg : rule.get_condition_arguments(position)) {
         int pos = rule.get_head_position_of_arg(arg.get_index());
         if (pos != -1) {
-            new_arguments_persistent.set_value_to_constant(pos,
-                                                           fact.argument(position_counter));
+            new_arguments_persistent.set_term_to_object(pos,
+                                                        fact.argument(position_counter));
         }
         position_counter++;
     }
@@ -252,8 +252,8 @@ vector<Fact> FastDownwardGrounder::product(Rule &rule,
                     assert (value_counter < assignment.size());
                     int pos = rule.get_head_position_of_arg(arg);
                     if (pos != -1) {
-                        new_arguments.set_value_to_constant(pos,
-                                                            assignment[value_counter]);
+                        new_arguments.set_term_to_object(pos,
+                                                         assignment[value_counter]);
                     }
                     ++value_counter;
                 }

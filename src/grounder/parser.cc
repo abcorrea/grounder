@@ -122,7 +122,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
                     lp_objects.emplace_back(argument);
                     number_of_objects++;
                 }
-                arguments_indices.push_back(map_object_to_index[argument], CONSTANT);
+                arguments_indices.push_back(map_object_to_index[argument], OBJECT);
             }
 
             lp_facts.emplace_back(arguments_indices,
@@ -228,7 +228,7 @@ Arguments transform_args_into_indices(
                 lp_objects.emplace_back(a);
                 number_of_objects++;
             }
-            indices[counter++] = Term(map_objects[a], CONSTANT);
+            indices[counter++] = Term(map_objects[a], OBJECT);
         }
     }
     return Arguments(move(indices));

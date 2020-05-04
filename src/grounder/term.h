@@ -3,7 +3,7 @@
 
 #include <boost/functional/hash.hpp>
 
-enum TERM_TYPES {CONSTANT, VARIABLE};
+enum TERM_TYPES {OBJECT, VARIABLE};
 
 class Term {
     int index;
@@ -18,24 +18,24 @@ public:
         return index;
     }
 
-    bool is_constant() const {
-        return (type == CONSTANT);
+    bool is_object() const {
+        return (type == OBJECT);
     }
 
-    void set_value(int i) {
+    void set_term_to_object(int i) {
         index = i;
-        type = CONSTANT;
+        type = OBJECT;
     }
 
     friend std::size_t hash_value(const Term &t) {
         std::size_t seed = 0;
         boost::hash_combine(seed, t.get_index());
-        boost::hash_combine(seed, t.is_constant());
+        boost::hash_combine(seed, t.is_object());
         return seed;
     }
 
     friend bool operator==(const Term &lhs, const Term &rhs) {
-        return ((rhs.get_index() == rhs.get_index()) and (lhs.is_constant() & rhs.is_constant()));
+        return ((rhs.get_index() == rhs.get_index()) and (lhs.is_object() & rhs.is_object()));
     }
 
 };

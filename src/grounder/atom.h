@@ -48,12 +48,12 @@ public:
         arguments.emplace_back(i, j);
     };
 
-    void set_value_to_constant(int i, int j) {
-        arguments[i].set_value(j);
+    void set_term_to_object(int i, int j) {
+        arguments[i].set_term_to_object(j);
     }
 
-    bool is_constant(size_t i) const {
-        return arguments[i].is_constant();
+    bool is_object(size_t i) const {
+        return arguments[i].is_object();
     }
 
 
@@ -101,7 +101,7 @@ public:
     }
 
     bool is_argument_constant(size_t i) const {
-        return arguments.is_constant(i);
+        return arguments.is_object(i);
     }
 
 

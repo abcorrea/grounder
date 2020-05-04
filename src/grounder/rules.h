@@ -20,7 +20,7 @@ public:
     void create_map(const Atom &effect) {
         int position_counter = 0;
         for (const auto &eff : effect.get_arguments()) {
-            if (eff.is_constant()) {
+            if (eff.is_object()) {
                 // Free variable
                 mapping[eff.get_index()] = position_counter;
             }
@@ -119,7 +119,7 @@ public:
         variable_position.create_map(effect);
         ground_effect = true;
         for (const auto &e : effect.get_arguments()) {
-            if (e.is_constant()) {
+            if (e.is_object()) {
                 ground_effect = false;
             }
         }

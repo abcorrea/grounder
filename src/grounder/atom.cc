@@ -9,7 +9,7 @@ void Atom::print_atom(const vector<Object> &obj,
     cout << map_index_to_atom.at(predicate_index) << '(';
     size_t cont = 0;
     for (const Term &t : arguments) {
-        if (t.is_constant()) {
+        if (t.is_object()) {
             // a >= 0 --> object. Print its name
             cout << obj[t.get_index()].get_name();
         } else {
