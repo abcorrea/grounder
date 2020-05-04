@@ -2,6 +2,7 @@
 #define GROUNDER__ATOM_H_
 
 #include "object.h"
+#include "term.h"
 
 #include <cassert>
 #include <iostream>
@@ -12,29 +13,30 @@
 #include <vector>
 
 class Arguments {
-    std::vector<int> arguments;
-    std::vector<bool> constants;
+    std::vector<Term> arguments;
 
 public:
     Arguments() = default;
 
     explicit
-    Arguments(std::vector<int> args) : arguments(std::move(args)) {
-        for (int i : arguments) {
-            constants.push_back(i >= 0);
+    Arguments(const std::vector<std::pair<int, int>>& args) {
+        for (const auto &p : args) {
+            arguments.emplace_back(p.first, p.second);
         }
     }
 
+    explicit Arguments(std::vector<Term> &&args) : arguments(args) {}
+
     int operator[](size_t i) const {
         assert(i < arguments.size());
-        return arguments[i];
+        return arguments[i].get_index();
     }
 
-    std::vector<int>::const_iterator begin() const {
+    std::vector<Term>::const_iterator begin() const {
         return arguments.begin();
     }
 
-    std::vector<int>::const_iterator end() const {
+    std::vector<Term>::const_iterator end() const {
         return arguments.end();
     }
 
@@ -42,17 +44,18 @@ public:
         return arguments.size();
     }
 
-    void push_back(int i) {
-        arguments.push_back(i);
+    void push_back(int i, int j) {
+        arguments.emplace_back(i, j);
     };
 
-    void set_value(int i, int j) {
-        arguments[i] = j;
+    void set_value_to_constant(int i, int j) {
+        arguments[i].set_value(j);
     }
 
     bool is_constant(size_t i) const {
-        return constants[i];
+        return arguments[i].is_constant();
     }
+
 
 };
 

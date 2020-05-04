@@ -66,9 +66,7 @@ template<>
 struct std::hash<Fact> {
     // See comment of operator==
     std::size_t operator()(const Fact &f) const {
-        std::size_t
-            seed =
-            boost::hash_range(f.get_arguments().begin(), f.get_arguments().end());
+        std::size_t seed = boost::hash_range(f.get_arguments().begin(), f.get_arguments().end());
         boost::hash_combine(seed, f.get_predicate_index());
         return seed;
     }

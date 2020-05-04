@@ -122,7 +122,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
                     lp_objects.emplace_back(argument);
                     number_of_objects++;
                 }
-                arguments_indices.push_back(map_object_to_index[argument]);
+                arguments_indices.push_back(map_object_to_index[argument], CONSTANT);
             }
 
             lp_facts.emplace_back(arguments_indices,
@@ -207,7 +207,7 @@ Arguments transform_args_into_indices(
     const vector<string> &arguments,
     vector<Object> &lp_objects,
     int &number_of_vars_current_rule) {
-    vector<int> indices(arguments.size(), 0);
+    vector<Term> indices(arguments.size());
     int counter = 0;
     for (const auto &a : arguments) {
         if (a.front()=='?') {
@@ -218,7 +218,7 @@ Arguments transform_args_into_indices(
                 // Variable is not new to the map. Increase counter.
                 number_of_vars_current_rule--;
             }
-            indices[counter++] = map_variables[a];
+            indices[counter++] = Term(map_variables[a], VARIABLE);
         } else {
             if (a.empty())
                 continue;
@@ -228,10 +228,10 @@ Arguments transform_args_into_indices(
                 lp_objects.emplace_back(a);
                 number_of_objects++;
             }
-            indices[counter++] = map_objects[a];
+            indices[counter++] = Term(map_objects[a], CONSTANT);
         }
     }
-    return Arguments(indices);
+    return Arguments(move(indices));
 }
 
 vector<string> get_rule_conditions(string &body) {

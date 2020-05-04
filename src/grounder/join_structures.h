@@ -86,10 +86,11 @@ public:
         std::vector<int> new_key;
 
         int pos1 = 0;
-        for (int c : conditions[0].get_arguments()) {
+        for (const Term &term : conditions[0].get_arguments()) {
+            int c = term.get_index();
             auto it2 = find(conditions[1].get_arguments().begin(),
                             conditions[1].get_arguments().end(),
-                            c);
+                            term);
             if (it2!=conditions[1].get_arguments().end()) {
                 // Free variables match in both atoms
                 int pos2 = distance(conditions[1].get_arguments().begin(), it2);
