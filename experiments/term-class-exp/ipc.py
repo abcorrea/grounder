@@ -60,7 +60,7 @@ exp = Experiment(environment=ENV)
 # Add custom parser for Power Lifted.
 exp.add_parser('parser.py')
 
-NEW_GROUNDER_CONFIGS = [Configuration('new-grounder', [])]
+NEW_GROUNDER_CONFIGS = [Configuration('term-class-new-grounder', [])]
 FD_CONFIGS = []
 
 # Create one run for each instance and each configuration
