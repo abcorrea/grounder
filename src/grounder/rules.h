@@ -89,13 +89,6 @@ protected:
     bool ground_effect;
     static int next_index;
 
-    JoinHashTable hash_table_indices;
-    JoiningVariables position_of_joining_vars;
-
-    // Only need to keep track of this for product rules, the other ones are very
-    // predictable and have a well-behaved structure
-    std::vector<ReachedFacts> reached_facts_per_condition;
-
     MapVariablePosition variable_position;
 
 
@@ -103,10 +96,7 @@ public:
     RuleBase(Atom eff, std::vector<Atom> c) :
         effect(std::move(eff)),
         conditions(std::move(c)),
-        index(next_index++),
-        hash_table_indices(),
-        position_of_joining_vars(conditions),
-        reached_facts_per_condition(0) {
+        index(next_index++) {
 
         variable_position.create_map(effect);
         ground_effect = true;
@@ -151,69 +141,66 @@ public:
     const Arguments &get_effect_arguments() const {
         return effect.get_arguments();
     }
-
-    void insert_fact_in_hash(const Fact &fact,
-                                   const JoinHashKey &key,
-                                   int position) {
-        assert(type == JOIN);
-        hash_table_indices.insert(fact, key, position);
-    }
-
-    const JoinHashEntry &get_facts_matching_key(const JoinHashKey &key,
-                                                int position) {
-        assert(type == JOIN);
-        return hash_table_indices.get_entries(key, position);
-    }
-
-    const std::vector<int> &get_position_of_matching_vars(int condition) const {
-        assert(type == JOIN);
-        return position_of_joining_vars.get_joining_vars_of_condition(condition);
-    }
-
-    size_t get_number_joining_vars() const {
-        assert(type == JOIN);
-        return position_of_joining_vars.get_number_of_joining_vars();
-    }
-
-    void add_reached_fact_to_condition(const Arguments& args, int position) {
-        assert(type == PRODUCT);
-        reached_facts_per_condition[position].push_back(args);
-    }
-
-    ReachedFacts &get_reached_facts_of_condition(int i) {
-        assert(type == PRODUCT);
-        return reached_facts_per_condition[i];
-    }
-
-    const std::vector<ReachedFacts> &get_reached_facts_all_conditions() const {
-        assert(type == PRODUCT);
-        return reached_facts_per_condition;
-    }
 };
 
 
 class JoinRule : public RuleBase {
+    JoinHashTable hash_table_indices;
+    JoiningVariables position_of_joining_vars;
 public:
     JoinRule(Atom eff, std::vector<Atom> c)
-        : RuleBase(std::move(eff), std::move(c)) {
-        position_of_joining_vars = JoiningVariables(conditions);
+        : RuleBase(std::move(eff), std::move(c)),
+          position_of_joining_vars(conditions) {
     }
 
     virtual int get_type() const override {
         return JOIN;
     }
+
+    void insert_fact_in_hash(const Fact &fact,
+                                   const JoinHashKey &key,
+                                   int position) {
+        hash_table_indices.insert(fact, key, position);
+    }
+
+    const JoinHashEntry &get_facts_matching_key(const JoinHashKey &key,
+                                                int position) {
+        return hash_table_indices.get_entries(key, position);
+    }
+
+    const std::vector<int> &get_position_of_matching_vars(int condition) const {
+        return position_of_joining_vars.get_joining_vars_of_condition(condition);
+    }
+
+    size_t get_number_joining_vars() const {
+        return position_of_joining_vars.get_number_of_joining_vars();
+    }
+
 };
 
 
 class ProductRule : public RuleBase {
+    std::vector<ReachedFacts> reached_facts_per_condition;
 public:
     ProductRule(Atom eff, std::vector<Atom> c)
-        : RuleBase(std::move(eff), std::move(c)) {
-        reached_facts_per_condition.resize(conditions.size());
+        : RuleBase(std::move(eff), std::move(c)),
+          reached_facts_per_condition(conditions.size()) {
     }
 
     virtual int get_type() const override {
         return PRODUCT;
+    }
+
+    void add_reached_fact_to_condition(const Arguments& args, int position) {
+        reached_facts_per_condition[position].push_back(args);
+    }
+
+    ReachedFacts &get_reached_facts_of_condition(int i) {
+        return reached_facts_per_condition[i];
+    }
+
+    const std::vector<ReachedFacts> &get_reached_facts_all_conditions() const {
+        return reached_facts_per_condition;
     }
 };
 

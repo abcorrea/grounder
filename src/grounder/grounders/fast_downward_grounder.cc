@@ -70,7 +70,9 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
  *
  */
 
-optional<Fact> FastDownwardGrounder::project(const RuleBase &rule, const Fact &fact) {
+optional<Fact> FastDownwardGrounder::project(const RuleBase &rule_, const Fact &fact) {
+    const ProjectRule &rule = static_cast<const ProjectRule &>(rule_);
+
     // New arguments start as a copy of the head atom and we just replace the
     // free variables. Constants will remain intact.
     Arguments new_arguments = rule.get_effect_arguments();
@@ -118,9 +120,10 @@ optional<Fact> FastDownwardGrounder::project(const RuleBase &rule, const Fact &f
  * The function returns a list of actions.
  *
  */
-vector<Fact> FastDownwardGrounder::join(RuleBase &rule,
+vector<Fact> FastDownwardGrounder::join(RuleBase &rule_,
                                         const Fact &fact,
                                         int position) {
+    JoinRule &rule = static_cast<JoinRule &>(rule_);
 
     vector<Fact> facts;
 
@@ -174,9 +177,10 @@ vector<Fact> FastDownwardGrounder::join(RuleBase &rule,
  * (2) every free variable in the body is also in the head
  *
  */
-vector<Fact> FastDownwardGrounder::product(RuleBase &rule,
+vector<Fact> FastDownwardGrounder::product(RuleBase &rule_,
                                            const Fact &fact,
                                            int position) {
+    ProductRule &rule = static_cast<ProductRule &>(rule_);
 
     vector<Fact> new_facts;
 
