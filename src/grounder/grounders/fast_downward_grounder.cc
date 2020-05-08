@@ -26,7 +26,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
                  &m : rule_matcher.get_matched_rules(predicate_index)) {
             int rule_index = m.get_rule();
             int position_in_the_body = m.get_position();
-            Rule &rule = lp.get_rule_by_index(rule_index);
+            RuleBase &rule = lp.get_rule_by_index(rule_index);
 
             if (rule.get_type()==PROJECT) {
                 // Projection rule - single condition in the body
@@ -70,7 +70,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
  *
  */
 
-optional<Fact> FastDownwardGrounder::project(const Rule &rule, const Fact &fact) {
+optional<Fact> FastDownwardGrounder::project(const RuleBase &rule, const Fact &fact) {
     // New arguments start as a copy of the head atom and we just replace the
     // free variables. Constants will remain intact.
     Arguments new_arguments = rule.get_effect_arguments();
@@ -118,7 +118,7 @@ optional<Fact> FastDownwardGrounder::project(const Rule &rule, const Fact &fact)
  * The function returns a list of actions.
  *
  */
-vector<Fact> FastDownwardGrounder::join(Rule &rule,
+vector<Fact> FastDownwardGrounder::join(RuleBase &rule,
                                         const Fact &fact,
                                         int position) {
 
@@ -174,7 +174,7 @@ vector<Fact> FastDownwardGrounder::join(Rule &rule,
  * (2) every free variable in the body is also in the head
  *
  */
-vector<Fact> FastDownwardGrounder::product(Rule &rule,
+vector<Fact> FastDownwardGrounder::product(RuleBase &rule,
                                            const Fact &fact,
                                            int position) {
 

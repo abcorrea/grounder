@@ -81,12 +81,11 @@ public:
  */
 enum RuleType {JOIN, PRODUCT, PROJECT};
 
-class Rule {
-
+class RuleBase {
+protected:
     Atom effect;
     std::vector<Atom> conditions;
     int index;
-    int type;
     bool ground_effect;
     static int next_index;
 
@@ -101,20 +100,13 @@ class Rule {
 
 
 public:
-    Rule(Atom eff, std::vector<Atom> c, int type) :
+    RuleBase(Atom eff, std::vector<Atom> c) :
         effect(std::move(eff)),
         conditions(std::move(c)),
         index(next_index++),
-        type(type),
         hash_table_indices(),
         position_of_joining_vars(conditions),
         reached_facts_per_condition(0) {
-        if (type==JOIN) {
-            position_of_joining_vars = JoiningVariables(conditions);
-
-        } else if (type==PRODUCT) {
-            reached_facts_per_condition.resize(conditions.size());
-        }
 
         variable_position.create_map(effect);
         ground_effect = true;
@@ -124,6 +116,8 @@ public:
             }
         }
     };
+
+    virtual ~RuleBase() = default;
 
     bool head_is_ground() const {
         return ground_effect;
@@ -148,9 +142,7 @@ public:
         return index;
     }
 
-    int get_type() const {
-        return type;
-    }
+    virtual int get_type() const = 0;
 
     const Arguments &get_condition_arguments(int i) const {
         return conditions[i].get_arguments();
@@ -198,5 +190,42 @@ public:
         return reached_facts_per_condition;
     }
 };
+
+
+class JoinRule : public RuleBase {
+public:
+    JoinRule(Atom eff, std::vector<Atom> c)
+        : RuleBase(std::move(eff), std::move(c)) {
+        position_of_joining_vars = JoiningVariables(conditions);
+    }
+
+    virtual int get_type() const override {
+        return JOIN;
+    }
+};
+
+
+class ProductRule : public RuleBase {
+public:
+    ProductRule(Atom eff, std::vector<Atom> c)
+        : RuleBase(std::move(eff), std::move(c)) {
+        reached_facts_per_condition.resize(conditions.size());
+    }
+
+    virtual int get_type() const override {
+        return PRODUCT;
+    }
+};
+
+
+class ProjectRule : public RuleBase {
+public:
+    using RuleBase::RuleBase;
+
+    virtual int get_type() const override {
+        return PROJECT;
+    }
+};
+
 
 #endif //GROUNDER_RULES_H

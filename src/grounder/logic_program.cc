@@ -8,7 +8,7 @@ void LogicProgram::set_facts(const vector<Fact> &f) {
 void LogicProgram::set_objects(const vector<Object> &o) {
     LogicProgram::objects = o;
 }
-void LogicProgram::set_rules(const vector<Rule> &r) {
+void LogicProgram::set_rules(const vector<RuleBase *> &r) {
     LogicProgram::rules = r;
 }
 
@@ -28,7 +28,7 @@ const vector<Object> &LogicProgram::get_objects() const {
     return objects;
 }
 
-const vector<Rule> &LogicProgram::get_rules() const {
+const vector<RuleBase *> &LogicProgram::get_rules() const {
     return rules;
 }
 
@@ -37,8 +37,8 @@ const unordered_map<int,
     return map_index_to_atom;
 }
 
-Rule &LogicProgram::get_rule_by_index(int index) {
-    return rules[index];
+RuleBase &LogicProgram::get_rule_by_index(int index) {
+    return *rules[index];
 }
 
 const Fact &LogicProgram::get_fact_by_index(int index) const {

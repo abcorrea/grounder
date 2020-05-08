@@ -22,7 +22,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
     vector<Object> lp_objects;
     vector<Fact> lp_facts;
-    vector<Rule> rules;
+    vector<RuleBase *> rules;
 
     string line;
 
@@ -90,13 +90,13 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
             if (boost::iequals(rule_type, "project")) {
                 // Project rule
-                rules.emplace_back(head_atom, condition_atoms, PROJECT);
+                rules.emplace_back(new ProjectRule(head_atom, condition_atoms));
             } else if (boost::iequals(rule_type, "join")) {
                 // Join rule
-                rules.emplace_back(head_atom, condition_atoms, JOIN);
+                rules.emplace_back(new JoinRule(head_atom, condition_atoms));
             } else if (boost::iequals(rule_type, "product")) {
                 // Product rule
-                rules.emplace_back(head_atom, condition_atoms, PRODUCT);
+                rules.emplace_back(new ProductRule(head_atom, condition_atoms));
             }
 
             number_of_rules++;
@@ -133,11 +133,6 @@ bool parse(LogicProgram &lp, ifstream &in) {
     // Loop over the facts setting their fact indices
     for (Fact &f : lp_facts)
         f.set_fact_index();
-
-    // Loop over the rules setting the map between head free vars and arg position
-    /*for (Rule &r : rules) {
-        r.set_map_head_vars_to_positions();
-    }*/
 
     lp.set_facts(lp_facts);
     lp.set_objects(lp_objects);

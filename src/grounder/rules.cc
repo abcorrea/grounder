@@ -4,5 +4,5 @@
 
 using namespace std;
 
-int Rule::next_index = 0;
+int RuleBase::next_index = 0;
 
