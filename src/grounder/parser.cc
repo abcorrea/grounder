@@ -1,6 +1,7 @@
 #include "parser.h"
 
 #include <fstream>
+#include <memory>
 #include <sstream>
 #include <string>
 
@@ -22,7 +23,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
     vector<Object> lp_objects;
     vector<Fact> lp_facts;
-    vector<RuleBase *> rules;
+    vector<unique_ptr<RuleBase>> rules;
 
     string line;
 
@@ -90,13 +91,13 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
             if (boost::iequals(rule_type, "project")) {
                 // Project rule
-                rules.emplace_back(new ProjectRule(head_atom, condition_atoms));
+                rules.emplace_back(make_unique<ProjectRule>(head_atom, condition_atoms));
             } else if (boost::iequals(rule_type, "join")) {
                 // Join rule
-                rules.emplace_back(new JoinRule(head_atom, condition_atoms));
+                rules.emplace_back(make_unique<JoinRule>(head_atom, condition_atoms));
             } else if (boost::iequals(rule_type, "product")) {
                 // Product rule
-                rules.emplace_back(new ProductRule(head_atom, condition_atoms));
+                rules.emplace_back(make_unique<ProductRule>(head_atom, condition_atoms));
             }
 
             number_of_rules++;
@@ -136,7 +137,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
     lp.set_facts(lp_facts);
     lp.set_objects(lp_objects);
-    lp.set_rules(rules);
+    lp.set_rules(move(rules));
     lp.set_map_index_to_atom(map_index_to_atom);
 
     return true;

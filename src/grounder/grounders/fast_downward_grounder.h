@@ -15,7 +15,7 @@ class FastDownwardGrounder : public Grounder {
 
     void create_rule_matcher(const LogicProgram &lp) {
         // Loop over rule conditions
-        for (const auto rule : lp.get_rules()) {
+        for (const auto &rule : lp.get_rules()) {
             int cont = 0;
             for (const auto &condition : rule->get_conditions()) {
                 rule_matcher.insert(condition.get_predicate_index(),

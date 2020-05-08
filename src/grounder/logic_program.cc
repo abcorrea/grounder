@@ -8,8 +8,8 @@ void LogicProgram::set_facts(const vector<Fact> &f) {
 void LogicProgram::set_objects(const vector<Object> &o) {
     LogicProgram::objects = o;
 }
-void LogicProgram::set_rules(const vector<RuleBase *> &r) {
-    LogicProgram::rules = r;
+void LogicProgram::set_rules(vector<unique_ptr<RuleBase>> &&r) {
+    LogicProgram::rules = std::move(r);
 }
 
 void LogicProgram::set_map_index_to_atom(const unordered_map<int, string> &m) {
@@ -28,7 +28,7 @@ const vector<Object> &LogicProgram::get_objects() const {
     return objects;
 }
 
-const vector<RuleBase *> &LogicProgram::get_rules() const {
+const vector<unique_ptr<RuleBase>> &LogicProgram::get_rules() const {
     return rules;
 }
 
