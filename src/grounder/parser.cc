@@ -1,6 +1,9 @@
 #include "parser.h"
 
-#include <fstream>
+#include "rules/join.h"
+#include "rules/product.h"
+#include "rules/project.h"
+
 #include <memory>
 #include <sstream>
 #include <string>

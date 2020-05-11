@@ -1,5 +1,10 @@
 #include "fast_downward_grounder.h"
 
+#include "../rules/join.h"
+#include "../rules/product.h"
+#include "../rules/project.h"
+
+
 #include <vector>
 #include <queue>
 
