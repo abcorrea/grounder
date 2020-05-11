@@ -82,23 +82,21 @@ optional<Fact> FastDownwardGrounder::project(const RuleBase &rule_, const Fact &
     // free variables. Constants will remain intact.
     Arguments new_arguments = rule.get_effect_arguments();
 
-    for (const auto &cond : rule.get_conditions()) {
-        const Arguments &args = cond.get_arguments();
-        for (size_t i = 0; i < args.size(); ++i) {
-            const auto a = args[i];
-            if (args.is_object(i)) {
-                // Constant instead of free var
-                if (fact.argument(i) != a) {
-                    // constants do not match!
-                    return {};
-                }
-            } else {
-                int pos = rule.get_head_position_of_arg(a);
-                if (pos != -1) {
-                    // Variable should NOT be projected away by this rule
-                    new_arguments.set_term_to_object(pos,
-                                                     fact.argument(i).get_index());
-                }
+    const Arguments &args = rule.get_condition_arguments();
+    for (size_t i = 0; i < args.size(); ++i) {
+        const auto a = args[i];
+        if (args.is_object(i)) {
+            // Constant instead of free var
+            if (fact.argument(i) != a) {
+                // constants do not match!
+                return {};
+            }
+        } else {
+            int pos = rule.get_head_position_of_arg(a);
+            if (pos != -1) {
+                // Variable should NOT be projected away by this rule
+                new_arguments.set_term_to_object(pos,
+                                                 fact.argument(i).get_index());
             }
         }
     }

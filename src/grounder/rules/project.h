@@ -10,6 +10,10 @@ public:
     int get_type() const override {
         return PROJECT;
     }
+
+    const Arguments &get_condition_arguments() const {
+        return conditions[0].get_arguments();
+    }
 };
 
 
