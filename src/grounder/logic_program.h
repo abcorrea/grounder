@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 class LogicProgram {
@@ -18,18 +19,17 @@ class LogicProgram {
 public:
     LogicProgram() = default;
 
-    void set_facts(const std::vector<Fact> &f);
-    void set_objects(const std::vector<Object> &o);
-    void set_rules(std::vector<std::unique_ptr<RuleBase>> &&r);
-    void set_map_index_to_atom(const std::unordered_map<int, std::string> &m);
+    LogicProgram(std::vector<Fact> &&f,
+                 std::vector<Object> &&o,
+                 std::vector<std::unique_ptr<RuleBase>> &&r,
+                 std::unordered_map<int, std::string> &&m)
+    : facts(std::move(f)), objects(std::move(o)), rules(std::move(r)), map_index_to_atom(std::move(m)) {}
 
     void insert_fact(Fact &f);
 
     const std::vector<Fact> &get_facts() const;
-    const std::vector<Object> &get_objects() const;
-    const std::vector<std::unique_ptr<RuleBase>> &get_rules() const;
 
-    const std::unordered_map<int, std::string> &get_map_index_to_atom() const;
+    const std::vector<std::unique_ptr<RuleBase>> &get_rules() const;
 
     RuleBase &get_rule_by_index(int index);
 

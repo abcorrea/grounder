@@ -14,7 +14,7 @@ int number_of_facts = 0;
 int number_of_rules = 0;
 int number_of_objects = 0;
 
-bool parse(LogicProgram &lp, ifstream &in) {
+LogicProgram parse(ifstream &in) {
     cout << "Parsing file..." << endl;
 
     unordered_map<string, int> map_object_to_index;
@@ -135,12 +135,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
     for (Fact &f : lp_facts)
         f.set_fact_index();
 
-    lp.set_facts(lp_facts);
-    lp.set_objects(lp_objects);
-    lp.set_rules(move(rules));
-    lp.set_map_index_to_atom(map_index_to_atom);
-
-    return true;
+    return LogicProgram(move(lp_facts), move(lp_objects), move(rules), move(map_index_to_atom));;
 }
 bool is_warning_message(const string &line) {
     if (line.find("Warning:")!=string::npos) {
