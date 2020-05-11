@@ -152,7 +152,7 @@ vector<Fact> FastDownwardGrounder::join(RuleBase &rule_,
         position_counter++;
     }
 
-    const int inverse_position = (position + 1)%2;
+    const int inverse_position = rule.get_inverse_position(position);
     for (const Fact &f : rule.get_facts_matching_key(key, inverse_position)) {
         Arguments new_arguments = new_arguments_persistent;
         position_counter = 0;
@@ -191,8 +191,7 @@ vector<Fact> FastDownwardGrounder::product(RuleBase &rule_,
     // then it matches the fact being expanded
     int c = 0;
     const Arguments cond_args = rule.get_condition_arguments(position);
-    for (size_t i = 0; i < cond_args.size(); ++i) {
-        const Term &term = cond_args[i];
+    for (auto term : cond_args) {
         if (term.is_object() and term.get_index() != fact.argument(c).get_index()) {
             return new_facts;
         }

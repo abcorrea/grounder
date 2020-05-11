@@ -152,6 +152,10 @@ public:
         return position_of_joining_vars.get_number_of_joining_vars();
     }
 
+    int get_inverse_position (int i) const {
+        return (i + 1)%2;
+    }
+
 };
 
 
