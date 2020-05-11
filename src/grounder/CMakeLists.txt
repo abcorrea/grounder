@@ -21,7 +21,7 @@ add_executable(grounder
         parser.cc parser.h
         fact.cc fact.h
         object.cc object.h
-        rules.cc rules.h
+        rules/rule_base.cc rules/rule_base.h
         atom.cc atom.h
         grounders/grounder_factory.h
         grounders/grounder.h

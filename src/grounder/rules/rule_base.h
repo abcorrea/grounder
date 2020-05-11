@@ -1,9 +1,9 @@
 #ifndef GROUNDER_RULES_H
 #define GROUNDER_RULES_H
 
-#include "atom.h"
-#include "fact.h"
-#include "join_structures.h"
+#include "../atom.h"
+#include "../fact.h"
+#include "../join_structures.h"
 
 #include <string>
 #include <utility>
