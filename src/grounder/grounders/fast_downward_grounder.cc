@@ -1,12 +1,13 @@
 #include "fast_downward_grounder.h"
 
+#include "../logic_program.h"
+
 #include "../rules/join.h"
 #include "../rules/product.h"
 #include "../rules/project.h"
 
-
+#include <deque>
 #include <vector>
-#include <queue>
 
 using namespace std;
 
@@ -37,7 +38,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
                 // Projection rule - single condition in the body
                 assert(position_in_the_body==0);
                 optional<Fact> new_fact = project(rule, current_fact);
-                if (new_fact and is_new(*new_fact, reached_facts, lp)) {
+                if (new_fact and lp.is_new(*new_fact, reached_facts)) {
                     q.push_back(new_fact->get_fact_index());
                 }
             } else if (rule.get_type()==JOIN) {
@@ -46,7 +47,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
                 for (Fact new_fact : join(rule,
                                           current_fact,
                                           position_in_the_body))
-                    if (is_new(new_fact, reached_facts, lp)) {
+                    if (lp.is_new(new_fact, reached_facts)) {
                         q.push_back(new_fact.get_fact_index());
                     }
             } else if (rule.get_type()==PRODUCT) {
@@ -54,7 +55,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
                 for (Fact new_fact : product(rule,
                                              current_fact,
                                              position_in_the_body))
-                    if (is_new(new_fact, reached_facts, lp)) {
+                    if (lp.is_new(new_fact, reached_facts)) {
                         q.push_back(new_fact.get_fact_index());
                     }
             }
@@ -233,19 +234,19 @@ vector<Fact> FastDownwardGrounder::product(RuleBase &rule_,
     // Third: in this case, we just loop over the other conditions and its already
     // reached facts and instantiate all possibilities (i.e., cartesian product).
     // We do this using a queue
-    queue<pair<Arguments, int>> q;
-    q.push(make_pair(new_arguments_persistent, 0));
+    deque<pair<Arguments, int>> q;
+    q.emplace_back(new_arguments_persistent, 0);
     while (!q.empty()) {
         Arguments current_args = q.front().first;
         int counter = q.front().second;
-        q.pop();
+        q.pop_front();
         if (counter >= int(rule.get_conditions().size())) {
             new_facts.emplace_back(current_args,
                                    rule.get_effect().get_predicate_index());
         } else if (counter==position) {
             // If it is the condition that we are currently reaching, we do not need
             // to consider the other tuples with this predicate
-            q.push(make_pair(current_args, counter + 1));
+            q.emplace_back(current_args, counter + 1);
         } else {
             for (const auto &assignment : rule.get_reached_facts_of_condition(counter)) {
                 Arguments new_arguments = current_args; // start as a copy
@@ -259,7 +260,7 @@ vector<Fact> FastDownwardGrounder::product(RuleBase &rule_,
                     }
                     ++value_counter;
                 }
-                q.emplace(new_arguments, counter + 1);
+                q.emplace_back(new_arguments, counter + 1);
             }
         }
     }
@@ -267,14 +268,3 @@ vector<Fact> FastDownwardGrounder::product(RuleBase &rule_,
     return new_facts;
 }
 
-bool FastDownwardGrounder::is_new(Fact &new_fact,
-                                  unordered_set<Fact> &reached_facts,
-                                  LogicProgram &lp) {
-    auto insert_result = reached_facts.insert(new_fact);
-    if (insert_result.second) {
-        new_fact.set_fact_index();
-        lp.insert_fact(new_fact);
-        return true;
-    }
-    return false;
-}

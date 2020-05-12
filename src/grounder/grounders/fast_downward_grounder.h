@@ -27,9 +27,6 @@ class FastDownwardGrounder : public Grounder {
 
     static std::optional<Fact> project(const RuleBase &rule, const Fact &fact);
     static std::vector<Fact> join(RuleBase &rule, const Fact &fact, int position);
-    static bool is_new(Fact &new_fact,
-                       std::unordered_set<Fact> &reached_facts,
-                       LogicProgram &lp);
     static std::vector<Fact> product(RuleBase &rule,
                                      const Fact &fact,
                                      int position);
