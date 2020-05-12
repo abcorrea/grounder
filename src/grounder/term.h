@@ -6,8 +6,8 @@
 enum TERM_TYPES {OBJECT, VARIABLE};
 
 class Term {
-    int index;
-    int type;
+    int index : 31;
+    int type : 1;
 
 public:
     Term() = default;
