@@ -27,4 +27,8 @@ add_executable(grounder
         grounders/grounder.h
         grounders/fast_downward_grounder.cc grounders/fast_downward_grounder.h
         rule_matcher.cc rule_matcher.h
-        term.h arguments.h rules/join.h rules/project.h rules/product.h)
+        term.h arguments.h rules/join.h rules/project.h rules/product.h
+        utils/language.h
+        utils/system.cc utils/system.h
+        utils/system_unix.cc utils/system_unix.h
+        utils/system_windows.cc utils/system_windows.h)
