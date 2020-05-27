@@ -10,6 +10,7 @@ PATTERNS = [
     ('parsing_time', r'Parsing time: (.+)s', float),
     ('grounding_time', r'Grounding time: (.+)s', float),
     ('total_time', r'Total time: (.+)s', float),
+    ('memory', r'Peak memory usage: (\d+) kB', int),
 ]
 
 class OurParser(Parser):
