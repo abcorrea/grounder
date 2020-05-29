@@ -1,68 +1,18 @@
-#ifndef GROUNDER__ATOM_H_
-#define GROUNDER__ATOM_H_
+#ifndef GROUNDER_ATOM_H
+#define GROUNDER_ATOM_H
 
+#include "arguments.h"
 #include "object.h"
+#include "term.h"
 
 #include <cassert>
 #include <iostream>
-#include <list>
 #include <string>
 #include <unordered_map>
 #include <utility>
 #include <vector>
 
-class Arguments {
-    std::vector<int> arguments;
-    std::vector<bool> constants;
 
-public:
-    Arguments() = default;
-
-    explicit
-    Arguments(std::vector<int> args) : arguments(std::move(args)) {
-        for (int i : arguments) {
-            constants.push_back(i >= 0);
-        }
-    }
-
-    int operator[](size_t i) const {
-        assert(i < arguments.size());
-        return arguments[i];
-    }
-
-    std::vector<int>::const_iterator begin() const {
-        return arguments.begin();
-    }
-
-    std::vector<int>::const_iterator end() const {
-        return arguments.end();
-    }
-
-    size_t size() const {
-        return arguments.size();
-    }
-
-    void push_back(int i) {
-        arguments.push_back(i);
-    };
-
-    void set_value(int i, int j) {
-        arguments[i] = j;
-    }
-
-    bool is_constant(size_t i) const {
-        return constants[i];
-    }
-
-};
-
-/*
- *
- * The class Atom represents a any atom of the task. These can be completely
- * lifted atoms, partially ground atoms or even completely ground atoms
- * (although these are usually represented as facts).
- *
- */
 class Atom {
     Arguments arguments;
     int predicate_index;
@@ -75,7 +25,6 @@ public:
         predicate_index(predicate_index),
         index(next_index++) {}
 
-    // Print atom in a nice way.
     void print_atom(
         const std::vector<Object> &obj,
         const std::unordered_map<int, std::string> &map_index_to_atom) const;
@@ -92,16 +41,11 @@ public:
         return index;
     }
 
-    int argument(size_t i) const {
+    Term argument(size_t i) const {
         assert(i < arguments.size());
         return arguments[i];
     }
 
-    bool is_argument_constant(size_t i) const {
-        return arguments.is_constant(i);
-    }
-
-
 };
 
-#endif //GROUNDER__ATOM_H_
+#endif //GROUNDER_ATOM_H

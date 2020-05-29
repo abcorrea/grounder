@@ -1,6 +1,10 @@
 #include "parser.h"
 
-#include <fstream>
+#include "rules/join.h"
+#include "rules/product.h"
+#include "rules/project.h"
+
+#include <memory>
 #include <sstream>
 #include <string>
 
@@ -13,7 +17,7 @@ int number_of_facts = 0;
 int number_of_rules = 0;
 int number_of_objects = 0;
 
-bool parse(LogicProgram &lp, ifstream &in) {
+LogicProgram parse(ifstream &in) {
     cout << "Parsing file..." << endl;
 
     unordered_map<string, int> map_object_to_index;
@@ -22,7 +26,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
     vector<Object> lp_objects;
     vector<Fact> lp_facts;
-    vector<Rule> rules;
+    vector<unique_ptr<RuleBase>> rules;
 
     string line;
 
@@ -34,8 +38,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
         }
         if (line.find(":-")!=string::npos) {
             // Rule
-            int number_of_vars_current_rule =
-                -1; // Variables have negative counter
+            int number_of_vars_current_rule = 0; // Variables have negative counter
 
             string head = line.substr(0, line.find(':'));
             string body = line.substr(line.find(':')); // Still contains ':-'
@@ -91,13 +94,13 @@ bool parse(LogicProgram &lp, ifstream &in) {
 
             if (boost::iequals(rule_type, "project")) {
                 // Project rule
-                rules.emplace_back(head_atom, condition_atoms, PROJECT);
+                rules.emplace_back(make_unique<ProjectRule>(head_atom, condition_atoms));
             } else if (boost::iequals(rule_type, "join")) {
                 // Join rule
-                rules.emplace_back(head_atom, condition_atoms, JOIN);
+                rules.emplace_back(make_unique<JoinRule>(head_atom, condition_atoms));
             } else if (boost::iequals(rule_type, "product")) {
                 // Product rule
-                rules.emplace_back(head_atom, condition_atoms, PRODUCT);
+                rules.emplace_back(make_unique<ProductRule>(head_atom, condition_atoms));
             }
 
             number_of_rules++;
@@ -122,7 +125,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
                     lp_objects.emplace_back(argument);
                     number_of_objects++;
                 }
-                arguments_indices.push_back(map_object_to_index[argument]);
+                arguments_indices.push_back(map_object_to_index[argument], OBJECT);
             }
 
             lp_facts.emplace_back(arguments_indices,
@@ -135,17 +138,7 @@ bool parse(LogicProgram &lp, ifstream &in) {
     for (Fact &f : lp_facts)
         f.set_fact_index();
 
-    // Loop over the rules setting the map between head free vars and arg position
-    /*for (Rule &r : rules) {
-        r.set_map_head_vars_to_positions();
-    }*/
-
-    lp.set_facts(lp_facts);
-    lp.set_objects(lp_objects);
-    lp.set_rules(rules);
-    lp.set_map_index_to_atom(map_index_to_atom);
-
-    return true;
+    return LogicProgram(move(lp_facts), move(lp_objects), move(rules), move(map_index_to_atom));;
 }
 bool is_warning_message(const string &line) {
     if (line.find("Warning:")!=string::npos) {
@@ -207,7 +200,7 @@ Arguments transform_args_into_indices(
     const vector<string> &arguments,
     vector<Object> &lp_objects,
     int &number_of_vars_current_rule) {
-    vector<int> indices(arguments.size(), 0);
+    vector<Term> indices(arguments.size());
     int counter = 0;
     for (const auto &a : arguments) {
         if (a.front()=='?') {
@@ -216,9 +209,9 @@ Arguments transform_args_into_indices(
                 map_variables.try_emplace(a, number_of_vars_current_rule);
             if (it_pair.second) {
                 // Variable is not new to the map. Increase counter.
-                number_of_vars_current_rule--;
+                number_of_vars_current_rule++;
             }
-            indices[counter++] = map_variables[a];
+            indices[counter++] = Term(map_variables[a], VARIABLE);
         } else {
             if (a.empty())
                 continue;
@@ -228,10 +221,10 @@ Arguments transform_args_into_indices(
                 lp_objects.emplace_back(a);
                 number_of_objects++;
             }
-            indices[counter++] = map_objects[a];
+            indices[counter++] = Term(map_objects[a], OBJECT);
         }
     }
-    return Arguments(indices);
+    return Arguments(move(indices));
 }
 
 vector<string> get_rule_conditions(string &body) {

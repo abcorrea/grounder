@@ -24,13 +24,8 @@ int main(int argc, char *argv[]) {
         exit(-1);
     }
 
-    LogicProgram logic_program;
+    LogicProgram logic_program = parse(in);
 
-    bool parsed = parse(logic_program, in);
-    if (!parsed) {
-        cerr << "Parser failed." << endl;
-        return -1;
-    }
     double parsing_time = double(clock() - timer_start)/CLOCKS_PER_SEC;
     cout << "Parsing time: " << parsing_time << "s" << endl;
 

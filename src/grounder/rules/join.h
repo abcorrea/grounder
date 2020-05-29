@@ -1,7 +1,9 @@
-#ifndef GROUNDER_HASH_TABLE_H
-#define GROUNDER_HASH_TABLE_H
+#ifndef GROUNDER_RULES_JOIN_RULE_H
+#define GROUNDER_RULES_JOIN_RULE_H
 
-#include "fact.h"
+#include "rule_base.h"
+
+#include "../fact.h"
 
 #include <cassert>
 #include <utility>
@@ -86,10 +88,11 @@ public:
         std::vector<int> new_key;
 
         int pos1 = 0;
-        for (int c : conditions[0].get_arguments()) {
+        for (const Term &term : conditions[0].get_arguments()) {
+            int c = term.get_index();
             auto it2 = find(conditions[1].get_arguments().begin(),
                             conditions[1].get_arguments().end(),
-                            c);
+                            term);
             if (it2!=conditions[1].get_arguments().end()) {
                 // Free variables match in both atoms
                 int pos2 = distance(conditions[1].get_arguments().begin(), it2);
@@ -117,4 +120,44 @@ public:
     }
 };
 
-#endif //GROUNDER__HASH_TABLE_H
+class JoinRule : public RuleBase {
+    JoinHashTable hash_table_indices;
+    JoiningVariables position_of_joining_vars;
+public:
+    JoinRule(Atom eff, std::vector<Atom> c)
+        : RuleBase(std::move(eff), std::move(c)),
+          position_of_joining_vars(conditions) {
+    }
+
+    int get_type() const override {
+        return JOIN;
+    }
+
+    void insert_fact_in_hash(const Fact &fact,
+                             const JoinHashKey &key,
+                             int position) {
+        hash_table_indices.insert(fact, key, position);
+    }
+
+    const JoinHashEntry &get_facts_matching_key(const JoinHashKey &key,
+                                                int position) {
+        return hash_table_indices.get_entries(key, position);
+    }
+
+    const std::vector<int> &get_position_of_matching_vars(int condition) const {
+        return position_of_joining_vars.get_joining_vars_of_condition(condition);
+    }
+
+    size_t get_number_joining_vars() const {
+        return position_of_joining_vars.get_number_of_joining_vars();
+    }
+
+    int get_inverse_position (int i) const {
+        return (i + 1)%2;
+    }
+
+};
+
+
+
+#endif //GROUNDER_RULES_JOIN_RULE_H

@@ -7,7 +7,7 @@
 
 #include "logic_program.h"
 
-bool parse(LogicProgram &lp, std::ifstream &in);
+LogicProgram parse(std::ifstream &in);
 
 bool is_warning_message(const std::string &line);
 

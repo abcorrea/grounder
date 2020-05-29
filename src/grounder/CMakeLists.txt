@@ -21,13 +21,13 @@ add_executable(grounder
         parser.cc parser.h
         fact.cc fact.h
         object.cc object.h
-        rules.cc rules.h
+        rules/rule_base.cc rules/rule_base.h
         atom.cc atom.h
         grounders/grounder_factory.h
         grounders/grounder.h
         grounders/fast_downward_grounder.cc grounders/fast_downward_grounder.h
         rule_matcher.cc rule_matcher.h
-        join_structures.h
+        term.h arguments.h rules/join.h rules/project.h rules/product.h
         utils/language.h
         utils/system.cc utils/system.h
         utils/system_unix.cc utils/system_unix.h

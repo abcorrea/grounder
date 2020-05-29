@@ -52,8 +52,10 @@ class TestRun:
                 break
 
         if num_atoms == expected_size:
+            print("[expected: {}, num_atoms: {}]".format(expected_size, num_atoms), end='')
             return True
         else:
+            print("[expected: {}, num_atoms: {}]".format(expected_size, num_atoms), end='')
             return False
 
     def remove_lp_file(self):

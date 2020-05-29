@@ -3,36 +3,40 @@
 
 #include "fact.h"
 #include "object.h"
-#include "rules.h"
+#include "rules/rule_base.h"
 
-#include <vector>
+#include <memory>
 #include <unordered_map>
+#include <utility>
+#include <vector>
 
 class LogicProgram {
     std::vector<Fact> facts;
     std::vector<Object> objects;
-    std::vector<Rule> rules;
+    std::vector<std::unique_ptr<RuleBase>> rules;
     std::unordered_map<int, std::string> map_index_to_atom;
 
 public:
     LogicProgram() = default;
 
-    void set_facts(const std::vector<Fact> &f);
-    void set_objects(const std::vector<Object> &o);
-    void set_rules(const std::vector<Rule> &r);
-    void set_map_index_to_atom(const std::unordered_map<int, std::string> &m);
+    LogicProgram(std::vector<Fact> &&f,
+                 std::vector<Object> &&o,
+                 std::vector<std::unique_ptr<RuleBase>> &&r,
+                 std::unordered_map<int, std::string> &&m)
+    : facts(std::move(f)), objects(std::move(o)), rules(std::move(r)), map_index_to_atom(std::move(m)) {}
 
     void insert_fact(Fact &f);
 
     const std::vector<Fact> &get_facts() const;
-    const std::vector<Object> &get_objects() const;
-    const std::vector<Rule> &get_rules() const;
 
-    const std::unordered_map<int, std::string> &get_map_index_to_atom() const;
+    const std::vector<std::unique_ptr<RuleBase>> &get_rules() const;
 
-    Rule &get_rule_by_index(int index);
+    RuleBase &get_rule_by_index(int index);
 
     const Fact &get_fact_by_index(int index) const;
+
+    bool is_new(Fact &new_fact,
+                std::unordered_set<Fact> &reached_facts);
 
     size_t get_number_of_facts();
 
