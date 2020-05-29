@@ -51,6 +51,7 @@ MEMORY_LIMIT = 16384
 
 ATTRIBUTES=['atoms',
             'grounding_time',
+            'memory',
             'parsing_time',
             'total_time']
 
