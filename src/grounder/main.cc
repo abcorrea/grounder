@@ -47,10 +47,16 @@ int main(int argc, char *argv[]) {
     cout << "Total time: " << total_time << "s" << endl;
     cout << "Peak memory usage: " << utils::get_peak_memory_in_kb() << " kB\n";
 
-/*    for (const auto &f : logic_program.get_facts())
-      f.print_atom(logic_program.get_objects(), logic_program.get_map_index_to_atom());*/
-    cout << logic_program.get_facts().size() << " atoms" << endl;
+    const auto &map_index_to_atom = logic_program.get_map_index_to_atom();
+    int number_of_ground_actions = 0;
+    for (const auto &f : logic_program.get_facts()) {
+      if (map_index_to_atom.at(f.get_predicate_index()).find("action_") != string::npos)
+        ++number_of_ground_actions;
+      //f.print_atom(logic_program.get_objects(), logic_program.get_map_index_to_atom());
+    }
 
+    cout << "Number of ground actions: " << number_of_ground_actions << endl;
+    cout << logic_program.get_facts().size() << " atoms" << endl;
 
     return 0;
 }
