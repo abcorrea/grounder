@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-
+import copy
 import itertools
 
 import normalize
@@ -24,8 +24,35 @@ class PrologProgram:
     def dump(self, file=None):
         for fact in self.facts:
             print(fact, file=file)
-        for rule in self.rules:
-            print(getattr(rule, "type", "none"), rule, file=file)
+        new_rules = set()
+        for r in self.rules:
+            rule = copy.deepcopy(r)
+            parameter_to_generic_free_var = dict()
+            num_free_vars = 0
+            new_effect = []
+            for index, e in enumerate(rule.effect.args):
+                if e[0] != '?':
+                    new_effect.append(e)
+                    continue
+                if e not in parameter_to_generic_free_var.keys():
+                    parameter_to_generic_free_var[e] = "?" + chr(num_free_vars + ord('A'))
+                    num_free_vars += 1
+                new_effect.append(parameter_to_generic_free_var[e])
+            rule.effect.args = tuple(new_effect)
+            for index, c in enumerate(rule.conditions):
+                new_condition = []
+                for a in c.args:
+                    if a[0] != '?':
+                        new_condition.append(a)
+                        continue
+                    if a not in parameter_to_generic_free_var.keys():
+                        parameter_to_generic_free_var[a] = "?" + chr(num_free_vars + ord('A'))
+                        num_free_vars += 1
+                    new_condition.append(parameter_to_generic_free_var[a])
+                rule.conditions[index].args = tuple(new_condition)
+            new_rules.add((getattr(rule, "type", "none"), str(rule)))
+        for rule in new_rules:
+            print(rule[0], rule[1], file=file)
     def normalize(self):
         # Normalized prolog programs have the following properties:
         # 1. Each variable that occurs in the effect of a rule also occurs in its
