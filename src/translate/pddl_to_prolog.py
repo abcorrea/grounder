@@ -2,6 +2,7 @@
 
 import copy
 import itertools
+import sys
 
 import normalize
 import pddl
@@ -24,8 +25,9 @@ class PrologProgram:
     def dump(self, file=None):
         for fact in self.facts:
             print(fact, file=file)
-        new_rules = set()
-        equivalent_rules = dict()
+        new_rules = []
+        remaining_equivalent_rules = dict()
+        equivalence = dict()
         for r in self.rules:
             rule = copy.deepcopy(r)
             parameter_to_generic_free_var = dict()
@@ -53,13 +55,22 @@ class PrologProgram:
                 rule.conditions[index].args = tuple(new_condition)
             if "p$" in str(rule.effect):
                 '''Auxiliary variable'''
-                if str(rule.conditions) in equivalent_rules.keys():
-                    equivalent = equivalent_rules[str(rule.conditions)]
-                    new_rules.add(("project", "{} :- {}.".format(rule.effect, equivalent.effect)))
+                if str(rule.conditions) in remaining_equivalent_rules.keys():
+                    equivalence[str(rule.effect.predicate)] = remaining_equivalent_rules[str(rule.conditions)]
                     continue
-                equivalent_rules[str(rule.conditions)] = rule
-            new_rules.add((getattr(rule, "type", "none"), str(rule)))
+                remaining_equivalent_rules[str(rule.conditions)] = rule.effect.predicate
+            new_rules.append(rule)
+        final_rules = []
         for rule in new_rules:
+            for i, c in enumerate(rule.conditions):
+                pred_symb = str(c.predicate)
+                if pred_symb in equivalence.keys():
+                    new_cond = c
+                    new_cond.predicate = equivalence[pred_symb]
+                    print("Replacing relation %s with %s" % (pred_symb, str(equivalence[pred_symb])), file=sys.stderr)
+                    rule.conditions[i] = new_cond
+            final_rules.append((getattr(rule, "type", "none"), str(rule)))
+        for rule in set(final_rules):
             print(rule[0], rule[1], file=file)
     def normalize(self):
         # Normalized prolog programs have the following properties:
