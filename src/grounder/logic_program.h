@@ -31,6 +31,14 @@ public:
 
     const std::vector<std::unique_ptr<RuleBase>> &get_rules() const;
 
+    const std::vector<Object> &get_objects() const {
+      return objects;
+    }
+
+    const std::unordered_map<int, std::string> &get_map_index_to_atom() const {
+      return map_index_to_atom;
+    }
+
     RuleBase &get_rule_by_index(int index);
 
     const Fact &get_fact_by_index(int index) const;
