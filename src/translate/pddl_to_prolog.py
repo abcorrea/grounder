@@ -25,6 +25,7 @@ class PrologProgram:
         for fact in self.facts:
             print(fact, file=file)
         new_rules = set()
+        equivalent_rules = dict()
         for r in self.rules:
             rule = copy.deepcopy(r)
             parameter_to_generic_free_var = dict()
@@ -50,6 +51,13 @@ class PrologProgram:
                         num_free_vars += 1
                     new_condition.append(parameter_to_generic_free_var[a])
                 rule.conditions[index].args = tuple(new_condition)
+            if "p$" in str(rule.effect):
+                '''Auxiliary variable'''
+                if str(rule.conditions) in equivalent_rules.keys():
+                    equivalent = equivalent_rules[str(rule.conditions)]
+                    new_rules.add(("project", "{} :- {}.".format(rule.effect, equivalent.effect)))
+                    continue
+                equivalent_rules[str(rule.conditions)] = rule
             new_rules.add((getattr(rule, "type", "none"), str(rule)))
         for rule in new_rules:
             print(rule[0], rule[1], file=file)
