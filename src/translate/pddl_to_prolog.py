@@ -25,53 +25,8 @@ class PrologProgram:
     def dump(self, file=None):
         for fact in self.facts:
             print(fact, file=file)
-        new_rules = []
-        remaining_equivalent_rules = dict()
-        equivalence = dict()
-        for r in self.rules:
-            rule = copy.deepcopy(r)
-            parameter_to_generic_free_var = dict()
-            num_free_vars = 0
-            new_effect = []
-            for index, e in enumerate(rule.effect.args):
-                if e[0] != '?':
-                    new_effect.append(e)
-                    continue
-                if e not in parameter_to_generic_free_var.keys():
-                    parameter_to_generic_free_var[e] = "?" + chr(num_free_vars + ord('A'))
-                    num_free_vars += 1
-                new_effect.append(parameter_to_generic_free_var[e])
-            rule.effect.args = tuple(new_effect)
-            for index, c in enumerate(rule.conditions):
-                new_condition = []
-                for a in c.args:
-                    if a[0] != '?':
-                        new_condition.append(a)
-                        continue
-                    if a not in parameter_to_generic_free_var.keys():
-                        parameter_to_generic_free_var[a] = "?" + chr(num_free_vars + ord('A'))
-                        num_free_vars += 1
-                    new_condition.append(parameter_to_generic_free_var[a])
-                rule.conditions[index].args = tuple(new_condition)
-            if "p$" in str(rule.effect):
-                '''Auxiliary variable'''
-                if str(rule.conditions) in remaining_equivalent_rules.keys():
-                    equivalence[str(rule.effect.predicate)] = remaining_equivalent_rules[str(rule.conditions)]
-                    continue
-                remaining_equivalent_rules[str(rule.conditions)] = rule.effect.predicate
-            new_rules.append(rule)
-        final_rules = []
-        for rule in new_rules:
-            for i, c in enumerate(rule.conditions):
-                pred_symb = str(c.predicate)
-                if pred_symb in equivalence.keys():
-                    new_cond = c
-                    new_cond.predicate = equivalence[pred_symb]
-                    print("Replacing relation %s with %s" % (pred_symb, str(equivalence[pred_symb])), file=sys.stderr)
-                    rule.conditions[i] = new_cond
-            final_rules.append((getattr(rule, "type", "none"), str(rule)))
-        for rule in set(final_rules):
-            print(rule[0], rule[1], file=file)
+        for rule in self.rules:
+            print(getattr(rule, "type", "none"), rule, file=file)
     def normalize(self):
         # Normalized prolog programs have the following properties:
         # 1. Each variable that occurs in the effect of a rule also occurs in its
@@ -142,6 +97,82 @@ class PrologProgram:
             for rule_no in must_delete_rules[::-1]:
                 del self.rules[rule_no]
 
+    def rename_free_variables(self):
+        '''
+        Use canonical names for free variables. The names are based on the
+        order in
+        which the variables first show up and not on the PDDL file.
+        '''
+        def is_free_var(var, num):
+            if var[0] != '?':
+                new_effect.append(e)
+                return False, 0
+            if var not in parameter_to_generic_free_var.keys():
+                parameter_to_generic_free_var[var] = "?" + chr(num + ord('A'))
+                return True, 1
+            else:
+                return True, 0
+
+        new_rules = []
+        for r in self.rules:
+            rule = copy.deepcopy(r)
+            parameter_to_generic_free_var = dict()
+            num_free_vars = 0
+            new_effect = []
+            for index, e in enumerate(rule.effect.args):
+                is_free, increase = is_free_var(e, num_free_vars)
+                if is_free:
+                    new_effect.append(parameter_to_generic_free_var[e])
+                    num_free_vars += increase
+                else:
+                    new_effect.append(e)
+            rule.effect.args = tuple(new_effect)
+            for index, c in enumerate(rule.conditions):
+                new_condition = []
+                for a in c.args:
+                    is_free, increase = is_free_var(a, num_free_vars)
+                    if is_free:
+                        new_condition.append(parameter_to_generic_free_var[a])
+                        num_free_vars += increase
+                    else:
+                        new_condition.append(a)
+                rule.conditions[index].args = tuple(new_condition)
+            new_rules.append(rule)
+        self.rules = new_rules
+
+    def find_equivalent_rules(self, rules):
+        new_rules = []
+        remaining_equivalent_rules = dict()
+        equivalence = dict()
+        for rule in rules:
+            if "p$" in str(rule.effect):
+                '''Auxiliary variable'''
+                if str(rule.conditions) in remaining_equivalent_rules.keys():
+                    equivalence[str(rule.effect.predicate)] = remaining_equivalent_rules[
+                        str(rule.conditions)]
+                    continue
+                remaining_equivalent_rules[str(rule.conditions)] = rule.effect.predicate
+            new_rules.append(rule)
+        return new_rules, equivalence
+
+    def remove_duplicated_rules(self):
+        '''
+        Remove redundant and duplicated rules from the IDB of the Datalog
+        '''
+        new_rules, equivalence = self.find_equivalent_rules(self.rules)
+        final_rules = []
+        for rule in new_rules:
+            for i, c in enumerate(rule.conditions):
+                pred_symb = str(c.predicate)
+                if pred_symb in equivalence.keys():
+                    new_cond = c
+                    new_cond.predicate = equivalence[pred_symb]
+                    print("Replacing relation %s with %s" % (pred_symb, str(equivalence[pred_symb])), file=sys.stderr)
+                    rule.conditions[i] = new_cond
+            final_rules.append(rule)
+        self.rules = final_rules
+
+
 def get_variables(symbolic_atoms):
     variables = set()
     for sym_atom in symbolic_atoms:
@@ -184,9 +215,11 @@ class Rule:
                     condition, extra_conditions))
         self.conditions += extra_conditions
         return bool(extra_conditions)
+
     def __str__(self):
         cond_str = ", ".join(map(str, self.conditions))
         return "%s :- %s." % (self.effect, cond_str)
+
 
 def translate_typed_object(prog, obj, type_dict):
     supertypes = type_dict[obj.type_name].supertype_names
@@ -215,9 +248,14 @@ def translate(task):
     return prog
 
 
+
+
+
 if __name__ == "__main__":
     import pddl_parser
     task = pddl_parser.open()
     normalize.normalize(task)
     prog = translate(task)
+    prog.rename_free_variables()
+    prog.remove_duplicated_rules()
     prog.dump()
