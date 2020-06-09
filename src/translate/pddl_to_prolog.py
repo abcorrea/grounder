@@ -141,6 +141,7 @@ class PrologProgram:
         self.rules = new_rules
 
     def find_equivalent_rules(self, rules):
+        has_duplication = False
         new_rules = []
         remaining_equivalent_rules = dict()
         equivalence = dict()
@@ -148,29 +149,35 @@ class PrologProgram:
             if "p$" in str(rule.effect):
                 '''Auxiliary variable'''
                 if str(rule.conditions) in remaining_equivalent_rules.keys():
-                    equivalence[str(rule.effect.predicate)] = remaining_equivalent_rules[
-                        str(rule.conditions)]
+                    equivalence[str(rule.effect.predicate)] = remaining_equivalent_rules[str(rule.conditions)]
+                    has_duplication = True
                     continue
                 remaining_equivalent_rules[str(rule.conditions)] = rule.effect.predicate
             new_rules.append(rule)
-        return new_rules, equivalence
+        return has_duplication, new_rules, equivalence
 
     def remove_duplicated_rules(self):
         '''
         Remove redundant and duplicated rules from the IDB of the Datalog
         '''
-        new_rules, equivalence = self.find_equivalent_rules(self.rules)
-        final_rules = []
-        for rule in new_rules:
-            for i, c in enumerate(rule.conditions):
-                pred_symb = str(c.predicate)
-                if pred_symb in equivalence.keys():
-                    new_cond = c
-                    new_cond.predicate = equivalence[pred_symb]
-                    print("Replacing relation %s with %s" % (pred_symb, str(equivalence[pred_symb])), file=sys.stderr)
-                    rule.conditions[i] = new_cond
-            final_rules.append(rule)
-        self.rules = final_rules
+        has_duplication = True
+        total_rules_removed = 0
+        while has_duplication:
+            number_removed = 0
+            final_rules = []
+            has_duplication, new_rules, equivalence = self.find_equivalent_rules(self.rules)
+            for rule in new_rules:
+                for i, c in enumerate(rule.conditions):
+                    pred_symb = str(c.predicate)
+                    if pred_symb in equivalence.keys():
+                        new_cond = c
+                        new_cond.predicate = equivalence[pred_symb]
+                        number_removed += 1
+                        rule.conditions[i] = new_cond
+                final_rules.append(rule)
+            total_rules_removed += number_removed
+            self.rules = final_rules
+        #print("Total number of duplicated rules removed: %d" % total_rules_removed, file=sys.stderr)
 
 
 def get_variables(symbolic_atoms):
