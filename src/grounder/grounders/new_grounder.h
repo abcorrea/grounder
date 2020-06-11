@@ -3,6 +3,8 @@
 
 #include "fast_downward_grounder.h"
 
+#include "../utils/scc.h"
+
 #include <iostream>
 
 class NewGrounder : public FastDownwardGrounder  {
@@ -12,7 +14,15 @@ public:
     }
 
     int ground(LogicProgram &lp) override {
-        // TODO Implement
+        DirectedGraph dependency_graph;
+        for (const auto &rule : lp.get_rules()) {
+            dependency_graph.add_node(rule->get_effect().get_predicate_index());
+            for (const auto &cond1 : rule->get_conditions()) {
+                dependency_graph.add_node(cond1.get_predicate_index());
+                dependency_graph.add_edge(cond1.get_predicate_index(), rule->get_effect().get_predicate_index());
+            }
+        }
+
         return FastDownwardGrounder::ground(lp);
     }
 
