@@ -4,8 +4,10 @@
 #include "grounder.h"
 
 #include "fast_downward_grounder.h"
+#include "new_grounder.h"
 
 #include <iostream>
+
 #include <boost/algorithm/string.hpp>
 
 class GrounderFactory {
@@ -15,7 +17,9 @@ public:
         if (boost::iequals(method, "fd")) {
             return new FastDownwardGrounder();
         }
-
+        if (boost::iequals(method, "new")) {
+            return new NewGrounder();
+        }
         throw std::runtime_error(
             "Unexpected grounding method: \"" + method + "\"");
     }

@@ -10,7 +10,7 @@
 #include <unordered_set>
 
 class FastDownwardGrounder : public Grounder {
-
+protected:
     RuleMatcher rule_matcher;
 
     void create_rule_matcher(const LogicProgram &lp) {
