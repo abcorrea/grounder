@@ -32,9 +32,7 @@ protected:
                                      int position);
 
 public:
-    FastDownwardGrounder() {
-        std::cout << "Using Fast Downward grounding algorithm..." << std::endl;
-    }
+    FastDownwardGrounder() {};
 
     int ground(LogicProgram &lp) override;
 

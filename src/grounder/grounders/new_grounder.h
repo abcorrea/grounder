@@ -9,9 +9,7 @@
 
 class NewGrounder : public FastDownwardGrounder  {
 public:
-    NewGrounder() {
-        std::cout << "Using new grounding algorithm..." << std::endl;
-    }
+    NewGrounder() {};
 
     int ground(LogicProgram &lp) override {
         DirectedGraph dependency_graph;
@@ -19,9 +17,13 @@ public:
             dependency_graph.add_node(rule->get_effect().get_predicate_index());
             for (const auto &cond1 : rule->get_conditions()) {
                 dependency_graph.add_node(cond1.get_predicate_index());
-                dependency_graph.add_edge(cond1.get_predicate_index(), rule->get_effect().get_predicate_index());
+                dependency_graph.add_edge(cond1.get_predicate_index(),
+                                          rule->get_effect().get_predicate_index(),
+                                          rule->get_index());
             }
         }
+
+        SCC scc(dependency_graph);
 
         return FastDownwardGrounder::ground(lp);
     }
