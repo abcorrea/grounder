@@ -3,7 +3,6 @@
 
 #include <algorithm>
 #include <cassert>
-#include <iostream>
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
@@ -79,7 +78,7 @@ public:
 
 
 class SCC {
-    std::unordered_set<Component, boost::hash<std::vector<int>>> scc;
+    std::vector<Component> sccs;
 
     std::vector<int> index;
     std::vector<int> low_link;
@@ -89,13 +88,26 @@ class SCC {
     int idx;
 
     void connect(int v, const DirectedGraph &g);
-
+    void insert_new_component(int v);
     void clear_up();
 
 public:
     SCC() = default;
 
     SCC(const DirectedGraph &g);
+
+    const std::vector<Component> &get_components() const {
+        return sccs;
+    }
+
+    const Component &get_component_by_index(size_t i) const {
+        assert(i < sccs.size());
+        return sccs[i];
+    }
+
+    size_t size() const {
+        return sccs.size();
+    }
 
 };
 

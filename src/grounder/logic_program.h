@@ -43,10 +43,16 @@ public:
 
     const Fact &get_fact_by_index(int index) const;
 
+    const std::string &get_atom_by_index(int index) const;
+
     bool is_new(Fact &new_fact,
                 std::unordered_set<Fact> &reached_facts);
 
     size_t get_number_of_facts();
+
+    void clean_rule(int r) {
+        rules[r].reset();
+    }
 
 };
 

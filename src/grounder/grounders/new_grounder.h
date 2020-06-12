@@ -5,29 +5,21 @@
 
 #include "../utils/scc.h"
 
-#include <iostream>
+#include <unordered_map>
+#include <vector>
 
 class NewGrounder : public FastDownwardGrounder  {
+    std::vector<std::vector<int>> rule_delete_component;
+    std::unordered_map<int, int> map_pred_to_scc;
+
+    void dump_sccs(const LogicProgram &lp, const SCC &scc) const;
+
+    void compuete_rule_delete_component(const LogicProgram &lp, const SCC &sccs);
+
 public:
     NewGrounder() {};
 
-    int ground(LogicProgram &lp) override {
-        DirectedGraph dependency_graph;
-        for (const auto &rule : lp.get_rules()) {
-            dependency_graph.add_node(rule->get_effect().get_predicate_index());
-            for (const auto &cond1 : rule->get_conditions()) {
-                dependency_graph.add_node(cond1.get_predicate_index());
-                dependency_graph.add_edge(cond1.get_predicate_index(),
-                                          rule->get_effect().get_predicate_index(),
-                                          rule->get_index());
-            }
-        }
-
-        SCC scc(dependency_graph);
-
-        return FastDownwardGrounder::ground(lp);
-    }
-
+    int ground(LogicProgram &lp) override;
 };
 
 #endif //GROUNDER_GROUNDERS_NEW_GROUNDER_H_

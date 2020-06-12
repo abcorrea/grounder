@@ -11,7 +11,7 @@ SCC::SCC(const DirectedGraph &g) {
     for (auto &v : g.get_nodes())
         if (index[v] == UNDEFINED)
             connect(v, g);
-
+    reverse(sccs.begin(), sccs.end());
     clear_up();
 }
 
@@ -34,20 +34,22 @@ void SCC::connect(int v, const DirectedGraph &g) {
     }
 
     if (low_link[v] == index[v]) {
-        cerr << "Connected component #" << scc.size() + 1 << ": ";
-        Component c;
-        int w;
-        do {
-            w = s.top();
-            s.pop();
-            on_stack[w] = false;
-            c.push_back(w);
-            cerr << w << ", ";
-        }  while (w != v);
-        scc.insert(c);
-        cerr << endl;
+        insert_new_component(v);
     }
 }
+
+void SCC::insert_new_component(int v) {
+    Component c;
+    int w;
+    do {
+        w = s.top();
+        s.pop();
+        on_stack[w] = false;
+        c.push_back(w);
+    }  while (w != v);
+    sccs.push_back(c);
+}
+
 
 void SCC::clear_up() {
     index.clear();
