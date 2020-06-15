@@ -31,7 +31,7 @@ int NewGrounder::ground(LogicProgram &lp) {
         }
 
         SCC sccs(dependency_graph);
-        dump_sccs(lp, sccs);
+        //dump_sccs(lp, sccs);
         cout << "Number of SCCs: " << sccs.size() << endl;
         int component_counter = 0;
         for (const auto &c : sccs.get_components()) {
