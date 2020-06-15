@@ -33,32 +33,30 @@ int NewGrounder::ground(LogicProgram &lp) {
         SCC sccs(dependency_graph);
         //dump_sccs(lp, sccs);
         cout << "Number of SCCs: " << sccs.size() << endl;
-
-        int i = 0;
+        int component_counter = 0;
         for (const auto &c : sccs.get_components()) {
             for (int e : c) {
-                map_pred_to_scc[e] = i;
+                map_pred_to_scc[e] = component_counter;
             }
-            ++i;
+            ++component_counter;
         }
 
         create_rule_matcher(lp);
 
         unordered_set<Fact> reached_facts;
-        priority_queue<pair<int, int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
 
-        compuete_rule_delete_component(lp, sccs);
+        get_useful_rules_per_component(lp, sccs);
 
         for (const Fact &f : lp.get_facts()) {
-            q.emplace(map_pred_to_scc[f.get_predicate_index()], f.get_fact_index());
+            do_insertion(map_pred_to_scc[f.get_predicate_index()], f.get_fact_index());
             reached_facts.insert(f);
         }
 
         int last_component = 0;
-        while (!q.empty()) {
-            int component = q.top().first;
-            int i = q.top().second;
-            q.pop();
+        while (q_size > 0) {
+            auto min_element = remove_min();
+            int component = min_element.first;
+            int i = min_element.second;
             if (component > last_component) {
                 for (int r : rule_delete_component[last_component]) {
                     //cerr << last_component << ' ' << r << endl;
@@ -79,7 +77,7 @@ int NewGrounder::ground(LogicProgram &lp) {
                     assert(position_in_the_body==0);
                     optional<Fact> new_fact = project(rule, current_fact);
                     if (new_fact and lp.is_new(*new_fact, reached_facts)) {
-                        q.emplace(map_pred_to_scc[new_fact->get_predicate_index()],
+                        do_insertion(map_pred_to_scc[new_fact->get_predicate_index()],
                                   new_fact->get_fact_index());
                     }
                 } else if (rule.get_type()==JOIN) {
@@ -89,14 +87,14 @@ int NewGrounder::ground(LogicProgram &lp) {
                                               current_fact,
                                               position_in_the_body))
                         if (lp.is_new(new_fact, reached_facts)) {
-                            q.emplace(map_pred_to_scc[new_fact.get_predicate_index()],
+                            do_insertion(map_pred_to_scc[new_fact.get_predicate_index()],
                                       new_fact.get_fact_index());
                         }
                 } else if (rule.get_type()==PRODUCT) {
                     // Product rule - more than one condition without shared free vars
                     for (Fact new_fact : product(rule, current_fact, position_in_the_body))
                         if (lp.is_new(new_fact, reached_facts)) {
-                            q.emplace(map_pred_to_scc[new_fact.get_predicate_index()],
+                            do_insertion(map_pred_to_scc[new_fact.get_predicate_index()],
                                       new_fact.get_fact_index());
                         }
                 }
@@ -107,7 +105,7 @@ int NewGrounder::ground(LogicProgram &lp) {
 }
 
 
-void NewGrounder::compuete_rule_delete_component(const LogicProgram &lp, const SCC &sccs) {
+void NewGrounder::get_useful_rules_per_component(const LogicProgram &lp, const SCC &sccs) {
     rule_delete_component.resize(sccs.get_components().size());
     for (const auto &rule : lp.get_rules()) {
         int effect_index = rule->get_effect().get_predicate_index();
