@@ -23,7 +23,7 @@ EXPECTED_MODEL_SIZE = {'domains/agricola/p05.pddl': 50423,
                        'domains/organic-synthesis/p12.pddl' : 3193799,
                        'domains/organic-synthesis-split/p19.pddl': 280449}
 
-GROUNDER_CONFIGS = ['fd']
+GROUNDER_CONFIGS = ['fd', 'new']
 
 
 class TestRun:
