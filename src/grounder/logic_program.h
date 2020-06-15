@@ -5,10 +5,14 @@
 #include "object.h"
 #include "rules/rule_base.h"
 
+#include <deque>
 #include <memory>
 #include <unordered_map>
+#include <unordered_set>
 #include <utility>
 #include <vector>
+
+typedef std::unordered_set<Arguments, HashArguments> FactBucket;
 
 class LogicProgram {
     std::vector<Fact> facts;
@@ -47,6 +51,9 @@ public:
 
     bool is_new(Fact &new_fact,
                 std::unordered_set<Fact> &reached_facts);
+    bool is_new(Fact &new_fact,
+                std::map<int, FactBucket> &reached_facts);
+
 
     size_t get_number_of_facts();
 

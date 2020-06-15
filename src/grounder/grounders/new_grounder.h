@@ -42,6 +42,9 @@ class NewGrounder : public FastDownwardGrounder  {
         return std::make_pair(key, fact_index);
     }
 
+    void insert_fact(const Fact &fact, std::map<int, FactBucket> &reached_facts);
+    void clear_reached_facts(int i, std::map<int, FactBucket> &reached_facts);
+
 public:
     NewGrounder() : q_size(0) {};
 

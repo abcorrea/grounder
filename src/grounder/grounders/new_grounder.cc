@@ -31,7 +31,7 @@ int NewGrounder::ground(LogicProgram &lp) {
         }
 
         SCC sccs(dependency_graph);
-        //dump_sccs(lp, sccs);
+        dump_sccs(lp, sccs);
         cout << "Number of SCCs: " << sccs.size() << endl;
         int component_counter = 0;
         for (const auto &c : sccs.get_components()) {
@@ -43,13 +43,14 @@ int NewGrounder::ground(LogicProgram &lp) {
 
         create_rule_matcher(lp);
 
-        unordered_set<Fact> reached_facts;
+        //unordered_set<Fact> reached_facts;
+        map<int, FactBucket> reached_facts;
 
         get_useful_rules_per_component(lp, sccs);
 
         for (const Fact &f : lp.get_facts()) {
             do_insertion(map_pred_to_scc[f.get_predicate_index()], f.get_fact_index());
-            reached_facts.insert(f);
+            insert_fact(f, reached_facts);
         }
 
         int last_component = 0;
@@ -61,6 +62,9 @@ int NewGrounder::ground(LogicProgram &lp) {
                 for (int r : rule_delete_component[last_component]) {
                     //cerr << last_component << ' ' << r << endl;
                     lp.clean_rule(r);
+                }
+                for (int fact : sccs.get_components()[last_component]) {
+                    clear_reached_facts(fact, reached_facts);
                 }
                 last_component = component;
             }
@@ -113,4 +117,13 @@ void NewGrounder::get_useful_rules_per_component(const LogicProgram &lp, const S
         int rule_index = rule->get_index();
         rule_delete_component[scc_of_effect].push_back(rule_index);
     }
+}
+
+void NewGrounder::insert_fact(const Fact &fact, map<int, FactBucket> &reached_facts) {
+     reached_facts[fact.get_predicate_index()].insert(fact.get_arguments());
+}
+
+void NewGrounder::clear_reached_facts(int i, map<int, FactBucket> &reached_facts) {
+    reached_facts[i].clear();
+    reached_facts.erase(i);
 }
