@@ -45,6 +45,10 @@ class NewGrounder : public FastDownwardGrounder  {
     void insert_fact(const Fact &fact, std::map<int, FactBucket> &reached_facts);
     void clear_reached_facts(int i, std::map<int, FactBucket> &reached_facts);
 
+    bool is_new(Fact &new_fact,
+                std::map<int, FactBucket> &reached_facts,
+                LogicProgram &lp);
+
 public:
     NewGrounder() : q_size(0) {};
 

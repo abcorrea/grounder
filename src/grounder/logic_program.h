@@ -49,12 +49,6 @@ public:
 
     const std::string &get_atom_by_index(int index) const;
 
-    bool is_new(Fact &new_fact,
-                std::unordered_set<Fact> &reached_facts);
-    bool is_new(Fact &new_fact,
-                std::map<int, FactBucket> &reached_facts);
-
-
     size_t get_number_of_facts();
 
     void clean_rule(int r) {

@@ -10,6 +10,10 @@
 #include <unordered_set>
 
 class FastDownwardGrounder : public Grounder {
+    bool is_new(Fact &new_fact,
+                std::unordered_set<Fact> &reached_facts,
+                LogicProgram &lp);
+
 protected:
     RuleMatcher rule_matcher;
 

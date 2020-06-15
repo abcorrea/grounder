@@ -80,7 +80,7 @@ int NewGrounder::ground(LogicProgram &lp) {
                     // Projection rule - single condition in the body
                     assert(position_in_the_body==0);
                     optional<Fact> new_fact = project(rule, current_fact);
-                    if (new_fact and lp.is_new(*new_fact, reached_facts)) {
+                    if (new_fact and is_new(*new_fact, reached_facts, lp)) {
                         do_insertion(map_pred_to_scc[new_fact->get_predicate_index()],
                                   new_fact->get_fact_index());
                     }
@@ -90,14 +90,14 @@ int NewGrounder::ground(LogicProgram &lp) {
                     for (Fact new_fact : join(rule,
                                               current_fact,
                                               position_in_the_body))
-                        if (lp.is_new(new_fact, reached_facts)) {
+                        if (is_new(new_fact, reached_facts, lp)) {
                             do_insertion(map_pred_to_scc[new_fact.get_predicate_index()],
                                       new_fact.get_fact_index());
                         }
                 } else if (rule.get_type()==PRODUCT) {
                     // Product rule - more than one condition without shared free vars
                     for (Fact new_fact : product(rule, current_fact, position_in_the_body))
-                        if (lp.is_new(new_fact, reached_facts)) {
+                        if (is_new(new_fact, reached_facts, lp)) {
                             do_insertion(map_pred_to_scc[new_fact.get_predicate_index()],
                                       new_fact.get_fact_index());
                         }
@@ -117,6 +117,19 @@ void NewGrounder::get_useful_rules_per_component(const LogicProgram &lp, const S
         int rule_index = rule->get_index();
         rule_delete_component[scc_of_effect].push_back(rule_index);
     }
+}
+
+bool NewGrounder::is_new(Fact &new_fact,
+                          std::map<int, FactBucket> &reached_facts,
+                          LogicProgram &lp) {
+    int pred_idx = new_fact.get_predicate_index();
+    auto insert_result = reached_facts[pred_idx].insert(new_fact.get_arguments());
+    if (insert_result.second) {
+        new_fact.set_fact_index();
+        lp.insert_fact(new_fact);
+        return true;
+    }
+    return false;
 }
 
 void NewGrounder::insert_fact(const Fact &fact, map<int, FactBucket> &reached_facts) {

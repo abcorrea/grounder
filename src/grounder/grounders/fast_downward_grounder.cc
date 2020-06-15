@@ -38,7 +38,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
                 // Projection rule - single condition in the body
                 assert(position_in_the_body==0);
                 optional<Fact> new_fact = project(rule, current_fact);
-                if (new_fact and lp.is_new(*new_fact, reached_facts)) {
+                if (new_fact and is_new(*new_fact, reached_facts, lp)) {
                     q.push_back(new_fact->get_fact_index());
                 }
             } else if (rule.get_type()==JOIN) {
@@ -47,7 +47,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
                 for (Fact new_fact : join(rule,
                                           current_fact,
                                           position_in_the_body))
-                    if (lp.is_new(new_fact, reached_facts)) {
+                    if (is_new(new_fact, reached_facts, lp)) {
                         q.push_back(new_fact.get_fact_index());
                     }
             } else if (rule.get_type()==PRODUCT) {
@@ -55,7 +55,7 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
                 for (Fact new_fact : product(rule,
                                              current_fact,
                                              position_in_the_body))
-                    if (lp.is_new(new_fact, reached_facts)) {
+                    if (is_new(new_fact, reached_facts, lp)) {
                         q.push_back(new_fact.get_fact_index());
                     }
             }
@@ -63,6 +63,18 @@ int FastDownwardGrounder::ground(LogicProgram &lp) {
     }
 
     return 0;
+}
+
+bool FastDownwardGrounder::is_new(Fact &new_fact,
+                          unordered_set<Fact> &reached_facts,
+                          LogicProgram &lp) {
+    auto insert_result = reached_facts.insert(new_fact);
+    if (insert_result.second) {
+        new_fact.set_fact_index();
+        lp.insert_fact(new_fact);
+        return true;
+    }
+    return false;
 }
 
 /*
