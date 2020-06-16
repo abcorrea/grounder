@@ -50,6 +50,24 @@ public:
     }
 
 
+    bool operator==(const Arguments &b) const {
+        if (size()!=b.size())
+            return false;
+        for (size_t i = 0; i < size(); i++)
+            if (arguments[i] != b[i])
+                return false;
+        return true;
+    }
+
+};
+
+
+class HashArguments {
+public:
+    std::size_t operator()(const Arguments &f) const {
+        std::size_t seed = boost::hash_range(f.begin(), f.end());
+        return seed;
+    }
 };
 
 #endif //GROUNDER_ARGUMENTS_H

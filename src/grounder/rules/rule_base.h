@@ -51,7 +51,7 @@ public:
  * the body.
  *
  */
-enum RuleType {JOIN, PRODUCT, PROJECT};
+enum RuleType {NONE, JOIN, PRODUCT, PROJECT};
 
 class RuleBase {
 protected:
@@ -79,6 +79,8 @@ public:
         }
     };
 
+    RuleBase() = default;
+
     virtual ~RuleBase() = default;
 
     bool head_is_ground() const {
@@ -104,7 +106,9 @@ public:
         return index;
     }
 
-    virtual int get_type() const = 0;
+    virtual int get_type() const {
+        return NONE;
+    }
 
     const Arguments &get_condition_arguments(int i) const {
         return conditions[i].get_arguments();
