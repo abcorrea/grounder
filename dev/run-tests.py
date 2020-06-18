@@ -17,11 +17,11 @@ in several different domains have the expected size.
 
 
 # Commented instances have costs which are currently ignored
-EXPECTED_MODEL_SIZE = {'domains/agricola/p05.pddl': 50423,
-                       'domains/gripper/prob01.pddl' : 141,
-                       'domains/gripper/prob20.pddl': 1091,
-                       'domains/organic-synthesis/p12.pddl' : 3193799,
-                       'domains/organic-synthesis-split/p19.pddl': 280449}
+EXPECTED_GROUND_ACTIONS = {'domains/agricola/p05.pddl': 48179,
+                       'domains/gripper/prob01.pddl' : 36,
+                       'domains/gripper/prob20.pddl': 340,
+                       'domains/organic-synthesis/p12.pddl' : 3123576,
+                       'domains/organic-synthesis-split/p19.pddl': 90589}
 
 GROUNDER_CONFIGS = ['fd', 'new']
 
@@ -46,16 +46,18 @@ class TestRun:
 
     def evaluate(self, output, expected_size):
         num_atoms = None
+        num_actions = None
         for line in output.splitlines():
             if b' atoms' in line:
                 num_atoms = int(line.split()[0])
-                break
+            if b' ground actions' in line:
+                num_actions = int(line.split()[-1])
 
-        if num_atoms == expected_size:
-            print("[expected: {}, num_atoms: {}]".format(expected_size, num_atoms), end='')
+        if num_actions == expected_size:
+            print("[expected: {}, num_actions: {}]".format(expected_size, num_actions), end='')
             return True
         else:
-            print("[expected: {}, num_atoms: {}]".format(expected_size, num_atoms), end='')
+            print("[expected: {}, num_actions: {}]".format(expected_size, num_actions), end='')
             return False
 
     def remove_lp_file(self):
@@ -72,7 +74,7 @@ if __name__ == '__main__':
 
     print("Running with current release build.")
 
-    for instance, size in EXPECTED_MODEL_SIZE.items():
+    for instance, size in EXPECTED_GROUND_ACTIONS.items():
         for config in GROUNDER_CONFIGS:
             test = TestRun(instance, config)
             output = test.run()
