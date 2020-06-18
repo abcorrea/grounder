@@ -10,7 +10,11 @@
 #include <unordered_set>
 
 class FastDownwardGrounder : public Grounder {
+    bool is_new(Fact &new_fact,
+                std::unordered_set<Fact> &reached_facts,
+                LogicProgram &lp);
 
+protected:
     RuleMatcher rule_matcher;
 
     void create_rule_matcher(const LogicProgram &lp) {
@@ -32,9 +36,7 @@ class FastDownwardGrounder : public Grounder {
                                      int position);
 
 public:
-    FastDownwardGrounder() {
-        std::cout << "Using Fast Downward grounding algorithm..." << std::endl;
-    }
+    FastDownwardGrounder() {};
 
     int ground(LogicProgram &lp) override;
 

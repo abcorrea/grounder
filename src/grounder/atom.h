@@ -25,6 +25,8 @@ public:
         predicate_index(predicate_index),
         index(next_index++) {}
 
+    Atom() = default;
+
     void print_atom(
         const std::vector<Object> &obj,
         const std::unordered_map<int, std::string> &map_index_to_atom) const;
