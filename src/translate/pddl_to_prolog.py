@@ -255,14 +255,28 @@ def translate(task):
     return prog
 
 
+# TODO Remove
+def check_negated_precond(task):
+    non_static = set()
+    ops_w_neg_static_prec = set()
+    for op in task.actions:
+        for eff in op.effects:
+            non_static.add(eff.literal.predicate)
+    for op in task.actions:
+        for prec in op.precondition.parts:
+            if prec.negated and prec.predicate not in non_static:
+                ops_w_neg_static_prec.add(op.name)
 
+    print("Operators with negated static precondition: {}".format(len(ops_w_neg_static_prec)))
 
 
 if __name__ == "__main__":
     import pddl_parser
     task = pddl_parser.open()
     normalize.normalize(task)
+    check_negated_precond(task)
     prog = translate(task)
+    sys.exit()
     prog.rename_free_variables()
     prog.remove_duplicated_rules()
     prog.dump()

@@ -42,6 +42,8 @@ def parse_arguments():
     parser.add_argument('-m', '--method', default="fd", help="Grounding method.")
     parser.add_argument('-b', '--build', action='store_true',
                         help="Build the project before running it (Default: False).")
+    parser.add_argument('--translate',
+                        action="store_true", help="Only run translator.")
     parser.add_argument('--debug',
                         action="store_true", help="Build in debug mode.")
 
@@ -70,13 +72,13 @@ def main(args):
     with resources.timing(f"Generating reachability LP", newline=True):
         generate_lp(args.domain, args.instance, args.lp_output)
 
-    ground_lp(args.lp_output, args.method, args.debug)
+    if not args.translate:
+        ground_lp(args.lp_output, args.method, args.debug)
 
 
 def generate_lp(domain, instance, lp_output):
     with open(lp_output, 'w') as f:
-        subprocess.call([os.path.join(PROJECT_ROOT, 'src', 'translate', 'pddl_to_prolog.py'), domain, instance],
-                        stdout=f)
+        subprocess.call([os.path.join(PROJECT_ROOT, 'src', 'translate', 'pddl_to_prolog.py'), domain, instance])
 
 
 def ground_lp(filename, method, debug_flag):
