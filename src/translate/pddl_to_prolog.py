@@ -105,7 +105,6 @@ class PrologProgram:
         '''
         def is_free_var(var, num):
             if var[0] != '?':
-                new_effect.append(e)
                 return False, 0
             if var not in parameter_to_generic_free_var.keys():
                 parameter_to_generic_free_var[var] = "?" + chr(num + ord('A'))
@@ -113,7 +112,7 @@ class PrologProgram:
             else:
                 return True, 0
 
-        new_rules = []
+        new_rules = set()
         for r in self.rules:
             rule = copy.deepcopy(r)
             parameter_to_generic_free_var = dict()
@@ -137,8 +136,8 @@ class PrologProgram:
                     else:
                         new_condition.append(a)
                 rule.conditions[index].args = tuple(new_condition)
-            new_rules.append(rule)
-        self.rules = new_rules
+            new_rules.add(rule)
+        self.rules = list(new_rules)
 
     def find_equivalent_rules(self, rules):
         has_duplication = False
@@ -151,6 +150,7 @@ class PrologProgram:
                 if str(rule.conditions) in remaining_equivalent_rules.keys():
                     equivalence[str(rule.effect.predicate)] = remaining_equivalent_rules[str(rule.conditions)]
                     has_duplication = True
+                    #print("Removing {} because of {}".format(rule.effect.predicate, remaining_equivalent_rules[str(rule.conditions)]))
                     continue
                 remaining_equivalent_rules[str(rule.conditions)] = rule.effect.predicate
             new_rules.append(rule)
