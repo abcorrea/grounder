@@ -20,6 +20,9 @@ class Condition:
         print("%s%s" % (indent, self._dump()))
         for part in self.parts:
             part.dump(indent + "  ")
+    def detailed_dump(self):
+        for idx, part in enumerate(self.parts):
+            print(str(idx), part.predicate, len(part.args), " ".join(part.args))
     def _dump(self):
         return self.__class__.__name__
     def _postorder_visit(self, method_name, *args):

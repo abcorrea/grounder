@@ -1,6 +1,6 @@
 import copy
 
-from . import conditions
+from . import conditions, f_expression
 
 
 class Action:
@@ -36,6 +36,27 @@ class Action:
             self.cost.dump()
         else:
             print("  None")
+
+    def detailed_dump(self):
+        # add "action_" at the beginning to have the same name as the predicate
+        print("%s %d" % (self, len(self.parameters)))
+        for idx, par in enumerate(self.parameters):
+            print(idx, par.name)
+        print("Precondition %d" % len(self.precondition.parts))
+        self.precondition.detailed_dump()
+        print("Effects %d" % len(self.effects))
+        for idx, eff in enumerate(self.effects):
+            print(idx, end=' ')
+            eff.detailed_dump()
+        print("Cost")
+        if (self.cost):
+            expr = self.cost.expression
+            if isinstance(expr, f_expression.NumericConstant):
+                print("C %d", expr.value)
+            else:
+                print("F", expr.symbol, len(expr.args), " ".join(expr.args))
+        else:
+            print("None")
 
     def uniquify_variables(self):
         self.type_map = {par.name: par.type_name for par in self.parameters}

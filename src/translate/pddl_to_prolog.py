@@ -8,6 +8,8 @@ import normalize
 import pddl
 import timers
 
+from contextlib import redirect_stdout
+
 class PrologProgram:
     def __init__(self):
         self.facts = []
@@ -262,6 +264,11 @@ if __name__ == "__main__":
     import pddl_parser
     task = pddl_parser.open()
     normalize.normalize(task)
+    with open('actions.out', 'w') as f:
+        with redirect_stdout(f):
+            print(len(task.actions))
+            for action in task.actions:
+                action.detailed_dump()
     prog = translate(task)
     prog.rename_free_variables()
     prog.remove_duplicated_rules()

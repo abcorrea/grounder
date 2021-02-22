@@ -32,6 +32,12 @@ class Effect:
             print("%sthen" % indent)
             indent += "  "
         print("%s%s" % (indent, self.literal))
+
+    def detailed_dump(self):
+        if self.parameters or self.condition != conditions.Truth():
+            raise NotImplementedError
+        part = self.literal
+        print(part.predicate, len(part.args), " ".join(part.args))
     def copy(self):
         return Effect(self.parameters, self.condition, self.literal)
     def uniquify_variables(self, type_map):

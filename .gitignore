@@ -2,6 +2,7 @@
 *.model
 *.theory
 *.lp
+actions.out
 builds/
 experiments/*/data/
 src/*.egg-info/
