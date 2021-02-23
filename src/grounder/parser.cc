@@ -24,6 +24,8 @@ LogicProgram parse(ifstream &in) {
     unordered_map<string, int> map_atom_to_index;
     unordered_map<int, string> map_index_to_atom;
 
+    set<int> action_indices; // This is an std::set because these indices are ordered.
+
     vector<Object> lp_objects;
     vector<Fact> lp_facts;
     vector<unique_ptr<RuleBase>> rules;
@@ -60,6 +62,10 @@ LogicProgram parse(ifstream &in) {
 
             auto head_pred_pair =
                 map_atom_to_index.try_emplace(head_predicate, number_of_atoms);
+            if (head_predicate.rfind("action_", 0) == 0) {
+                action_indices.emplace(map_atom_to_index.at(head_predicate));
+            }
+
             if (head_pred_pair.second) {
                 map_index_to_atom.emplace(number_of_atoms, head_predicate);
                 number_of_atoms++;
@@ -138,7 +144,8 @@ LogicProgram parse(ifstream &in) {
     for (Fact &f : lp_facts)
         f.set_fact_index();
 
-    return LogicProgram(move(lp_facts), move(lp_objects), move(rules), move(map_index_to_atom));;
+    return LogicProgram(move(lp_facts), move(lp_objects), move(rules), move(map_index_to_atom),
+        move(action_indices), move(map_object_to_index));
 }
 bool is_warning_message(const string &line) {
     if (line.find("Warning:")!=string::npos) {

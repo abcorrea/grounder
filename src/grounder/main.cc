@@ -1,3 +1,4 @@
+#include "instantiate.h"
 #include "logic_program.h"
 #include "parser.h"
 
@@ -9,8 +10,12 @@
 
 using namespace std;
 
+void instantiate_actions(LogicProgram program, set<int> set);
+
 int main(int argc, char *argv[]) {
     std::cout << "Initializing grounding!" << std::endl;
+
+    const bool instantiate = true; // TODO make this a parameter
 
     if (argc!=3) {
         cerr << "Usage: ./grounder [LP PROGRAM] [GROUNDING METHOD]" << endl;
@@ -47,16 +52,27 @@ int main(int argc, char *argv[]) {
     cout << "Total time: " << total_time << "s" << endl;
     cout << "Peak memory usage: " << utils::get_peak_memory_in_kb() << " kB\n";
 
-    const auto &map_index_to_atom = logic_program.get_map_index_to_atom();
+    //const auto &map_index_to_atom = logic_program.get_map_index_to_atom();
     int number_of_ground_actions = 0;
+    int counter = 0;
+    set<int> ground_action_idx;
     for (const auto &f : logic_program.get_facts()) {
-      if (map_index_to_atom.at(f.get_predicate_index()).find("action_") != string::npos)
-        ++number_of_ground_actions;
+      if (logic_program.is_action_predicate(f.get_predicate_index())) {
+          ground_action_idx.emplace(counter);
+          ++number_of_ground_actions;
+      }
       //f.print_atom(logic_program.get_objects(), logic_program.get_map_index_to_atom());
+      ++counter;
     }
 
     cout << "Number of ground actions: " << number_of_ground_actions << endl;
     cout << logic_program.get_facts().size() << " atoms" << endl;
 
+    if (instantiate) {
+        Instantiator instantiator;
+        instantiator.instantiate_actions(logic_program, ground_action_idx);
+    }
+
     return 0;
 }
+

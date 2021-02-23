@@ -31,4 +31,4 @@ add_executable(grounder
         utils/language.h
         utils/system.cc utils/system.h
         utils/system_unix.cc utils/system_unix.h
-        utils/system_windows.cc utils/system_windows.h grounders/new_grounder.cc grounders/new_grounder.h utils/scc.h utils/scc.cc)
+        utils/system_windows.cc utils/system_windows.h grounders/new_grounder.cc grounders/new_grounder.h utils/scc.h utils/scc.cc instantiate.h instantiate.cc)
