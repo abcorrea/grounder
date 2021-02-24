@@ -58,7 +58,8 @@ void Instantiator::parse_conjunctive_formula(const LogicProgram &lp,
         int type;
         int number_param;
         int parameter_index;
-        infile >> idx >> atom >> number_param;
+        bool negated;
+        infile >> idx >> atom >> negated >> number_param;
         int conjunctive_predicate_idx = lp.get_index_of_atom(atom);
         vector<pair<int, int>> parameters;
         parameters.reserve(number_param);
@@ -76,6 +77,6 @@ void Instantiator::parse_conjunctive_formula(const LogicProgram &lp,
             parameters.emplace_back(parameter_index, type);
         }
         Arguments args(parameters);
-        conjunction.emplace_back(args, conjunctive_predicate_idx);
+        conjunction.emplace_back(args, conjunctive_predicate_idx, negated);
     }
 }

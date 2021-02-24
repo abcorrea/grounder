@@ -18,12 +18,21 @@ class Atom {
     int predicate_index;
     int index;
     static int next_index;
+    bool negated;
 
 public:
     Atom(Arguments arguments, int predicate_index) :
         arguments(Arguments(std::move(arguments))),
         predicate_index(predicate_index),
-        index(next_index++) {}
+        index(next_index++) {
+        negated = false;
+    }
+
+    Atom(Arguments arguments, int predicate_index, bool negated) :
+        arguments(Arguments(std::move(arguments))),
+        predicate_index(predicate_index),
+        index(next_index++),
+        negated(negated) {}
 
     Atom() = default;
 

@@ -47,6 +47,7 @@ public:
 
     void instantiate_actions(LogicProgram &lp, const std::set<int>& ground_actions_idx) {
         parse(lp);
+        std::cout << "Finishing instantiation" << std::endl;
     }
 
 };
