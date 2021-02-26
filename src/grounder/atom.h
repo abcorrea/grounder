@@ -40,6 +40,10 @@ public:
         const std::vector<Object> &obj,
         const std::unordered_map<int, std::string> &map_index_to_atom) const;
 
+    void print_atom_no_newline(
+        const std::vector<Object> &obj,
+        const std::unordered_map<int, std::string> &map_index_to_atom) const;
+
     const Arguments &get_arguments() const {
         return arguments;
     }
@@ -55,6 +59,14 @@ public:
     Term argument(size_t i) const {
         assert(i < arguments.size());
         return arguments[i];
+    }
+
+    void update_value_of_argument(int i, int j) {
+        arguments.set_term_to_object(i, j);
+    }
+
+    bool is_negated() const {
+        return negated;
     }
 
 };
