@@ -56,10 +56,16 @@ int main(int argc, char *argv[]) {
     int number_of_ground_actions = 0;
     int counter = 0;
     set<int> ground_action_idx;
+    set<int> fluents_idx;
     for (const auto &f : logic_program.get_facts()) {
       if (logic_program.is_action_predicate(f.get_predicate_index())) {
           ground_action_idx.emplace(counter);
           ++number_of_ground_actions;
+      } else {
+          if (logic_program.get_atom_by_index(f.get_predicate_index()).rfind("p$", 0) != 0) {
+              // If not action nor auxiliary predicate
+              fluents_idx.emplace(f.get_fact_index());
+          }
       }
       //f.print_atom(logic_program.get_objects(), logic_program.get_map_index_to_atom());
       ++counter;
